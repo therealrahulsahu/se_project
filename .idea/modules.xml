@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../log_project/.idea/log_pandas.iml" filepath="$PROJECT_DIR$/../log_project/.idea/log_pandas.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/se_project.iml" filepath="$PROJECT_DIR$/.idea/se_project.iml" />
     </modules>
   </component>
