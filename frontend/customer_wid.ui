@@ -17,7 +17,7 @@
    <item>
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>0</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="tab">
       <attribute name="title">
@@ -42,7 +42,7 @@
          <item>
           <layout class="QHBoxLayout" name="horizontalLayout_2">
            <item>
-            <widget class="QRadioButton" name="radioButton">
+            <widget class="QRadioButton" name="rbt_veg">
              <property name="text">
               <string>Only Veg</string>
              </property>
@@ -79,48 +79,48 @@
          <item>
           <layout class="QHBoxLayout" name="horizontalLayout_4">
            <item>
-            <widget class="QGroupBox" name="groupBox">
+            <widget class="QGroupBox" name="gp_region">
              <property name="title">
               <string>Region</string>
              </property>
              <layout class="QGridLayout" name="gridLayout">
               <item row="2" column="0">
-               <widget class="QRadioButton" name="radioButton_6">
+               <widget class="QRadioButton" name="rbt_thai">
                 <property name="text">
                  <string>Thai</string>
                 </property>
                </widget>
               </item>
               <item row="2" column="1">
-               <widget class="QRadioButton" name="radioButton_4">
+               <widget class="QRadioButton" name="rbt_china">
                 <property name="text">
                  <string>Chinese</string>
                 </property>
                </widget>
               </item>
               <item row="0" column="0">
-               <widget class="QRadioButton" name="radioButton_2">
+               <widget class="QRadioButton" name="rbt_north_ind">
                 <property name="text">
                  <string>North Indian</string>
                 </property>
                </widget>
               </item>
               <item row="0" column="1">
-               <widget class="QRadioButton" name="radioButton_5">
+               <widget class="QRadioButton" name="rbt_italian">
                 <property name="text">
                  <string>Italian</string>
                 </property>
                </widget>
               </item>
               <item row="2" column="2">
-               <widget class="QRadioButton" name="radioButton_7">
+               <widget class="QRadioButton" name="rbt_rajas">
                 <property name="text">
                  <string>Rajasthani</string>
                 </property>
                </widget>
               </item>
               <item row="0" column="2">
-               <widget class="QRadioButton" name="radioButton_3">
+               <widget class="QRadioButton" name="rbt_south_ind">
                 <property name="text">
                  <string>South Indian</string>
                 </property>
@@ -147,34 +147,34 @@
          <item>
           <layout class="QHBoxLayout" name="horizontalLayout_3">
            <item>
-            <widget class="QGroupBox" name="groupBox_2">
+            <widget class="QGroupBox" name="gp_type">
              <property name="title">
               <string>Type</string>
              </property>
              <layout class="QGridLayout" name="gridLayout_2">
               <item row="3" column="0">
-               <widget class="QRadioButton" name="radioButton_9">
+               <widget class="QRadioButton" name="rbt_main">
                 <property name="text">
                  <string>Main Course</string>
                 </property>
                </widget>
               </item>
               <item row="0" column="0">
-               <widget class="QRadioButton" name="radioButton_8">
+               <widget class="QRadioButton" name="rbt_starter">
                 <property name="text">
                  <string>Starter</string>
                 </property>
                </widget>
               </item>
               <item row="0" column="1">
-               <widget class="QRadioButton" name="radioButton_10">
+               <widget class="QRadioButton" name="rbt_refresh">
                 <property name="text">
                  <string>Refreshments</string>
                 </property>
                </widget>
               </item>
               <item row="3" column="1">
-               <widget class="QRadioButton" name="radioButton_11">
+               <widget class="QRadioButton" name="rbt_dessert">
                 <property name="text">
                  <string>Dessert</string>
                 </property>
@@ -214,7 +214,7 @@
             </spacer>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton_2">
+            <widget class="QPushButton" name="bt_get">
              <property name="text">
               <string>Get</string>
              </property>
@@ -240,7 +240,7 @@
            <property name="widgetResizable">
             <bool>true</bool>
            </property>
-           <widget class="QWidget" name="scrollAreaWidgetContents">
+           <widget class="QWidget" name="scroll_choose">
             <property name="geometry">
              <rect>
               <x>0</x>
@@ -275,7 +275,7 @@
            <property name="widgetResizable">
             <bool>true</bool>
            </property>
-           <widget class="QWidget" name="scrollAreaWidgetContents_2">
+           <widget class="QWidget" name="scroll_selected">
             <property name="geometry">
              <rect>
               <x>0</x>
@@ -284,7 +284,7 @@
               <height>247</height>
              </rect>
             </property>
-            <layout class="QGridLayout" name="gridLayout_3"/>
+            <layout class="QVBoxLayout" name="verticalLayout_8"/>
            </widget>
           </widget>
          </item>
@@ -337,7 +337,7 @@
             </spacer>
            </item>
            <item>
-            <widget class="QLabel" name="label_2">
+            <widget class="QLabel" name="lb_amount">
              <property name="text">
               <string>0</string>
              </property>
@@ -357,7 +357,7 @@
             </spacer>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton_4">
+            <widget class="QPushButton" name="bt_done">
              <property name="text">
               <string>Done</string>
              </property>
@@ -373,11 +373,40 @@
       <attribute name="title">
        <string>Status</string>
       </attribute>
-      <layout class="QVBoxLayout" name="verticalLayout_2">
+      <layout class="QVBoxLayout" name="verticalLayout_2" stretch="4,30">
        <item>
-        <widget class="QPushButton" name="pushButton">
-         <property name="text">
-          <string>PushButton</string>
+        <layout class="QHBoxLayout" name="horizontalLayout_7">
+         <item>
+          <spacer name="horizontalSpacer_6">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QPushButton" name="bt_refresh_status">
+           <property name="text">
+            <string>Refresh</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QTextBrowser" name="tb_status">
+         <property name="html">
+          <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;    &lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;      &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
        </item>
@@ -387,13 +416,65 @@
       <attribute name="title">
        <string>Bill</string>
       </attribute>
-      <layout class="QVBoxLayout" name="verticalLayout_4">
+      <layout class="QVBoxLayout" name="verticalLayout_4" stretch="4,30,4">
        <item>
-        <widget class="QPushButton" name="pushButton_3">
-         <property name="text">
-          <string>PushButton</string>
+        <layout class="QHBoxLayout" name="horizontalLayout_9">
+         <item>
+          <spacer name="horizontalSpacer_8">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QPushButton" name="bt_refresh_bill">
+           <property name="text">
+            <string>Refresh</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QTextBrowser" name="tb_bill">
+         <property name="html">
+          <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_8">
+         <item>
+          <spacer name="horizontalSpacer_7">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QPushButton" name="bt_checkout">
+           <property name="text">
+            <string>Checkout</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </item>
       </layout>
      </widget>
