@@ -59,7 +59,7 @@
         </font>
        </property>
        <property name="text">
-        <string>Manager Login</string>
+        <string>Chef Login</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
