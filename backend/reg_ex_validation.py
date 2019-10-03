@@ -5,11 +5,11 @@ def validPatt(reg, string):
 
 
 def validPassword(string):
-    reg = r'^[^\n\s\t\\]{8,}$'
+    reg = r'^[^\n\s\t\\\/]{8,}$'
     return validPatt(reg, string)
 
 
-def validUsername(string):
+def validUserId(string):
     reg = r'^[\w]{5,}$'
     return validPatt(reg, string)
 

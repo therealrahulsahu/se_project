@@ -3,9 +3,8 @@ def run_main(curr_wid, MW):
     from pymongo.errors import ConfigurationError, ConnectionFailure, ServerSelectionTimeoutError
     from pymongo import MongoClient
     from PyQt5.QtCore import QThread, pyqtSignal
-    mess = MW.bar_status.showMessage
 
-    class T1Class(QThread):
+    class ThreadConnection(QThread):
 
         signal = pyqtSignal('PyQt_PyObject')
 
@@ -21,23 +20,23 @@ def run_main(curr_wid, MW):
                 MW.myc = myc
                 self.signal.emit(True)
             except (dns.exception.Timeout, ConfigurationError):
-                mess('DNS Not Found')
+                MW.mess('DNS Not Found')
             except ConnectionFailure:
-                mess('Connection Failed')
+                MW.mess('Connection Failed')
             except ServerSelectionTimeoutError:
-                mess('Server Down')
+                MW.mess('Server Down')
             finally:
                 curr_wid.bt_connect.setEnabled(True)
 
-    connection_t = T1Class()
+    connection_t = ThreadConnection()
 
     def conn():
-        mess('Connecting...')
+        MW.mess('Connecting...')
         curr_wid.bt_connect.setEnabled(False)
         connection_t.start()
 
     def conn_finish():
-        mess('Connected')
+        MW.mess('Connected')
         MW.select_func()
 
     curr_wid.bt_connect.clicked.connect(conn)

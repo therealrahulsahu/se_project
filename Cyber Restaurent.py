@@ -23,16 +23,18 @@ class MyWindow(QtWidgets.QMainWindow):
         quit_action = QtWidgets.QAction('&Quit Session', self)
         quit_action.setShortcut('Ctrl+Q')
         quit_action.setStatusTip('Quit Session')
-        # quit_action.triggered.connect(self.login_wid)
+        quit_action.triggered.connect(self.select_func)
 
         file_menu = self.bar_menu.addMenu('&File')
         file_menu.addAction(quit_action)
 
     def status_bar(self):
-        self.bar_status.showMessage('Ready to Go....')
+        self.mess = self.bar_status.showMessage
+        self.mess('Ready to Go....')
 
     def select_func(self):
         self.bar_menu.setVisible(False)
+        self.logged_user = ''
 
         select_wid = QtWidgets.QWidget()
         from frontend import SelectWid
