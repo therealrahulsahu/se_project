@@ -16,7 +16,7 @@ class MyWindow(QtWidgets.QMainWindow):
         self.bar_status = self.statusBar()
         self.status_bar()
 
-        self.start()
+        self.start_here()
 
     def menu_bar(self):
 
@@ -39,9 +39,45 @@ class MyWindow(QtWidgets.QMainWindow):
         select_ui = SelectWid()
         select_ui.setupUi(select_wid)
         from backend import SelectCode
-        # SelectCode(select_ui, self)
+        SelectCode(select_ui, self)
 
         self.setCentralWidget(select_wid)
+
+    def customer_login_func(self):
+        self.bar_menu.setVisible(False)
+
+        customer_login_wid = QtWidgets.QWidget()
+        from frontend import CustomerLoginWid
+        customer_login_ui = CustomerLoginWid()
+        customer_login_ui.setupUi(customer_login_wid)
+        from backend import CustomerLoginCode
+        CustomerLoginCode(customer_login_ui, self)
+
+        self.setCentralWidget(customer_login_wid)
+
+    def manager_login_func(self):
+        self.bar_menu.setVisible(False)
+
+        manager_login_wid = QtWidgets.QWidget()
+        from frontend import ManagerLoginWid
+        manager_login_ui = ManagerLoginWid()
+        manager_login_ui.setupUi(manager_login_wid)
+        from backend import ManagerLoginCode
+        ManagerLoginCode(manager_login_ui, self)
+
+        self.setCentralWidget(manager_login_wid)
+
+    def chef_login_func(self):
+        self.bar_menu.setVisible(False)
+
+        chef_login_wid = QtWidgets.QWidget()
+        from frontend import ChefLoginWid
+        chef_login_ui = ChefLoginWid()
+        chef_login_ui.setupUi(chef_login_wid)
+        from backend import ChefLoginCode
+        ChefLoginCode(chef_login_ui, self)
+
+        self.setCentralWidget(chef_login_wid)
 
     def connect_func(self):
         self.bar_menu.setVisible(False)
@@ -55,7 +91,43 @@ class MyWindow(QtWidgets.QMainWindow):
 
         self.setCentralWidget(conn_wid)
 
-    def start(self):
+    def manager_func(self):
+        self.bar_menu.setVisible(True)
+
+        manager_wid = QtWidgets.QWidget()
+        from frontend import ManagerWid
+        manager_ui = ManagerWid()
+        manager_ui.setupUi(manager_wid)
+        from backend import ManagerCode
+        ManagerCode(manager_ui, self)
+
+        self.setCentralWidget(manager_wid)
+
+    def chef_func(self):
+        self.bar_menu.setVisible(True)
+
+        chef_wid = QtWidgets.QWidget()
+        from frontend import ChefWid
+        chef_ui = ChefWid()
+        chef_ui.setupUi(chef_wid)
+        from backend import ChefCode
+        ChefCode(chef_ui, self)
+
+        self.setCentralWidget(chef_wid)
+
+    def customer_wid(self):
+        self.bar_menu.setVisible(True)
+
+        customer_wid = QtWidgets.QWidget()
+        from frontend import CustomerWid
+        customer_ui = CustomerWid()
+        customer_ui.setupUi(customer_wid)
+        from backend import CustomerCode
+        CustomerCode(customer_ui, self)
+
+        self.setCentralWidget(customer_wid)
+
+    def start_here(self):
         self.connect_func()
 
 
