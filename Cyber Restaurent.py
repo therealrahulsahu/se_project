@@ -31,8 +31,32 @@ class MyWindow(QtWidgets.QMainWindow):
     def status_bar(self):
         self.bar_status.showMessage('Ready to Go....')
 
+    def select_func(self):
+        self.bar_menu.setVisible(False)
+
+        select_wid = QtWidgets.QWidget()
+        from frontend import SelectWid
+        select_ui = SelectWid()
+        select_ui.setupUi(select_wid)
+        from backend import SelectCode
+        # SelectCode(select_ui, self)
+
+        self.setCentralWidget(select_wid)
+
+    def connect_func(self):
+        self.bar_menu.setVisible(False)
+
+        conn_wid = QtWidgets.QWidget()
+        from frontend import ConnectWid
+        conn_ui = ConnectWid()
+        conn_ui.setupUi(conn_wid)
+        from backend import ConnectCode
+        ConnectCode(conn_ui, self)
+
+        self.setCentralWidget(conn_wid)
+
     def start(self):
-        pass
+        self.connect_func()
 
 
 if __name__ == '__main__':
