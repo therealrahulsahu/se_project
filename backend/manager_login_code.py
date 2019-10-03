@@ -35,7 +35,7 @@ def run_main(curr_wid, MW):
                 MW.mess('Welcome ' + data['name'])
                 self.signal.emit(True)
             except (InvalidUserIdError, InvalidPasswordError, UserNotFoundError) as ob:
-                MW.mess(ob.answer)
+                MW.mess(str(ob))
             except AutoReconnect:
                 MW.mess('--> Network Error <--')
             finally:
