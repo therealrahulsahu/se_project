@@ -60,3 +60,11 @@ class InvalidNameError(Exception):
 
     def __str__(self):
         return self.answer
+
+
+class TableAlreadyOccupiedError(Exception):
+    def __init__(self):
+        self.answer = 'Table Already Occupied'
+
+    def __str__(self):
+        return self.answer
