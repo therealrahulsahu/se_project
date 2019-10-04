@@ -68,3 +68,19 @@ class TableAlreadyOccupiedError(Exception):
 
     def __str__(self):
         return self.answer
+
+
+class OrderNotCreatedSuccessfullyError(Exception):
+    def __init__(self):
+        self.answer = 'Order Not Created Successfully'
+
+    def __str__(self):
+        return self.answer
+
+
+class CustomerAlreadyInError(Exception):
+    def __init__(self):
+        self.answer = 'Customer Already Inside'
+
+    def __str__(self):
+        return self.answer
