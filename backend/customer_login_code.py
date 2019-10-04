@@ -1,4 +1,6 @@
 def run_main(curr_wid, MW):
+    MW.mess('Enter Customer Details ')
+
     def to_back():
         MW.mess('!!! Select User !!!')
         MW.select_func()
