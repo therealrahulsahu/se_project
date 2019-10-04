@@ -40,12 +40,14 @@ def run_main(curr_wid, MW):
                 MW.mess('--> Network Error <--')
             finally:
                 curr_wid.bt_login.setEnabled(True)
+                curr_wid.bt_back.setEnabled(True)
 
     fetch_t = ThreadFetch()
 
     def to_login():
         MW.mess('Verifying...')
         curr_wid.bt_login.setEnabled(False)
+        curr_wid.bt_back.setEnabled(False)
         fetch_t.start()
 
     def to_login_finish():

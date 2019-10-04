@@ -28,7 +28,12 @@ def run_main(curr_wid, MW):
 
     def update_order_counter(count):
         myc = MW.myc.retaurant_database.counter
-        ret_id = myc.update_one({'type': 'orders'}, {'$set': {'num': count}})
+        from pymongo.errors import AutoReconnect
+        try:
+            ret_id = myc.update_one({'type': 'orders'}, {'$set': {'num': count}})
+            return True
+        except AutoReconnect:
+            return False
 
     def check_customer_in_status(in_phone, in_mail):
         from errors import CustomerAlreadyInError
@@ -65,12 +70,24 @@ def run_main(curr_wid, MW):
 
         return order_no
 
+    def revert_an_entry(order_no):
+        myc = MW.myc.retaurant_database.orders
+        from pymongo.errors import AutoReconnect
+        try:
+            ret_id = myc.delete_one({'order_no': order_no})
+            MW.mess('Try Again')
+        except AutoReconnect:
+            revert_an_entry(order_no)
+
     def update_document(in_name, in_table_no, in_phone, in_mail):
         check_table_counter(int(in_table_no))
         check_table_availability(int(in_table_no))
         check_customer_in_status(in_phone, in_mail)
         new_order_no = create_an_entry_in_orders(in_name, int(in_table_no), in_phone, in_mail)
-        update_order_counter(new_order_no)
+        completion_status = update_order_counter(new_order_no)
+        if not completion_status:
+            revert_an_entry(new_order_no)
+        MW.logged_user = new_order_no
 
     from PyQt5.QtCore import QThread, pyqtSignal
 
@@ -101,10 +118,10 @@ def run_main(curr_wid, MW):
                 if not validEmail(in_mail):
                     raise InvalidEmailError
 
-                update_document(in_name, in_table_no, in_phone, in_mail)
+                update_document(in_name, in_table_no, in_phone, in_mail)    # Entering data into database
 
                 MW.mess('Welcome : ' + in_name)
-                # self.signal.emit(True)
+                self.signal.emit(True)
 
             except (InvalidNameError, InvalidPhoneError, TableNoError, InvalidEmailError,
                     TableAlreadyOccupiedError, OrderNotCreatedSuccessfullyError, CustomerAlreadyInError) as ob:
@@ -113,12 +130,14 @@ def run_main(curr_wid, MW):
                 MW.mess('--> Network Error <--')
             finally:
                 curr_wid.bt_get_started.setEnabled(True)
+                curr_wid.bt_back.setEnabled(True)
 
     t1_ob = ThreadCreateCustomer()
 
     def to_submit():
         MW.mess('Creating Customer...')
         curr_wid.bt_get_started.setEnabled(False)
+        curr_wid.bt_back.setEnabled(False)
         t1_ob.start()
 
     def to_submit_finish():
