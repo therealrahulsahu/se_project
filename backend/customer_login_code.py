@@ -8,7 +8,8 @@ def run_main(curr_wid, MW):
     curr_wid.bt_back.clicked.connect(to_back)
 
     def update_document(in_name, in_tableno, in_phone, in_mail):
-        pass
+        in_tableno = int(in_tableno)
+        myc = MW.retaurant_database
 
     from PyQt5.QtCore import QThread, pyqtSignal
 
