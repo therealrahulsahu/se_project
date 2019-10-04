@@ -117,7 +117,7 @@ class MyWindow(QtWidgets.QMainWindow):
 
         self.setCentralWidget(chef_wid)
 
-    def customer_wid(self):
+    def customer_func(self):
         self.bar_menu.setVisible(True)
 
         customer_wid = QtWidgets.QWidget()

@@ -28,3 +28,35 @@ class InvalidUserOrPassword(Exception):
 
     def __str__(self):
         return self.answer
+
+
+class InvalidEmailError(Exception):
+    def __init__(self):
+        self.answer = 'Invalid Mail Address'
+
+    def __str__(self):
+        return self.answer
+
+
+class TableNoError(Exception):
+    def __init__(self):
+        self.answer = 'Invalid Table No.'
+
+    def __str__(self):
+        return self.answer
+
+
+class InvalidPhoneError(Exception):
+    def __init__(self):
+        self.answer = 'Invalid Phone No.'
+
+    def __str__(self):
+        return self.answer
+
+
+class InvalidNameError(Exception):
+    def __init__(self):
+        self.answer = 'Invalid Name'
+
+    def __str__(self):
+        return self.answer

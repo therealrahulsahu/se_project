@@ -2,11 +2,13 @@
 
 # Form implementation generated from reading ui file 'customer_login_wid.ui'
 #
-# Created by: PyQt5 UI code generator 5.9.2
+# Created by: PyQt5 UI code generator 5.13.1
 #
 # WARNING! All changes made in this file will be lost!
 
+
 from PyQt5 import QtCore, QtGui, QtWidgets
+
 
 class Ui_Form(object):
     def setupUi(self, Form):
@@ -52,9 +54,11 @@ class Ui_Form(object):
         self.horizontalLayout_2.addWidget(self.label)
         spacerItem5 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout_2.addItem(spacerItem5)
-        self.le_userid = QtWidgets.QLineEdit(Form)
-        self.le_userid.setObjectName("le_userid")
-        self.horizontalLayout_2.addWidget(self.le_userid)
+        self.le_name = QtWidgets.QLineEdit(Form)
+        self.le_name.setInputMethodHints(QtCore.Qt.ImhNone)
+        self.le_name.setMaxLength(30)
+        self.le_name.setObjectName("le_name")
+        self.horizontalLayout_2.addWidget(self.le_name)
         spacerItem6 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout_2.addItem(spacerItem6)
         self.horizontalLayout_2.setStretch(0, 20)
@@ -76,6 +80,7 @@ class Ui_Form(object):
         spacerItem9 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout_3.addItem(spacerItem9)
         self.le_tableno = QtWidgets.QLineEdit(Form)
+        self.le_tableno.setMaxLength(2)
         self.le_tableno.setObjectName("le_tableno")
         self.horizontalLayout_3.addWidget(self.le_tableno)
         spacerItem10 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
@@ -99,6 +104,8 @@ class Ui_Form(object):
         spacerItem13 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout_6.addItem(spacerItem13)
         self.le_phone = QtWidgets.QLineEdit(Form)
+        self.le_phone.setInputMethodHints(QtCore.Qt.ImhNone)
+        self.le_phone.setMaxLength(10)
         self.le_phone.setObjectName("le_phone")
         self.horizontalLayout_6.addWidget(self.le_phone)
         spacerItem14 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
@@ -122,6 +129,7 @@ class Ui_Form(object):
         spacerItem17 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout_7.addItem(spacerItem17)
         self.le_mail = QtWidgets.QLineEdit(Form)
+        self.le_mail.setMaxLength(50)
         self.le_mail.setObjectName("le_mail")
         self.horizontalLayout_7.addWidget(self.le_mail)
         spacerItem18 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
@@ -184,4 +192,3 @@ if __name__ == "__main__":
     ui.setupUi(Form)
     Form.show()
     sys.exit(app.exec_())
-

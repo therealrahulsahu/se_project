@@ -31,6 +31,11 @@ def validPhone(string):
     return validPatt(reg, string)
 
 
+def validTable(string):
+    reg = r'^([1-9]|[1-9]\d)$'
+    return validPatt(reg, string)
+
+
 def validName(string):
     reg = r'^[a-zA-Z\s]{5,}$'
     return validPatt(reg, string)

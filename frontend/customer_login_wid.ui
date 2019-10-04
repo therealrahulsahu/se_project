@@ -133,7 +133,14 @@
       </spacer>
      </item>
      <item>
-      <widget class="QLineEdit" name="le_userid"/>
+      <widget class="QLineEdit" name="le_name">
+       <property name="inputMethodHints">
+        <set>Qt::ImhNone</set>
+       </property>
+       <property name="maxLength">
+        <number>30</number>
+       </property>
+      </widget>
      </item>
      <item>
       <spacer name="horizontalSpacer_6">
@@ -202,7 +209,11 @@
       </spacer>
      </item>
      <item>
-      <widget class="QLineEdit" name="le_tableno"/>
+      <widget class="QLineEdit" name="le_tableno">
+       <property name="maxLength">
+        <number>2</number>
+       </property>
+      </widget>
      </item>
      <item>
       <spacer name="horizontalSpacer_7">
@@ -271,7 +282,14 @@
       </spacer>
      </item>
      <item>
-      <widget class="QLineEdit" name="le_phone"/>
+      <widget class="QLineEdit" name="le_phone">
+       <property name="inputMethodHints">
+        <set>Qt::ImhNone</set>
+       </property>
+       <property name="maxLength">
+        <number>10</number>
+       </property>
+      </widget>
      </item>
      <item>
       <spacer name="horizontalSpacer_14">
@@ -340,7 +358,11 @@
       </spacer>
      </item>
      <item>
-      <widget class="QLineEdit" name="le_mail"/>
+      <widget class="QLineEdit" name="le_mail">
+       <property name="maxLength">
+        <number>50</number>
+       </property>
+      </widget>
      </item>
      <item>
       <spacer name="horizontalSpacer_17">
