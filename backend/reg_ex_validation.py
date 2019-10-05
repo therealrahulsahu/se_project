@@ -35,7 +35,7 @@ def validType(string):
 
 
 def validFoodName(string):
-    reg = r'^[\w\s]{5,}$'
+    reg = r'^[A-Za-z0-9\s]{5,}$'
     return validPatt(reg, string)
 
 
