@@ -820,7 +820,7 @@
              </spacer>
             </item>
             <item>
-             <widget class="QPushButton" name="bt_add">
+             <widget class="QPushButton" name="bt_add_chef">
               <property name="text">
                <string>Add</string>
               </property>
@@ -1020,7 +1020,7 @@
          <property name="title">
           <string>Add Food</string>
          </property>
-         <layout class="QVBoxLayout" name="verticalLayout_6" stretch="5,2,1,1,1,1,1,1,5">
+         <layout class="QVBoxLayout" name="verticalLayout_6" stretch="7,2,1,1,1,1,1,1,5">
           <item>
            <widget class="QTextBrowser" name="textBrowser">
             <property name="html">
@@ -1328,7 +1328,7 @@ p, li { white-space: pre-wrap; }
              </spacer>
             </item>
             <item>
-             <widget class="QPushButton" name="bt_add_2">
+             <widget class="QPushButton" name="bt_add_food">
               <property name="text">
                <string>Add</string>
               </property>

@@ -84,3 +84,43 @@ class CustomerAlreadyInError(Exception):
 
     def __str__(self):
         return self.answer
+
+
+class InvalidBoolError(Exception):
+    def __init__(self):
+        self.answer = 'Invalid Boolean Condition'
+
+    def __str__(self):
+        return self.answer
+
+
+class InvalidRegionError(Exception):
+    def __init__(self):
+        self.answer = 'Invalid Region'
+
+    def __str__(self):
+        return self.answer
+
+
+class InvalidTypeError(Exception):
+    def __init__(self):
+        self.answer = 'Invalid Type'
+
+    def __str__(self):
+        return self.answer
+
+
+class InvalidPriceError(Exception):
+    def __init__(self):
+        self.answer = 'Invalid Price'
+
+    def __str__(self):
+        return self.answer
+
+
+class FoodAlreadyAvailableError(Exception):
+    def __init__(self):
+        self.answer = 'Food Already Available'
+
+    def __str__(self):
+        return self.answer

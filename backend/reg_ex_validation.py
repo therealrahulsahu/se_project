@@ -19,6 +19,21 @@ def validRecoveryhint(string):
     return validPatt(reg, string)
 
 
+def validRegion(string):
+    reg = r'^(nid|sid|ita|thi|chi|raj|conti)$'
+    return validPatt(reg, string)
+
+
+def validBool(string):
+    reg = r'^(True|False)$'
+    return validPatt(reg, string)
+
+
+def validType(string):
+    reg = r'^(sta|des|mcs|ref|bre)$'
+    return validPatt(reg, string)
+
+
 def validEmail(string):
     reg = r'^(([\w]+((\.|\-)[\w]+)*)|(\".+\"))@'\
           '((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|'\
@@ -45,6 +60,10 @@ def validAddress(string):
     reg = r'^([\sA-Za-z0-9,-]+)$'
     return validPatt(reg, string)
 
+
+def validPrice(string):
+    reg = r'^[1-9]\d{,3}$'
+    return validPatt(reg, string)
 
 def main():
     print(validName('rahul sahu'))
