@@ -1,6 +1,6 @@
 def check_table_counter(in_table_no, MW):
     from errors import TableNoError
-    myc = MW.myc.retaurant_database.counter
+    myc = MW.DB.counter
     table_count = myc.find_one({'type': 'tables'})['num']
     if in_table_no > table_count:
         raise TableNoError
@@ -8,20 +8,20 @@ def check_table_counter(in_table_no, MW):
 
 def check_table_availability(in_table_no, MW):
     from errors import TableAlreadyOccupiedError
-    myc = MW.myc.retaurant_database.orders
+    myc = MW.DB.orders
     found_table = myc.find_one({'table_no': in_table_no, 'done': False}, {'_id': 1})
     if bool(found_table):
         raise TableAlreadyOccupiedError
 
 
 def get_order_no(MW):
-    myc = MW.myc.retaurant_database.counter
+    myc = MW.DB.counter
     order_no = myc.find_one({'type': 'orders'})['num']
     return order_no
 
 
 def update_order_counter(count, MW):
-    myc = MW.myc.retaurant_database.counter
+    myc = MW.DB.counter
     from pymongo.errors import AutoReconnect
     try:
         ret_id = myc.update_one({'type': 'orders'}, {'$set': {'num': count}})
@@ -32,7 +32,7 @@ def update_order_counter(count, MW):
 
 def check_customer_in_status(in_phone, in_mail, MW):
     from errors import CustomerAlreadyInError
-    myc = MW.myc.retaurant_database.orders
+    myc = MW.DB.orders
     data_phone = myc.find_one({'phone': in_phone, 'done': False})
     data_mail = myc.find_one({'mail': in_mail, 'done': False})
     if bool(data_phone) or bool(data_mail):
@@ -58,7 +58,7 @@ def create_an_entry_in_orders(in_name, in_table_no, in_phone, in_email, MW):
         'in_time': datetime.now(),
         'out_time': datetime.now()
     }
-    myc = MW.myc.retaurant_database.orders
+    myc = MW.DB.orders
     ret_id = myc.insert_one(data)
     from errors import OrderNotCreatedSuccessfullyError
     if not bool(ret_id.inserted_id):
@@ -68,7 +68,7 @@ def create_an_entry_in_orders(in_name, in_table_no, in_phone, in_email, MW):
 
 
 def revert_an_entry(order_no, MW):
-    myc = MW.myc.retaurant_database.orders
+    myc = MW.DB.orders
     from pymongo.errors import AutoReconnect
     try:
         ret_id = myc.delete_one({'order_no': order_no})

@@ -9,6 +9,7 @@ class MyWindow(QtWidgets.QMainWindow):
         self.setWindowTitle('Cyber Restaurent')
         # self.setWindowIcon(ic_insert_table)
         self.logged_user = ''
+        self.current_db = 'retaurant_database'
 
         self.bar_menu = self.menuBar()
         self.menu_bar()

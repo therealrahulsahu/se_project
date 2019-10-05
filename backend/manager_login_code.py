@@ -21,7 +21,7 @@ def run_main(curr_wid, MW):
             from pymongo.errors import AutoReconnect
             self.in_userid = curr_wid.le_userid.text().strip()
             self.in_password = curr_wid.le_password.text().strip()
-            myc = MW.myc.retaurant_database.manager
+            myc = MW.DB.manager
             try:
                 if not validUserId(self.in_userid):
                     raise InvalidUserIdError

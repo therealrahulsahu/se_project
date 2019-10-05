@@ -1,11 +1,11 @@
 def run_main_add_food(curr_wid, MW):
     def get_food_id():
-        myc = MW.myc.retaurant_database.counter
+        myc = MW.DB.counter
         food_id = myc.find_one({'type': 'food'})['num']
         return int(food_id)
 
     def update_food(in_name, in_region, in_type, in_veg, in_price, food_id):
-        myc = MW.myc.retaurant_database.food
+        myc = MW.DB.food
         data = {
             'fid': food_id,
             'name': in_name,
@@ -19,13 +19,13 @@ def run_main_add_food(curr_wid, MW):
 
     def check_food_availability(in_name):
         from errors import FoodAlreadyAvailableError
-        myc = MW.myc.retaurant_database.food
+        myc = MW.DB.food
         ret_data = myc.find_one({'name': in_name})
         if bool(ret_data):
             raise FoodAlreadyAvailableError
 
     def revert_entry_done(in_id):
-        myc = MW.myc.retaurant_database.food
+        myc = MW.DB.food
         from pymongo.errors import AutoReconnect
         try:
             ret_id = myc.delete_one({'fid': in_id})
@@ -33,7 +33,7 @@ def run_main_add_food(curr_wid, MW):
             revert_entry_done(in_id)
 
     def update_food_counter(in_id):
-        myc = MW.myc.retaurant_database.counter
+        myc = MW.DB.counter
         from pymongo.errors import AutoReconnect
         try:
             ret_id = myc.update_one({'type': 'food'}, {'$set': {'num': in_id}})
@@ -101,7 +101,7 @@ def run_main_add_food(curr_wid, MW):
             from errors import FoodNotFoundError
             from pymongo.errors import AutoReconnect
             try:
-                myc = MW.myc.retaurant_database.food
+                myc = MW.DB.food
                 data_list = list(myc.find({'name': {'$regex': in_name}},
                                           {'fid': 0, 'available': 0}).limit(10))
                 if data_list:
@@ -131,7 +131,7 @@ def run_main_add_food(curr_wid, MW):
                 index = curr_wid.cb_rm_food.currentIndex()
                 to_be_delete_id = th_get_food_list.output_list[index]
 
-                myc = MW.myc.retaurant_database.food
+                myc = MW.DB.food
                 ret_del = myc.delete_one({'_id': to_be_delete_id})
                 curr_wid.cb_rm_food.clear()
                 MW.mess('Removed')

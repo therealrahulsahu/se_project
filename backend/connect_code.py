@@ -18,6 +18,7 @@ def run_main(curr_wid, MW):
                                   'democluster-2u6fb.gcp.mongodb.net/test?retryWrites=true',
                                   serverSelectionTimeoutMS=5000, connectTimeoutMS=5000, socketTimeoutMS=5000)
                 MW.myc = myc
+                MW.DB = eval('myc.{}'.format(MW.current_db))
                 self.signal.emit(True)
             except (dns.exception.Timeout, ConfigurationError):
                 MW.mess('DNS Not Found')
