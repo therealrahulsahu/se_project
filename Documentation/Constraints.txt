@@ -1,3 +1,4 @@
 Resolution :  640, 360
-Region : [North Indian - nid, South Indian - sid, Italian - ita, Thai - thi, Chinese - chi, Rajasthani - raj, Continental - conti]
+Region : [North Indian - nid, South Indian - sid, Italian - ita, Thai - thi, Chinese - chi, Rajasthani - raj,
+ Continental - conti, None - none]
 Type : [Starter - sta, Dessert - des, Main Course - mcs, Refreshments - ref, Bread - bre]

@@ -13,12 +13,12 @@ def run_main(curr_wid, MW):
             in_type = curr_wid.le_f_type.text().strip()
             in_veg = curr_wid.le_f_veg.text().strip()
             in_price = curr_wid.le_price.text().strip()
-            from .reg_ex_validation import validName, validRegion, validType, validBool, validPrice
+            from .reg_ex_validation import validFoodName, validRegion, validType, validBool, validPrice
             from errors import InvalidNameError, InvalidRegionError, InvalidTypeError, InvalidBoolError, \
                 InvalidPriceError, FoodAlreadyAvailableError
             from pymongo.errors import AutoReconnect
             try:
-                if not validName(in_name):
+                if not validFoodName(in_name):
                     raise InvalidNameError
                 if not validRegion(in_region):
                     raise InvalidRegionError
@@ -46,15 +46,6 @@ def run_main(curr_wid, MW):
             finally:
                 curr_wid.bt_add_food.setEnabled(True)
 
-    th_add_food = ThreadAddFood()
-
-    def add_food_thread():
-        MW.mess('Adding Food')
-        curr_wid.bt_add_food.setEnabled(False)
-        th_add_food.start()
-
-    curr_wid.bt_add_food.clicked.connect(add_food_thread)
-
     class ThreadGetList(QThread):
         def __init__(self):
             super().__init__()
@@ -70,8 +61,8 @@ def run_main(curr_wid, MW):
                 data_list = list(myc.find({'name': {'$regex': in_name}},
                                           {'fid': 0, 'available': 0}).limit(10))
                 if data_list:
-                    curr_wid.cb_rm_food.addItems(['{}, {}, {}, {}, {}'.format(x['name'], x['region'], x['type'],
-                                                                          x['veg'], x['price']) for x in data_list])
+                    curr_wid.cb_rm_food.addItems(['{0:<20} {1:<5} {2:<5} {3:<5} {4:<5}'.format(x['name'], x['region'], x['type'],
+                                                                              x['veg'], x['price']) for x in data_list])
                     self.output_list = [x['_id'] for x in data_list]
                     curr_wid.bt_rm_food.setEnabled(True)
                     MW.mess('Food Fetched')
@@ -84,16 +75,6 @@ def run_main(curr_wid, MW):
                 MW.mess('-->> Network Error <<--')
             finally:
                 curr_wid.bt_get.setEnabled(True)
-
-    th_get_food_list = ThreadGetList()
-
-    def get_food_list_thread():
-        MW.mess('Fetching Food List...')
-        curr_wid.cb_rm_food.clear()
-        curr_wid.bt_get.setEnabled(False)
-        th_get_food_list.start()
-
-    curr_wid.bt_get.clicked.connect(get_food_list_thread)
 
     class ThreadRemoveFood(QThread):
         def __init__(self):
@@ -114,7 +95,20 @@ def run_main(curr_wid, MW):
             finally:
                 curr_wid.bt_get.setEnabled(True)
 
+    th_add_food = ThreadAddFood()
+    th_get_food_list = ThreadGetList()
     th_remove_food = ThreadRemoveFood()
+
+    def add_food_thread():
+        MW.mess('Adding Food')
+        curr_wid.bt_add_food.setEnabled(False)
+        th_add_food.start()
+
+    def get_food_list_thread():
+        MW.mess('Fetching Food List...')
+        curr_wid.cb_rm_food.clear()
+        curr_wid.bt_get.setEnabled(False)
+        th_get_food_list.start()
 
     def remove_food_thread():
         curr_wid.bt_rm_food.setEnabled(False)
@@ -122,4 +116,6 @@ def run_main(curr_wid, MW):
         MW.mess('Removing...')
         th_remove_food.start()
 
+    curr_wid.bt_add_food.clicked.connect(add_food_thread)
+    curr_wid.bt_get.clicked.connect(get_food_list_thread)
     curr_wid.bt_rm_food.clicked.connect(remove_food_thread)

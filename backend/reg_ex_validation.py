@@ -20,7 +20,7 @@ def validRecoveryhint(string):
 
 
 def validRegion(string):
-    reg = r'^(nid|sid|ita|thi|chi|raj|conti)$'
+    reg = r'^(nid|sid|ita|thi|chi|raj|conti|none)$'
     return validPatt(reg, string)
 
 
@@ -31,6 +31,11 @@ def validBool(string):
 
 def validType(string):
     reg = r'^(sta|des|mcs|ref|bre)$'
+    return validPatt(reg, string)
+
+
+def validFoodName(string):
+    reg = r'^[\w\s]{5,}$'
     return validPatt(reg, string)
 
 

@@ -534,7 +534,7 @@ class Ui_Form(object):
         self.verticalLayout_6.addLayout(self.horizontalLayout_19)
         spacerItem66 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
         self.verticalLayout_6.addItem(spacerItem66)
-        self.verticalLayout_6.setStretch(0, 7)
+        self.verticalLayout_6.setStretch(0, 10)
         self.verticalLayout_6.setStretch(1, 2)
         self.verticalLayout_6.setStretch(2, 1)
         self.verticalLayout_6.setStretch(3, 1)
@@ -662,7 +662,7 @@ class Ui_Form(object):
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:8pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; background-color:#2b2b2b;\"><span style=\" font-family:\'Consolas\'; font-size:10.5pt; color:#a9b7c6; background-color:#2b2b2b;\">Region : [North Indian - nid, South Indian - sid, Italian - ita, Thai - thi, Chinese - chi, Rajasthani - raj, Continental - conti]</span><span style=\" font-family:\'Consolas\'; font-size:10.5pt; color:#a9b7c6;\"><br /></span></p>\n"
+"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; background-color:#2b2b2b;\"><span style=\" font-family:\'Consolas\'; font-size:10.5pt; color:#a9b7c6; background-color:#2b2b2b;\">Region : [North Indian - nid, South Indian - sid, Italian - ita, Thai - thi, Chinese - chi, Rajasthani - raj, Continental - conti, None - none]</span><span style=\" font-family:\'Consolas\'; font-size:10.5pt; color:#a9b7c6;\"><br /></span></p>\n"
 "<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; background-color:#2b2b2b;\"><span style=\" font-family:\'Consolas\'; font-size:10.5pt; color:#a9b7c6;\">Type : [Starter - sta, Dessert - des, Main Course - mcs, Refreshments - ref, Bread - bre]</span></p>\n"
 "<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; background-color:#2b2b2b;\"><span style=\" font-family:\'Consolas\'; font-size:10.5pt; color:#a9b7c6;\">Veg : [If Veg - True, Else - False]</span></p></body></html>"))
         self.label_14.setText(_translate("Form", "Name"))
