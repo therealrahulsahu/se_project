@@ -124,3 +124,11 @@ class FoodAlreadyAvailableError(Exception):
 
     def __str__(self):
         return self.answer
+
+
+class FoodNotFoundError(Exception):
+    def __init__(self):
+        self.answer = 'No Food Found'
+
+    def __str__(self):
+        return self.answer
