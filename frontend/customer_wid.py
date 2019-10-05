@@ -2,11 +2,13 @@
 
 # Form implementation generated from reading ui file 'customer_wid.ui'
 #
-# Created by: PyQt5 UI code generator 5.9.2
+# Created by: PyQt5 UI code generator 5.13.1
 #
 # WARNING! All changes made in this file will be lost!
 
+
 from PyQt5 import QtCore, QtGui, QtWidgets
+
 
 class Ui_Form(object):
     def setupUi(self, Form):
@@ -40,24 +42,27 @@ class Ui_Form(object):
         self.gp_region.setObjectName("gp_region")
         self.gridLayout = QtWidgets.QGridLayout(self.gp_region)
         self.gridLayout.setObjectName("gridLayout")
-        self.rbt_thai = QtWidgets.QRadioButton(self.gp_region)
-        self.rbt_thai.setObjectName("rbt_thai")
-        self.gridLayout.addWidget(self.rbt_thai, 2, 0, 1, 1)
-        self.rbt_china = QtWidgets.QRadioButton(self.gp_region)
-        self.rbt_china.setObjectName("rbt_china")
-        self.gridLayout.addWidget(self.rbt_china, 2, 1, 1, 1)
-        self.rbt_north_ind = QtWidgets.QRadioButton(self.gp_region)
-        self.rbt_north_ind.setObjectName("rbt_north_ind")
-        self.gridLayout.addWidget(self.rbt_north_ind, 0, 0, 1, 1)
-        self.rbt_italian = QtWidgets.QRadioButton(self.gp_region)
-        self.rbt_italian.setObjectName("rbt_italian")
-        self.gridLayout.addWidget(self.rbt_italian, 0, 1, 1, 1)
         self.rbt_rajas = QtWidgets.QRadioButton(self.gp_region)
         self.rbt_rajas.setObjectName("rbt_rajas")
         self.gridLayout.addWidget(self.rbt_rajas, 2, 2, 1, 1)
+        self.rbt_thai = QtWidgets.QRadioButton(self.gp_region)
+        self.rbt_thai.setObjectName("rbt_thai")
+        self.gridLayout.addWidget(self.rbt_thai, 2, 0, 1, 1)
+        self.rbt_north_ind = QtWidgets.QRadioButton(self.gp_region)
+        self.rbt_north_ind.setObjectName("rbt_north_ind")
+        self.gridLayout.addWidget(self.rbt_north_ind, 0, 0, 1, 1)
+        self.rbt_china = QtWidgets.QRadioButton(self.gp_region)
+        self.rbt_china.setObjectName("rbt_china")
+        self.gridLayout.addWidget(self.rbt_china, 2, 1, 1, 1)
+        self.rbt_italian = QtWidgets.QRadioButton(self.gp_region)
+        self.rbt_italian.setObjectName("rbt_italian")
+        self.gridLayout.addWidget(self.rbt_italian, 0, 1, 1, 1)
         self.rbt_south_ind = QtWidgets.QRadioButton(self.gp_region)
         self.rbt_south_ind.setObjectName("rbt_south_ind")
         self.gridLayout.addWidget(self.rbt_south_ind, 0, 2, 1, 1)
+        self.rbt_conti = QtWidgets.QRadioButton(self.gp_region)
+        self.rbt_conti.setObjectName("rbt_conti")
+        self.gridLayout.addWidget(self.rbt_conti, 0, 3, 1, 1)
         self.horizontalLayout_4.addWidget(self.gp_region)
         self.verticalLayout_5.addLayout(self.horizontalLayout_4)
         spacerItem3 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
@@ -71,15 +76,18 @@ class Ui_Form(object):
         self.rbt_main = QtWidgets.QRadioButton(self.gp_type)
         self.rbt_main.setObjectName("rbt_main")
         self.gridLayout_2.addWidget(self.rbt_main, 3, 0, 1, 1)
-        self.rbt_starter = QtWidgets.QRadioButton(self.gp_type)
-        self.rbt_starter.setObjectName("rbt_starter")
-        self.gridLayout_2.addWidget(self.rbt_starter, 0, 0, 1, 1)
         self.rbt_refresh = QtWidgets.QRadioButton(self.gp_type)
         self.rbt_refresh.setObjectName("rbt_refresh")
         self.gridLayout_2.addWidget(self.rbt_refresh, 0, 1, 1, 1)
         self.rbt_dessert = QtWidgets.QRadioButton(self.gp_type)
         self.rbt_dessert.setObjectName("rbt_dessert")
         self.gridLayout_2.addWidget(self.rbt_dessert, 3, 1, 1, 1)
+        self.rbt_starter = QtWidgets.QRadioButton(self.gp_type)
+        self.rbt_starter.setObjectName("rbt_starter")
+        self.gridLayout_2.addWidget(self.rbt_starter, 0, 0, 1, 1)
+        self.rbt_bread = QtWidgets.QRadioButton(self.gp_type)
+        self.rbt_bread.setObjectName("rbt_bread")
+        self.gridLayout_2.addWidget(self.rbt_bread, 0, 2, 1, 1)
         self.horizontalLayout_3.addWidget(self.gp_type)
         self.verticalLayout_5.addLayout(self.horizontalLayout_3)
         spacerItem4 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
@@ -211,7 +219,7 @@ class Ui_Form(object):
         self.verticalLayout.addWidget(self.tabWidget)
 
         self.retranslateUi(Form)
-        self.tabWidget.setCurrentIndex(2)
+        self.tabWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(Form)
 
     def retranslateUi(self, Form):
@@ -219,17 +227,19 @@ class Ui_Form(object):
         Form.setWindowTitle(_translate("Form", "Form"))
         self.rbt_veg.setText(_translate("Form", "Only Veg"))
         self.gp_region.setTitle(_translate("Form", "Region"))
-        self.rbt_thai.setText(_translate("Form", "Thai"))
-        self.rbt_china.setText(_translate("Form", "Chinese"))
-        self.rbt_north_ind.setText(_translate("Form", "North Indian"))
-        self.rbt_italian.setText(_translate("Form", "Italian"))
         self.rbt_rajas.setText(_translate("Form", "Rajasthani"))
+        self.rbt_thai.setText(_translate("Form", "Thai"))
+        self.rbt_north_ind.setText(_translate("Form", "North Indian"))
+        self.rbt_china.setText(_translate("Form", "Chinese"))
+        self.rbt_italian.setText(_translate("Form", "Italian"))
         self.rbt_south_ind.setText(_translate("Form", "South Indian"))
+        self.rbt_conti.setText(_translate("Form", "Continental"))
         self.gp_type.setTitle(_translate("Form", "Type"))
         self.rbt_main.setText(_translate("Form", "Main Course"))
-        self.rbt_starter.setText(_translate("Form", "Starter"))
         self.rbt_refresh.setText(_translate("Form", "Refreshments"))
         self.rbt_dessert.setText(_translate("Form", "Dessert"))
+        self.rbt_starter.setText(_translate("Form", "Starter"))
+        self.rbt_bread.setText(_translate("Form", "Bread"))
         self.bt_get.setText(_translate("Form", "Get"))
         self.label.setText(_translate("Form", "Total Amount :"))
         self.lb_amount.setText(_translate("Form", "0"))
@@ -261,4 +271,3 @@ if __name__ == "__main__":
     ui.setupUi(Form)
     Form.show()
     sys.exit(app.exec_())
-

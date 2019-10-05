@@ -17,7 +17,7 @@
    <item>
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>2</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tab">
       <attribute name="title">
@@ -84,17 +84,17 @@
               <string>Region</string>
              </property>
              <layout class="QGridLayout" name="gridLayout">
+              <item row="2" column="2">
+               <widget class="QRadioButton" name="rbt_rajas">
+                <property name="text">
+                 <string>Rajasthani</string>
+                </property>
+               </widget>
+              </item>
               <item row="2" column="0">
                <widget class="QRadioButton" name="rbt_thai">
                 <property name="text">
                  <string>Thai</string>
-                </property>
-               </widget>
-              </item>
-              <item row="2" column="1">
-               <widget class="QRadioButton" name="rbt_china">
-                <property name="text">
-                 <string>Chinese</string>
                 </property>
                </widget>
               </item>
@@ -105,6 +105,13 @@
                 </property>
                </widget>
               </item>
+              <item row="2" column="1">
+               <widget class="QRadioButton" name="rbt_china">
+                <property name="text">
+                 <string>Chinese</string>
+                </property>
+               </widget>
+              </item>
               <item row="0" column="1">
                <widget class="QRadioButton" name="rbt_italian">
                 <property name="text">
@@ -112,17 +119,17 @@
                 </property>
                </widget>
               </item>
-              <item row="2" column="2">
-               <widget class="QRadioButton" name="rbt_rajas">
-                <property name="text">
-                 <string>Rajasthani</string>
-                </property>
-               </widget>
-              </item>
               <item row="0" column="2">
                <widget class="QRadioButton" name="rbt_south_ind">
                 <property name="text">
                  <string>South Indian</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="3">
+               <widget class="QRadioButton" name="rbt_conti">
+                <property name="text">
+                 <string>Continental</string>
                 </property>
                </widget>
               </item>
@@ -159,13 +166,6 @@
                 </property>
                </widget>
               </item>
-              <item row="0" column="0">
-               <widget class="QRadioButton" name="rbt_starter">
-                <property name="text">
-                 <string>Starter</string>
-                </property>
-               </widget>
-              </item>
               <item row="0" column="1">
                <widget class="QRadioButton" name="rbt_refresh">
                 <property name="text">
@@ -177,6 +177,20 @@
                <widget class="QRadioButton" name="rbt_dessert">
                 <property name="text">
                  <string>Dessert</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="0">
+               <widget class="QRadioButton" name="rbt_starter">
+                <property name="text">
+                 <string>Starter</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="2">
+               <widget class="QRadioButton" name="rbt_bread">
+                <property name="text">
+                 <string>Bread</string>
                 </property>
                </widget>
               </item>
