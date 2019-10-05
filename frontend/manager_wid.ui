@@ -1020,7 +1020,7 @@
          <property name="title">
           <string>Add Food</string>
          </property>
-         <layout class="QVBoxLayout" name="verticalLayout_6" stretch="4,2,1,1,1,1,1,1,5">
+         <layout class="QVBoxLayout" name="verticalLayout_6" stretch="5,2,1,1,1,1,1,1,5">
           <item>
            <widget class="QTextBrowser" name="textBrowser">
             <property name="html">

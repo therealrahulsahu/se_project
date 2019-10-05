@@ -534,7 +534,7 @@ class Ui_Form(object):
         self.verticalLayout_6.addLayout(self.horizontalLayout_19)
         spacerItem66 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
         self.verticalLayout_6.addItem(spacerItem66)
-        self.verticalLayout_6.setStretch(0, 4)
+        self.verticalLayout_6.setStretch(0, 5)
         self.verticalLayout_6.setStretch(1, 2)
         self.verticalLayout_6.setStretch(2, 1)
         self.verticalLayout_6.setStretch(3, 1)
