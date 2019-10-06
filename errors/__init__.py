@@ -132,3 +132,27 @@ class FoodNotFoundError(Exception):
 
     def __str__(self):
         return self.answer
+
+
+class ChefNotFoundError(Exception):
+    def __init__(self):
+        self.answer = 'No Chef Found'
+
+    def __str__(self):
+        return self.answer
+
+
+class ChefAlreadyExistsError(Exception):
+    def __init__(self):
+        self.answer = 'Chef Already Exists'
+
+    def __str__(self):
+        return self.answer
+
+
+class PasswordNotMatchError(Exception):
+    def __init__(self):
+        self.answer = 'Password Does Not Match'
+
+    def __str__(self):
+        return self.answer
