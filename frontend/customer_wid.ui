@@ -103,6 +103,9 @@
                 <property name="text">
                  <string>North Indian</string>
                 </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
                </widget>
               </item>
               <item row="2" column="1">
@@ -130,6 +133,16 @@
                <widget class="QRadioButton" name="rbt_conti">
                 <property name="text">
                  <string>Continental</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="3">
+               <widget class="QRadioButton" name="rbt_none">
+                <property name="text">
+                 <string>None</string>
+                </property>
+                <property name="checked">
+                 <bool>false</bool>
                 </property>
                </widget>
               </item>
@@ -184,6 +197,9 @@
                <widget class="QRadioButton" name="rbt_starter">
                 <property name="text">
                  <string>Starter</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
                 </property>
                </widget>
               </item>
@@ -250,11 +266,11 @@
           </spacer>
          </item>
          <item>
-          <widget class="QScrollArea" name="scrollArea">
+          <widget class="QScrollArea" name="scrollarea1">
            <property name="widgetResizable">
             <bool>true</bool>
            </property>
-           <widget class="QWidget" name="scroll_choose">
+           <widget class="QWidget" name="ScrollLay">
             <property name="geometry">
              <rect>
               <x>0</x>
@@ -263,7 +279,7 @@
               <height>104</height>
              </rect>
             </property>
-            <layout class="QVBoxLayout" name="verticalLayout_6"/>
+            <layout class="QVBoxLayout" name="scroll_choose"/>
            </widget>
           </widget>
          </item>
@@ -285,11 +301,11 @@
           </spacer>
          </item>
          <item>
-          <widget class="QScrollArea" name="scrollArea_2">
+          <widget class="QScrollArea" name="scrollarea2">
            <property name="widgetResizable">
             <bool>true</bool>
            </property>
-           <widget class="QWidget" name="scroll_selected">
+           <widget class="QWidget" name="scroll_lay2">
             <property name="geometry">
              <rect>
               <x>0</x>
@@ -298,7 +314,7 @@
               <height>247</height>
              </rect>
             </property>
-            <layout class="QVBoxLayout" name="verticalLayout_8"/>
+            <layout class="QVBoxLayout" name="scroll_select"/>
            </widget>
           </widget>
          </item>
