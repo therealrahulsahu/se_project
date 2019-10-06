@@ -1,7 +1,7 @@
 def run_main_order_now(curr_wid, MW):
     from PyQt5.QtWidgets import QHBoxLayout
-
-    food_list = []
+    from PyQt5.QtCore import QThread, pyqtSignal
+    searched_food_list = []
 
     class AddMenuWidget(QHBoxLayout):
         def __init__(self, food_name, food_price, DB_id):
@@ -47,3 +47,104 @@ def run_main_order_now(curr_wid, MW):
             self.setStretch(3, 1)
             self.setStretch(4, 4)
 
+    def check_for_veg():
+        return curr_wid.rbt_veg.isChecked()
+
+    def check_for_region():
+        if curr_wid.rbt_north_ind.isChecked():
+            return 'nid'
+        elif curr_wid.rbt_italian.isChecked():
+            return 'ita'
+        elif curr_wid.rbt_south_ind.isChecked():
+            return 'sid'
+        elif curr_wid.rbt_conti.isChecked():
+            return 'conti'
+        elif curr_wid.rbt_thai.isChecked():
+            return 'thi'
+        elif curr_wid.rbt_china.isChecked():
+            return 'chi'
+        elif curr_wid.rbt_rajas.isChecked():
+            return 'raj'
+        elif curr_wid.rbt_none.isChecked():
+            return 'none'
+
+    def check_for_type():
+        if curr_wid.rbt_starter.isChecked():
+            return 'sta'
+        elif curr_wid.rbt_main.isChecked():
+            return 'mcs'
+        elif curr_wid.rbt_refresh.isChecked():
+            return 'ref'
+        elif curr_wid.rbt_dessert.isChecked():
+            return 'des'
+        elif curr_wid.rbt_bread.isChecked():
+            return 'bre'
+
+    class ThreadGetMenu(QThread):
+        signal = pyqtSignal('PyQt_PyObject')
+
+        def __init__(self):
+            super().__init__()
+
+        def run(self):
+            if check_for_veg():
+                food_query = {
+                    'veg': True,
+                    'region': check_for_region(),
+                    'type': check_for_type(),
+                    'available': True
+                }
+            else:
+                food_query = {
+                    'region': check_for_region(),
+                    'type': check_for_type(),
+                    'available': True
+                }
+
+            myc = MW.DB.food
+            from pymongo.errors import AutoReconnect
+            from errors import FoodNotFoundError
+            global searched_food_list
+            try:
+                data_list = list(myc.find(food_query, {'_id': 1, 'name': 1, 'price': 1}))
+                if data_list:
+                    searched_food_list = data_list
+                    self.signal.emit(True)
+                else:
+                    raise FoodNotFoundError
+            except FoodNotFoundError as ob:
+                MW.mess(str(ob))
+            except AutoReconnect:
+                MW.mess('-->> Network Error <<--')
+            finally:
+                curr_wid.bt_get.setEnabled(True)
+
+    th_get_menu = ThreadGetMenu()
+
+    def clear_layout(layout):
+        if layout is not None:
+            while layout.count():
+                child = layout.takeAt(0)
+                if child.widget() is not None:
+                    child.widget().deleteLater()
+                elif child.layout() is not None:
+                    clear_layout(child.layout())
+
+    def get_menu_func():
+        global searched_food_list
+        searched_food_list = []
+        curr_wid.bt_get.setEnabled(False)
+        clear_layout(curr_wid.scroll_choose)
+        MW.mess('Fetching Menu...')
+        th_get_menu.start()
+
+    def finish_menu_func():
+        global searched_food_list
+        MW.mess('Food Fetched')
+
+        # To be Removed......
+        for x in searched_food_list:
+            curr_wid.scroll_choose.addLayout(AddMenuWidget(x['name'], str(x['price']), x['_id']))
+
+    curr_wid.bt_get.clicked.connect(get_menu_func)
+    th_get_menu.signal.connect(finish_menu_func)

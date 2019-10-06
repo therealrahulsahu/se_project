@@ -28,7 +28,7 @@
     </spacer>
    </item>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="4,4,2,1,4">
+    <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="4,0,2,1,4">
      <item>
       <widget class="QLabel" name="lb_food_name">
        <property name="text">
@@ -37,11 +37,15 @@
       </widget>
      </item>
      <item>
-      <widget class="QLabel" name="lb_price">
-       <property name="text">
-        <string>Price</string>
-       </property>
-      </widget>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QLabel" name="lb_price">
+         <property name="text">
+          <string>Price</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </item>
      <item>
       <widget class="QLabel" name="label">
