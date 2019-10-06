@@ -261,7 +261,11 @@
           </spacer>
          </item>
          <item>
-          <widget class="QLineEdit" name="le_food_name"/>
+          <widget class="QLineEdit" name="le_food_name">
+           <property name="maxLength">
+            <number>30</number>
+           </property>
+          </widget>
          </item>
          <item>
           <spacer name="horizontalSpacer_8">
@@ -327,7 +331,7 @@
           </spacer>
          </item>
          <item>
-          <widget class="QComboBox" name="cb_get_food"/>
+          <widget class="QComboBox" name="cb_food_list"/>
          </item>
          <item>
           <spacer name="horizontalSpacer_10">
@@ -373,7 +377,7 @@
           </spacer>
          </item>
          <item>
-          <widget class="QPushButton" name="bt_mark_unava">
+          <widget class="QPushButton" name="bt_mark_un_ava">
            <property name="text">
             <string>Mark Unavailable</string>
            </property>
