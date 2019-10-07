@@ -211,7 +211,7 @@
      <item>
       <widget class="QLineEdit" name="le_tableno">
        <property name="maxLength">
-        <number>2</number>
+        <number>3</number>
        </property>
       </widget>
      </item>

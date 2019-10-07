@@ -80,7 +80,7 @@ class Ui_Form(object):
         spacerItem9 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout_3.addItem(spacerItem9)
         self.le_tableno = QtWidgets.QLineEdit(Form)
-        self.le_tableno.setMaxLength(2)
+        self.le_tableno.setMaxLength(3)
         self.le_tableno.setObjectName("le_tableno")
         self.horizontalLayout_3.addWidget(self.le_tableno)
         spacerItem10 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)

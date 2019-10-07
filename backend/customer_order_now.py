@@ -2,16 +2,25 @@ def run_main_order_now(curr_wid, MW):
     from PyQt5.QtWidgets import QHBoxLayout
     from PyQt5.QtCore import QThread, pyqtSignal
     searched_food_list = []
+    selected_food_list = []
+
+    def update_amount():
+        amount = 0
+        for x in selected_food_list:
+            amount += x.food_price * x.quantity
+        curr_wid.lb_amount.setText(str(amount))
 
     class AddMenuWidget(QHBoxLayout):
         def __init__(self, food_name, food_price, DB_id):
             super().__init__()
             self.DB_id = DB_id
+            self.food_name = food_name
+            self.food_price = food_price
 
             from PyQt5 import QtWidgets
-            lb_food_name = QtWidgets.QLabel(food_name)
+            lb_food_name = QtWidgets.QLabel(self.food_name)
             self.addWidget(lb_food_name)
-            lb_price = QtWidgets.QLabel(food_price)
+            lb_price = QtWidgets.QLabel(self.food_price)
             self.addWidget(lb_price)
             bt_show_image = QtWidgets.QPushButton('Show Image')
             self.addWidget(bt_show_image)
@@ -22,30 +31,73 @@ def run_main_order_now(curr_wid, MW):
             self.setStretch(2, 1)
             self.setStretch(3, 2)
 
+            bt_add.clicked.connect(self.to_selected)
+
+        def to_selected(self):
+            execute = True
+            for x in selected_food_list:
+                if x.DB_id == self.DB_id:
+                    execute = False
+            if execute:
+                ob = SelectedMenuWidget(self.food_name, self.food_price, self.DB_id)
+                selected_food_list.append(ob)
+                curr_wid.scroll_select.addLayout(ob)
+                update_amount()
+                MW.mess('Food Added')
+            else:
+                MW.mess('Food Already Added')
+
     class SelectedMenuWidget(QHBoxLayout):
-        def __init__(self, food_name, price, DB_id):
+        def __init__(self, food_name, food_price, DB_id):
             super().__init__()
             self.DB_id = DB_id
+            self.food_name = food_name
+            self.food_price = int(food_price)
+            self.quantity = 1
             from PyQt5 import QtWidgets, QtCore
 
-            lb_food_name = QtWidgets.QLabel(food_name)
+            lb_food_name = QtWidgets.QLabel(self.food_name)
             self.addWidget(lb_food_name)
-            lb_price = QtWidgets.QLabel(price)
+            lb_price = QtWidgets.QLabel(str(self.food_price))
             self.addWidget(lb_price)
             label = QtWidgets.QLabel('Quantity')
             label.setAlignment(QtCore.Qt.AlignRight | QtCore.Qt.AlignTrailing | QtCore.Qt.AlignVCenter)
             self.addWidget(label)
-            self.le_quantity = QtWidgets.QLineEdit('1')
-            self.le_quantity.setInputMethodHints(QtCore.Qt.ImhNone)
-            self.le_quantity.setMaxLength(2)
-            self.addWidget(self.le_quantity)
-            self.bt_remove = QtWidgets.QPushButton("Remove")
-            self.addWidget(self.bt_remove)
+            le_quantity = QtWidgets.QLineEdit(str(self.quantity))
+            le_quantity.setInputMethodHints(QtCore.Qt.ImhNone)
+            le_quantity.setMaxLength(2)
+            self.addWidget(le_quantity)
+            bt_remove = QtWidgets.QPushButton("Remove")
+            self.addWidget(bt_remove)
             self.setStretch(0, 4)
             self.setStretch(1, 4)
             self.setStretch(2, 2)
             self.setStretch(3, 1)
             self.setStretch(4, 4)
+
+            bt_remove.clicked.connect(self.remove_wid)
+            le_quantity.editingFinished.connect(self.change_quantity)
+
+        def remove_wid(self):
+            selected_food_list.remove(self)
+            clear_layout(self)
+            update_amount()
+            MW.mess('Food Remove')
+
+        def change_quantity(self):
+            sender_obj = self.sender()
+            try:
+                val = int(sender_obj.text().strip())
+                if 0 < val < 50:
+                    self.quantity = val
+                    MW.mess('Quantity Changed')
+                    update_amount()
+                else:
+                    raise ValueError
+            except ValueError:
+                MW.mess('Invalid Quantity')
+                self.quantity = 1
+                sender_obj.setText('1')
 
     def check_for_veg():
         return curr_wid.rbt_veg.isChecked()

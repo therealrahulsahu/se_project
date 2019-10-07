@@ -52,7 +52,7 @@ def validPhone(string):
 
 
 def validTable(string):
-    reg = r'^([1-9]|[1-9]\d)$'
+    reg = r'^([1-9]|[1-9]\d\d?)$'
     return validPatt(reg, string)
 
 
