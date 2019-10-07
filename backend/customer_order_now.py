@@ -213,7 +213,8 @@ def run_main_order_now(curr_wid, MW):
                 if not selected_food_list:
                     raise NoFoodSelectedError
 
-                # Add Code Here
+                from .customer_order_now_save_data import save_data
+                save_data(selected_food_list)
 
                 self.signal.emit(True)
             except NoFoodSelectedError as ob:
