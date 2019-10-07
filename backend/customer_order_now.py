@@ -194,7 +194,6 @@ def run_main_order_now(curr_wid, MW):
         global searched_food_list
         MW.mess('Food Fetched')
 
-        # To be Removed......
         for x in searched_food_list:
             curr_wid.scroll_choose.addLayout(AddMenuWidget(x['name'], str(x['price']), x['_id']))
 
@@ -213,6 +212,9 @@ def run_main_order_now(curr_wid, MW):
             try:
                 if not selected_food_list:
                     raise NoFoodSelectedError
+
+                # Add Code Here
+
                 self.signal.emit(True)
             except NoFoodSelectedError as ob:
                 MW.mess(str(ob))
