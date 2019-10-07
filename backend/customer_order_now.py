@@ -200,3 +200,43 @@ def run_main_order_now(curr_wid, MW):
 
     curr_wid.bt_get.clicked.connect(get_menu_func)
     th_get_menu.signal.connect(finish_menu_func)
+
+    class ThreadDone(QThread):
+        signal = pyqtSignal('PyQt_PyObject')
+
+        def __init__(self):
+            super().__init__()
+
+        def run(self):
+            from pymongo.errors import AutoReconnect
+            from errors import NoFoodSelectedError
+            try:
+                if not selected_food_list:
+                    raise NoFoodSelectedError
+                self.signal.emit(True)
+            except NoFoodSelectedError as ob:
+                MW.mess(str(ob))
+            except AutoReconnect:
+                MW.mess('-->> Network Error <<--')
+            finally:
+                curr_wid.bt_done.setEnabled(True)
+
+    th_done_thread = ThreadDone()
+
+    def done_func():
+        curr_wid.bt_done.setEnabled(False)
+        th_done_thread.start()
+
+    def finish_done_func():
+        MW.mess('Order Placed')
+        clear_layout(curr_wid.scroll_choose)
+        clear_layout(curr_wid.scroll_select)
+        selected_food_list.clear()
+        searched_food_list.clear()
+        curr_wid.lb_amount.setText('0')
+        curr_wid.rbt_north_ind.setChecked(True)
+        curr_wid.rbt_starter.setChecked(True)
+        curr_wid.rbt_veg.setChecked(False)
+
+    curr_wid.bt_done.clicked.connect(done_func)
+    th_done_thread.signal.connect(finish_done_func)

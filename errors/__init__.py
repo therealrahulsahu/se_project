@@ -156,3 +156,11 @@ class PasswordNotMatchError(Exception):
 
     def __str__(self):
         return self.answer
+
+
+class NoFoodSelectedError(Exception):
+    def __init__(self):
+        self.answer = 'No Food Selected'
+
+    def __str__(self):
+        return self.answer
