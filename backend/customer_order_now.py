@@ -82,7 +82,7 @@ def run_main_order_now(curr_wid, MW):
             selected_food_list.remove(self)
             clear_layout(self)
             update_amount()
-            MW.mess('Food Remove')
+            MW.mess('Food Removed')
 
         def change_quantity(self):
             sender_obj = self.sender()

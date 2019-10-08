@@ -28,24 +28,54 @@
     </spacer>
    </item>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="4,0,2,1,4">
+    <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="5,5,5,5,10,5,4,2">
      <item>
-      <widget class="QLabel" name="lb_food_name">
+      <widget class="QLabel" name="lb_name">
        <property name="text">
-        <string>Food Name</string>
+        <string>Name</string>
        </property>
       </widget>
      </item>
      <item>
-      <layout class="QHBoxLayout" name="horizontalLayout">
-       <item>
-        <widget class="QLabel" name="lb_price">
-         <property name="text">
-          <string>Price</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
+      <widget class="QLabel" name="lb_quantity">
+       <property name="text">
+        <string>Quantity</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="lb_p_ing">
+       <property name="text">
+        <string>Preparing</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="lb_p_ed">
+       <property name="text">
+        <string>Prepared</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="bt_remove">
+       <property name="text">
+        <string>Remove</string>
+       </property>
+      </widget>
      </item>
      <item>
       <widget class="QLabel" name="label">
@@ -63,17 +93,10 @@
         <set>Qt::ImhNone</set>
        </property>
        <property name="text">
-        <string>1</string>
+        <string>0</string>
        </property>
        <property name="maxLength">
         <number>2</number>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="bt_remove">
-       <property name="text">
-        <string>Remove</string>
        </property>
       </widget>
      </item>
