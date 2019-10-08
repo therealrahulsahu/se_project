@@ -33,8 +33,8 @@ def update_order_counter(count, MW):
 def check_customer_in_status(in_phone, in_mail, MW):
     from errors import CustomerAlreadyInError
     myc = MW.DB.orders
-    data_phone = myc.find_one({'phone': in_phone, 'done': False})
-    data_mail = myc.find_one({'mail': in_mail, 'done': False})
+    data_phone = myc.find_one({'phone': in_phone, 'pay_done': False})
+    data_mail = myc.find_one({'mail': in_mail, 'pay_done': False})
     if bool(data_phone) or bool(data_mail):
         raise CustomerAlreadyInError
 
@@ -81,8 +81,8 @@ def revert_an_entry(order_no, MW):
 
 def update_document(in_name, in_table_no, in_phone, in_mail, MW):
     check_table_counter(int(in_table_no), MW)
-    check_table_availability(int(in_table_no), MW)
     check_customer_in_status(in_phone, in_mail, MW)
+    check_table_availability(int(in_table_no), MW)
     new_order_no = create_an_entry_in_orders(in_name, int(in_table_no), in_phone, in_mail, MW)
     completion_status = update_order_counter(new_order_no, MW)
     if not completion_status:
