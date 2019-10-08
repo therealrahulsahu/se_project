@@ -34,9 +34,8 @@ def check_customer_in_status(in_phone, in_mail, MW):
     from errors import CustomerAlreadyInError
     myc = MW.DB.orders
     data_phone = myc.find_one({'phone': in_phone, 'pay_done': False})
-    data_mail = myc.find_one({'mail': in_mail, 'pay_done': False})
-    if bool(data_phone) or bool(data_mail):
-        raise CustomerAlreadyInError
+    if bool(data_phone):
+        raise CustomerAlreadyInError(data_phone['_id'], data_phone['name'])
 
 
 def create_an_entry_in_orders(in_name, in_table_no, in_phone, in_email, MW):

@@ -79,8 +79,10 @@ class OrderNotCreatedSuccessfullyError(Exception):
 
 
 class CustomerAlreadyInError(Exception):
-    def __init__(self):
+    def __init__(self, customer_id, name):
         self.answer = 'Customer Already Inside'
+        self.customer_id = customer_id
+        self.name = name
 
     def __str__(self):
         return self.answer

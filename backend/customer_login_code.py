@@ -43,8 +43,14 @@ def run_main(curr_wid, MW):
                 self.signal.emit(True)
 
             except (InvalidNameError, InvalidPhoneError, TableNoError, InvalidEmailError,
-                    TableAlreadyOccupiedError, OrderNotCreatedSuccessfullyError, CustomerAlreadyInError) as ob:
+                    TableAlreadyOccupiedError, OrderNotCreatedSuccessfullyError) as ob:
                 MW.mess(str(ob))
+            except CustomerAlreadyInError as ob:
+                MW.mess(str(ob))
+                MW.logged_user = ob.customer_id
+                MW.mess('Welcome Back: ' + ob.name)
+                self.signal.emit(True)
+
             except AutoReconnect:
                 MW.mess('--> Network Error <--')
             finally:
