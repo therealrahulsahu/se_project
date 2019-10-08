@@ -138,7 +138,9 @@ if __name__ == '__main__':
     app = QtWidgets.QApplication(sys.argv)
 
     from PyQt5.QtGui import QFont
-    app.setFont(QFont('Comic Sans MS'))
+    my_font = QFont('Comic Sans MS')
+    my_font.setPointSize(8)
+    app.setFont(my_font)
 
     win = MyWindow()
     win.show()

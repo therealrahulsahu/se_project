@@ -54,8 +54,10 @@ def run_main_status(curr_wid, MW):
             bt_remove.clicked.connect(self.remove_food)
 
         def remove_food(self):
-            # To be done
-            MW.mess('Food Removed')
+            if self.rm_quantity:
+                MW.mess('Food Removed')
+            else:
+                MW.mess('Quantity is Zero')
 
         def change_quantity(self):
             sender_obj = self.sender()
