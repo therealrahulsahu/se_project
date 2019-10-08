@@ -176,7 +176,7 @@ class Ui_Form(object):
         _translate = QtCore.QCoreApplication.translate
         Form.setWindowTitle(_translate("Form", "Form"))
         self.bt_back.setText(_translate("Form", "Back"))
-        self.label_3.setText(_translate("Form", "Cutomer Login"))
+        self.label_3.setText(_translate("Form", "Customer Login"))
         self.label.setText(_translate("Form", "Name : "))
         self.label_2.setText(_translate("Form", "Table No. : "))
         self.label_4.setText(_translate("Form", "Phone : "))
