@@ -60,6 +60,7 @@ def create_an_entry_in_orders(in_name, in_table_no, in_phone, in_email, MW):
     }
     myc = MW.DB.orders
     ret_id = myc.insert_one(data)
+    MW.logged_user = ret_id.inserted_id    # Object id inserted
     from errors import OrderNotCreatedSuccessfullyError
     if not bool(ret_id.inserted_id):
         raise OrderNotCreatedSuccessfullyError
@@ -85,4 +86,4 @@ def update_document(in_name, in_table_no, in_phone, in_mail, MW):
     completion_status = update_order_counter(new_order_no, MW)
     if not completion_status:
         revert_an_entry(new_order_no, MW)
-    MW.logged_user = new_order_no
+    # MW.logged_user = new_order_no

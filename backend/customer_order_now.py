@@ -214,7 +214,7 @@ def run_main_order_now(curr_wid, MW):
                     raise NoFoodSelectedError
 
                 from .customer_order_now_save_data import save_data
-                save_data(selected_food_list)
+                save_data(selected_food_list, MW)
 
                 self.signal.emit(True)
             except NoFoodSelectedError as ob:
