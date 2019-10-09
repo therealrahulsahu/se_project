@@ -2,7 +2,7 @@ def run_main_manage_chef(curr_wid, MW):
     from PyQt5.QtCore import QThread, pyqtSignal
 
     def list_to_string(data):
-        css = '<style>td, th {padding: 15px;text-align: left;}</style>'
+        css = '<style>td, th {padding: 12px;text-align: left;}</style>'
         string = '<html>{}<table><tr><th>Name</th><th>User Id</th><th>Phone</th></tr>'.format(css)
         for x in data:
             string += '<tr><td>{}</td><td>{}</td><td>{}</td></tr>'.format(x['name'], x['userid'], x['phone'])

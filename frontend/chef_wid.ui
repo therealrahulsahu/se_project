@@ -106,7 +106,7 @@
            <property name="widgetResizable">
             <bool>true</bool>
            </property>
-           <widget class="QWidget" name="scroll_request">
+           <widget class="QWidget" name="scrollr">
             <property name="geometry">
              <rect>
               <x>0</x>
@@ -115,7 +115,7 @@
               <height>250</height>
              </rect>
             </property>
-            <layout class="QVBoxLayout" name="verticalLayout_2"/>
+            <layout class="QVBoxLayout" name="scroll_req"/>
            </widget>
           </widget>
          </item>
@@ -133,7 +133,7 @@
               <height>250</height>
              </rect>
             </property>
-            <layout class="QVBoxLayout" name="verticalLayout_3"/>
+            <layout class="QVBoxLayout" name="scroll_pre"/>
            </widget>
           </widget>
          </item>
