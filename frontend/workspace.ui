@@ -28,7 +28,7 @@
     </spacer>
    </item>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="5,5,5,5,10,5,4,2">
+    <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="1,1,1,1,1">
      <item>
       <widget class="QLabel" name="lb_name">
        <property name="text">
@@ -44,16 +44,9 @@
       </widget>
      </item>
      <item>
-      <widget class="QLabel" name="lb_p_ing">
+      <widget class="QLabel" name="lb_table_no">
        <property name="text">
-        <string>Preparing</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLabel" name="lb_p_ed">
-       <property name="text">
-        <string>Prepared</string>
+        <string>Table No.</string>
        </property>
       </widget>
      </item>
@@ -71,32 +64,9 @@
       </spacer>
      </item>
      <item>
-      <widget class="QPushButton" name="bt_remove">
+      <widget class="QPushButton" name="bt_take">
        <property name="text">
-        <string>Remove</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLabel" name="label">
-       <property name="text">
-        <string>Quantity : </string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLineEdit" name="le_quantity">
-       <property name="inputMethodHints">
-        <set>Qt::ImhNone</set>
-       </property>
-       <property name="text">
-        <string>0</string>
-       </property>
-       <property name="maxLength">
-        <number>2</number>
+        <string>Take Order</string>
        </property>
       </widget>
      </item>
