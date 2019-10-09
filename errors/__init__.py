@@ -166,3 +166,11 @@ class NoFoodSelectedError(Exception):
 
     def __str__(self):
         return self.answer
+
+
+class CantRemoveOrderPreparingError(Exception):
+    def __init__(self):
+        self.answer = 'Can\'t Remove - Order is Now Taken'
+
+    def __str__(self):
+        return self.answer

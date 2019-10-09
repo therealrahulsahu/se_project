@@ -3,6 +3,8 @@ def run_main_status(curr_wid, MW):
     from PyQt5.QtCore import QThread, pyqtSignal
 
     customer_id = MW.logged_user
+    myc_o = MW.DB.orders
+    myc_f = MW.DB.food
 
     def clear_layout(layout):
         if layout is not None:
@@ -12,6 +14,66 @@ def run_main_status(curr_wid, MW):
                     child.widget().deleteLater()
                 elif child.layout() is not None:
                     clear_layout(child.layout())
+
+    class ThreadRemove(QThread):
+        signal = pyqtSignal('PyQt_PyObject')
+
+        def __init__(self,):
+            super().__init__()
+
+        def set_arg(self,  rm_id, rm_quan, remove_btn):
+            self.rm_id = rm_id
+            self.rm_quan = rm_quan
+            self.remove_btn = remove_btn
+
+        def run(self):
+            from pymongo.errors import AutoReconnect
+            from errors import CantRemoveOrderPreparingError
+            try:
+                return_query = {
+                    'foods': 1,
+                    'quantity': 1,
+                    'status_not_taken': 1,
+                    'status_preparing': 1,
+                    'status_prepared': 1,
+                    'total': 1
+                }
+                fetched_order = myc_o.find_one({'_id': customer_id}, return_query)
+
+                f_price = myc_f.find_one({'_id': self.rm_id}, {'price': 1})
+                f_price = f_price['price']
+
+                ind = fetched_order['foods'].index(self.rm_id)
+                if self.rm_quan < fetched_order['status_not_taken'][ind]:
+                    fetched_order['quantity'][ind] -= self.rm_quan
+                    fetched_order['status_not_taken'][ind] -= self.rm_quan
+                    fetched_order['total'] -= self.rm_quan * f_price
+
+                    ret_id = myc_o.update_one({'_id': customer_id}, {'$set': fetched_order})
+                    MW.mess('Food Removed')
+                    self.signal.emit(True)
+                elif self.rm_quan == fetched_order['status_not_taken'][ind]:
+                    fetched_order['foods'].pop(ind)
+                    fetched_order['quantity'].pop(ind)
+                    fetched_order['status_not_taken'].pop(ind)
+                    fetched_order['status_preparing'].pop(ind)
+                    fetched_order['status_prepared'].pop(ind)
+                    fetched_order['total'] -= self.rm_quan * f_price
+
+                    ret_id = myc_o.update_one({'_id': customer_id}, {'$set': fetched_order})
+                    MW.mess('Food Removed')
+                    self.signal.emit(True)
+                else:
+                    raise CantRemoveOrderPreparingError
+
+            except CantRemoveOrderPreparingError as ob:
+                MW.mess(str(ob))
+            except AutoReconnect:
+                MW.mess('-->> Network Error<<--')
+            finally:
+                self.remove_btn.setEnabled(False)
+
+    th_remove = ThreadRemove()
 
     class StatusMenuWidget(QHBoxLayout):
         def __init__(self, f_id, f_name, f_quantity, f_p_ing, f_p_ed):
@@ -55,7 +117,12 @@ def run_main_status(curr_wid, MW):
 
         def remove_food(self):
             if self.rm_quantity:
-                MW.mess('Food Removed')
+                remove_btn = self.sender()
+                th_remove.set_arg(self.f_id, self.rm_quantity, remove_btn)
+                remove_btn.setEnabled(False)
+                MW.mess('Removing...')
+                th_remove.start()
+
             else:
                 MW.mess('Quantity is Zero')
 
@@ -125,3 +192,4 @@ def run_main_status(curr_wid, MW):
 
     curr_wid.bt_refresh_status.clicked.connect(refresh_func)
     th_refresh.signal.connect(finish_refresh_func)
+    th_remove.signal.connect(refresh_func)
