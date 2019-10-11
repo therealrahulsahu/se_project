@@ -190,3 +190,11 @@ class RefreshError(Exception):
 
     def __str__(self):
         return self.answer
+
+
+class SomeOrdersPreparingError(Exception):
+    def __init__(self):
+        self.answer = 'Some Orders are Preparing'
+
+    def __str__(self):
+        return self.answer

@@ -33,7 +33,7 @@ def update_order_counter(count, MW):
 def check_customer_in_status(in_phone, in_mail, MW):
     from errors import CustomerAlreadyInError
     myc = MW.DB.orders
-    data_phone = myc.find_one({'phone': in_phone, 'pay_done': False})
+    data_phone = myc.find_one({'phone': in_phone, 'done': False})
     if bool(data_phone):
         raise CustomerAlreadyInError(data_phone['_id'], data_phone['name'])
 

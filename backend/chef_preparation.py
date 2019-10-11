@@ -173,7 +173,7 @@ def run_main_chef_preparation(curr_wid, MW):
                     'status_not_taken': 1,
                     'status_preparing': 1
                 }
-                ret_customers = myc_o.find({'pay_done': False}, query_ret)
+                ret_customers = myc_o.find({'done': False}, query_ret)
                 for cus_dict in ret_customers:
                     cus_data = zip(cus_dict['foods'], cus_dict['status_not_taken'],
                                    cus_dict['status_preparing'])
