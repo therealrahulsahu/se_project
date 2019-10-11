@@ -35,7 +35,7 @@ class Ui_Form(object):
         self.bt_take = QtWidgets.QPushButton(Form)
         self.bt_take.setObjectName("bt_take")
         self.horizontalLayout_2.addWidget(self.bt_take)
-        self.horizontalLayout_2.setStretch(0, 1)
+        self.horizontalLayout_2.setStretch(0, 2)
         self.horizontalLayout_2.setStretch(1, 1)
         self.horizontalLayout_2.setStretch(2, 1)
         self.horizontalLayout_2.setStretch(3, 1)

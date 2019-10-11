@@ -23,7 +23,7 @@
       <attribute name="title">
        <string>Food Preparing</string>
       </attribute>
-      <layout class="QVBoxLayout" name="verticalLayout_4" stretch="2,2,20">
+      <layout class="QVBoxLayout" name="verticalLayout_4" stretch="2,2,0,20">
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="20,2,2">
          <item>
@@ -100,6 +100,92 @@
         </layout>
        </item>
        <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_9" stretch="2,1,1,1,1,2,1,1,1,1">
+         <item>
+          <widget class="QLabel" name="label_5">
+           <property name="text">
+            <string>Food Name</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_7">
+           <property name="text">
+            <string>Quantity</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_9">
+           <property name="text">
+            <string>Table No.</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_3">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_11">
+           <property name="text">
+            <string>Action</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_6">
+           <property name="text">
+            <string>Food Name</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_8">
+           <property name="text">
+            <string>Quantity</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_10">
+           <property name="text">
+            <string>Table No.</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_15">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_12">
+           <property name="text">
+            <string>Action</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
         <layout class="QHBoxLayout" name="horizontalLayout">
          <item>
           <widget class="QScrollArea" name="scrollArea_2">
@@ -112,7 +198,7 @@
               <x>0</x>
               <y>0</y>
               <width>300</width>
-              <height>250</height>
+              <height>228</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="scroll_req"/>
@@ -130,7 +216,7 @@
               <x>0</x>
               <y>0</y>
               <width>300</width>
-              <height>250</height>
+              <height>228</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="scroll_pre"/>

@@ -174,3 +174,19 @@ class CantRemoveOrderPreparingError(Exception):
 
     def __str__(self):
         return self.answer
+
+
+class NoOrdersFoundError(Exception):
+    def __init__(self):
+        self.answer = 'No Orders Found'
+
+    def __str__(self):
+        return self.answer
+
+
+class RefreshError(Exception):
+    def __init__(self):
+        self.answer = 'Refresh Expired'
+
+    def __str__(self):
+        return self.answer

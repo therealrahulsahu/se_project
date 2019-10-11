@@ -71,7 +71,7 @@ def run_main_status(curr_wid, MW):
             except AutoReconnect:
                 MW.mess('-->> Network Error<<--')
             finally:
-                self.remove_btn.setEnabled(False)
+                self.remove_btn.setEnabled(True)
 
     th_remove = ThreadRemove()
 
@@ -193,3 +193,4 @@ def run_main_status(curr_wid, MW):
     curr_wid.bt_refresh_status.clicked.connect(refresh_func)
     th_refresh.signal.connect(finish_refresh_func)
     th_remove.signal.connect(refresh_func)
+    # refresh_func()
