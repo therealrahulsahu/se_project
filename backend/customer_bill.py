@@ -2,22 +2,6 @@ def run_main_bill(curr_wid, MW):
     customer_id = MW.logged_user
     from PyQt5.QtCore import QThread, pyqtSignal
 
-    def convert_to_bill(doc, amount):
-        script = '<style>{}</style>'.format('td, th {padding: 10px;text-align: left;}')
-        heading = '<tr><th>{}</th><th>{}</th><th>{}</th><th>{}</th><th>{}</th></tr>'.format('No.', 'Name',
-                                                                                            'Price', 'Quantity',
-                                                                                            'Total')
-        data_tuple = ''
-        i = 1
-        for x in doc:
-            data_tuple += '<tr><td>{}</td><td>{}</td><td>{}</td><td>{}</td><td>{}</td></tr>'.format(i, *x)
-            i += 1
-        data_tuple += '<tr><td></td><td></td><td></td><td>Total -> </td><td>{}</td></tr>'.format(amount)
-        table = '<table border="1">{}{}</table>'.format(heading, data_tuple)
-        body = '<body>{}</body>'.format(table)
-        html = '<html>{}{}</html>'.format(script, body)
-        return html
-
     class ThreadRefreshBill(QThread):
         signal = pyqtSignal('PyQt_PyObject')
 
@@ -57,6 +41,7 @@ def run_main_bill(curr_wid, MW):
         th_refresh_bill.start()
 
     def finish_refresh_bill_func():
+        from .common_functions import convert_to_bill
         curr_wid.tb_bill.setText(convert_to_bill(th_refresh_bill.bill_doc, th_refresh_bill.total_bill))
         MW.mess('Refreshed')
 

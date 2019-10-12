@@ -9,7 +9,7 @@ def check_table_counter(in_table_no, MW):
 def check_table_availability(in_table_no, MW):
     from errors import TableAlreadyOccupiedError
     myc = MW.DB.orders
-    found_table = myc.find_one({'table_no': in_table_no, 'done': False}, {'_id': 1})
+    found_table = myc.find_one({'table_no': in_table_no, 'pay_done': False}, {'_id': 1})
     if bool(found_table):
         raise TableAlreadyOccupiedError
 

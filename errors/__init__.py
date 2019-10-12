@@ -198,3 +198,11 @@ class SomeOrdersPreparingError(Exception):
 
     def __str__(self):
         return self.answer
+
+
+class CustomerNotDoneYetError(Exception):
+    def __init__(self):
+        self.answer = 'Customer Not Done Yet'
+
+    def __str__(self):
+        return self.answer
