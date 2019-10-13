@@ -6,7 +6,7 @@ class MyWindow(QtWidgets.QMainWindow):
     def __init__(self):
         super().__init__()
         self.resize(640, 360)
-        self.setWindowTitle('Cyber Restaurent')
+        self.setWindowTitle('Cyber Restaurant')
         # self.setWindowIcon(ic_insert_table)
         self.logged_user = ''
         self.current_db = 'retaurant_database'
@@ -17,7 +17,58 @@ class MyWindow(QtWidgets.QMainWindow):
         self.bar_status = self.statusBar()
         self.status_bar()
 
+        self.AW = AW    # Adding application variable to main-window class
+
         self.start_here()
+
+    def global_style(self, AW):
+
+        self.AW = AW
+
+        from PyQt5.QtGui import QFont
+        my_font = QFont('Comic Sans MS')
+        my_font.setPointSize(8)
+        self.AW.setFont(my_font)
+
+        qpushbutton = """
+            QPushButton
+            {
+                background-color: pink;
+                border: 1px solid blue;
+                width: 60px;
+                height: 15px;
+                color: red;
+            }
+        """
+        qlineedit = """
+            QLineEdit
+            {
+                background-color: pink;
+                border: 1px solid black;
+                color: red;
+            }
+        """
+        qlabel = """
+            QLabel
+            {
+                color: red;
+            }
+        """
+        qmainwindow = """
+            QMainWindow
+            {
+                background-color: orange;
+            }
+        """
+        qwidget = """
+            QWidget
+            {
+                background-color: yellow;
+            }
+        """
+
+        my_css = qpushbutton + qlineedit + qlabel + qmainwindow
+        self.AW.setStyleSheet(my_css)
 
     def menu_bar(self):
 
@@ -135,17 +186,13 @@ class MyWindow(QtWidgets.QMainWindow):
 
 
 if __name__ == '__main__':
-    app = QtWidgets.QApplication(sys.argv)
-
-    from PyQt5.QtGui import QFont
-    my_font = QFont('Comic Sans MS')
-    my_font.setPointSize(8)
-    app.setFont(my_font)
+    AW = QtWidgets.QApplication(sys.argv)
 
     win = MyWindow()
+    win.global_style(AW)
     win.show()
 
-    end = app.exec_()
+    end = AW.exec_()
     if not end:
         try:
             win.myc.close()
