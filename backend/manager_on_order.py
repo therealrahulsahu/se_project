@@ -62,7 +62,7 @@ def run_main_on_order(curr_wid, MW):
                 myc_f = MW.DB.food
                 order_data = myc_o.find_one({'_id': self.customer_id},
                                             {'name': 1, 'order_no': 1, 'phone': 1, 'mail': 1, 'table_no': 1,
-                                             'foods': 1, 'quantity': 1, 'total': 1, 'in_time': 1})
+                                             'foods': 1, 'quantity': 1, 'total': 1, 'in_time': 1, 'out_time': 1})
                 self.fetch_dict = order_data
                 order_data = list(zip(order_data['foods'], order_data['quantity']))
                 for x in order_data:
