@@ -17,8 +17,6 @@ class MyWindow(QtWidgets.QMainWindow):
         self.bar_status = self.statusBar()
         self.status_bar()
 
-        self.AW = AW    # Adding application variable to main-window class
-
         self.start_here()
 
     def global_style(self, AW):
