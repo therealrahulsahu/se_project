@@ -29,6 +29,8 @@ class MyWindow(QtWidgets.QMainWindow):
         self.AW.setFont(my_font)
 
         import qdarkstyle
+        # from backend import orange_s_sheet
+        # self.AW.setStyleSheet(orange_s_sheet)
         self.AW.setStyleSheet(qdarkstyle.load_stylesheet_pyqt5())
 
     def menu_bar(self):
