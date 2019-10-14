@@ -28,45 +28,8 @@ class MyWindow(QtWidgets.QMainWindow):
         my_font.setPointSize(8)
         self.AW.setFont(my_font)
 
-        qpushbutton = """
-            QPushButton
-            {
-                background-color: pink;
-                border: 1px solid blue;
-                width: 60px;
-                height: 15px;
-                color: red;
-            }
-        """
-        qlineedit = """
-            QLineEdit
-            {
-                background-color: pink;
-                border: 1px solid black;
-                color: red;
-            }
-        """
-        qlabel = """
-            QLabel
-            {
-                color: red;
-            }
-        """
-        qmainwindow = """
-            QMainWindow
-            {
-                background-color: orange;
-            }
-        """
-        qwidget = """
-            QWidget
-            {
-                background-color: yellow;
-            }
-        """
-
-        my_css = qpushbutton + qlineedit + qlabel + qmainwindow
-        self.AW.setStyleSheet(my_css)
+        import qdarkstyle
+        self.AW.setStyleSheet(qdarkstyle.load_stylesheet_pyqt5())
 
     def menu_bar(self):
 
