@@ -20,7 +20,7 @@
       <bool>true</bool>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="tab_2">
       <attribute name="title">
@@ -341,7 +341,7 @@
          <property name="widgetResizable">
           <bool>true</bool>
          </property>
-         <widget class="QWidget" name="scroll_history">
+         <widget class="QWidget" name="scroll_1">
           <property name="geometry">
            <rect>
             <x>0</x>
@@ -350,7 +350,7 @@
             <height>252</height>
            </rect>
           </property>
-          <layout class="QVBoxLayout" name="verticalLayout_5"/>
+          <layout class="QVBoxLayout" name="scroll_history"/>
          </widget>
         </widget>
        </item>

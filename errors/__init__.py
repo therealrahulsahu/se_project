@@ -206,3 +206,11 @@ class CustomerNotDoneYetError(Exception):
 
     def __str__(self):
         return self.answer
+
+
+class InvalidTimeEntryError(Exception):
+    def __init__(self):
+        self.answer = 'Invalid Time Entry'
+
+    def __str__(self):
+        return self.answer
