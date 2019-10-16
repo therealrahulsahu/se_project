@@ -28,7 +28,7 @@
     </spacer>
    </item>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="1,1,2,1,1,1,1">
+    <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="2,1,1,1,1,1,1,1,1">
      <item>
       <widget class="QLabel" name="lb_name">
        <property name="text">
@@ -37,16 +37,9 @@
       </widget>
      </item>
      <item>
-      <widget class="QLabel" name="lb_order_no">
+      <widget class="QLabel" name="lb_table_no">
        <property name="text">
-        <string>Order No.</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLabel" name="lb_time">
-       <property name="text">
-        <string>In Time</string>
+        <string>Table No.</string>
        </property>
       </widget>
      </item>
@@ -54,6 +47,33 @@
       <widget class="QLabel" name="lb_status">
        <property name="text">
         <string>Status</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="lb_total">
+       <property name="text">
+        <string>Total</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="bt_print">
+       <property name="text">
+        <string>Bill Print</string>
        </property>
       </widget>
      </item>
@@ -71,14 +91,14 @@
       </spacer>
      </item>
      <item>
-      <widget class="QPushButton" name="bt_bill">
+      <widget class="QPushButton" name="bt_pay">
        <property name="text">
-        <string>Retrive Bill</string>
+        <string>Payment Done</string>
        </property>
       </widget>
      </item>
      <item>
-      <spacer name="horizontalSpacer">
+      <spacer name="horizontalSpacer_3">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>

@@ -28,7 +28,7 @@
     </spacer>
    </item>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="1,1,2,1,1,1,1">
+    <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="1,1,1,1,1,1,1">
      <item>
       <widget class="QLabel" name="lb_name">
        <property name="text">

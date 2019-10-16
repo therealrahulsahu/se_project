@@ -160,7 +160,7 @@
       <attribute name="title">
        <string>History</string>
       </attribute>
-      <layout class="QVBoxLayout" name="verticalLayout_4" stretch="1,1,10">
+      <layout class="QVBoxLayout" name="verticalLayout_4" stretch="1,1,1,10">
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="1,3,1,5,1,2,1,3,1,5,1">
          <item>
@@ -337,6 +337,51 @@
         </layout>
        </item>
        <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_25" stretch="1,1,2,1,3">
+         <item>
+          <widget class="QLabel" name="label_20">
+           <property name="text">
+            <string>Person Name</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_22">
+           <property name="text">
+            <string>Order No.</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_21">
+           <property name="text">
+            <string>In Time</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_19">
+           <property name="text">
+            <string>Payment</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_64">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </item>
+       <item>
         <widget class="QScrollArea" name="scrollArea_2">
          <property name="widgetResizable">
           <bool>true</bool>
@@ -347,7 +392,7 @@
             <x>0</x>
             <y>0</y>
             <width>608</width>
-            <height>252</height>
+            <height>230</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="scroll_history"/>
@@ -1083,7 +1128,7 @@
          <property name="title">
           <string>Add Food</string>
          </property>
-         <layout class="QVBoxLayout" name="verticalLayout_6" stretch="10,2,1,1,1,1,1,1,5">
+         <layout class="QVBoxLayout" name="verticalLayout_6" stretch="15,2,1,1,1,1,1,1,5">
           <item>
            <widget class="QTextBrowser" name="textBrowser">
             <property name="html">

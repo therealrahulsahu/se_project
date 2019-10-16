@@ -6,13 +6,38 @@ def convert_to_bill(doc, data):
     style = '<style>{}</style>'.format('td, th {width: 25%;}'
                                        'table{width: 75%; border: 1;align: center}'
                                        'h1{align: center}')
-    head_tuple = ('<tr>{}</tr>'.format('<th width="25%">{}</th>'*5)).format('No.', 'Name', 'Price', 'Quantity', 'Total')
+    head_tuple = '<tr><th width="10%">{}</th><th width="40%">{}</th><th width="20%">{}</th>' \
+                 '<th width="10%">{}</th><th width="20%">{}</th></tr>'.format('No.', 'Name', 'Price',
+                                                                              'Quantity', 'Total')
     data_tuple = ''
     i = 1
     for x in doc:
-        data_tuple += ('<tr>{}</tr>'.format('<td width="25%">{}</td>'*5)).format(i, *x)
+        data_tuple += '<tr><td width="10%">{}</td><td width="40%">{}</td><td width="20%">{}</td>' \
+                 '<td width="10%">{}</td><td width="20%">{}</td></tr>'.format(i, *x)
         i += 1
-    data_tuple += '<tr><td></td><td></td><td></td><td>Total -> </td><td>{}</td></tr>'.format(data['total'])
+    data_tuple += '<tr><td colspan="3"><td>Total -> </td><td>{}</td></tr>'.format(data['total'])
+    table = '<table width="75%" border="1" align="center">{}{}</table>'.format(head_tuple, data_tuple)
+    head_title = '<h1 align="center">{}</h1>'.format('Cyber Restaurant')
+    head = '<head>{}</head>'.format('')
+    body = '<body>{}{}</body>'.format(head_title, table)
+    html = '<!DOCTYPE html><html>{}{}</html>'.format(head, body)
+    return html
+
+
+def convert_to_total_sale(data):
+    # {'pos': count, 'name': x['name'], 'order_no': x['order_no'],
+    # 'time': x['in_time'], 'total': x['total']}
+    head_tuple = '<tr><th width="10%">{}</th><th width="30%">{}</th><th width="10%">{}</th>' \
+                 '<th width="30%">{}</th><th width="20%">{}</th></tr>'.format('No.', 'Name', 'Order No.',
+                                                                              'In Time', 'Total')
+    data_tuple = ''
+    grand_total = 0
+    for x in data:
+        data_tuple += '<tr><td width="10%">{}</td><td width="30%">{}</td><td width="10%">{}</td>' \
+                      '<td width="30%">{}</td><td width="20%">{}</td></tr>'.format(*x)
+        grand_total += x[4]
+
+    data_tuple += '<tr><td colspan="3"></td><td>Grand Total -> </td><td>{}</td></tr>'.format(grand_total)
     table = '<table width="75%" border="1" align="center">{}{}</table>'.format(head_tuple, data_tuple)
     head_title = '<h1 align="center">{}</h1>'.format('Cyber Restaurant')
     head = '<head>{}</head>'.format('')
