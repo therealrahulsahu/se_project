@@ -167,3 +167,4 @@ if __name__ == '__main__':
 # todo : prevent closing at customer section
 # todo : confirmation before closing
 # todo : auto refresh to be done in tab widgets
+# todo : Frame less window
