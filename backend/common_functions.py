@@ -1,11 +1,18 @@
 def convert_to_bill(doc, data):
-    # TODO: place other data
     data = dict(data)
     # {'name': 1, 'order_no': 1, 'phone': 1, 'mail': 1, 'table_no': 1,
     # 'foods': 1, 'quantity': 1, 'total': 1, 'in_time': 1, 'out_time': 1}
-    style = '<style>{}</style>'.format('td, th {width: 25%;}'
-                                       'table{width: 75%; border: 1;align: center}'
-                                       'h1{align: center}')
+    customer_info = '<strong>{:>37}</strong>\n' \
+                    'Table No. : {:>25}\n' \
+                    'Order No. : {:>25}\n' \
+                    'Mail      : {:>25}\n' \
+                    'Phone     : {:>25}\n' \
+                    'Total     : {:>25}\n' \
+                    'In Time   : {:>25}\n' \
+                    'Out Time  : {:>25}\n'.format(data['name'], data['table_no'], data['order_no'],
+                                                  data['mail'], data['phone'], data['total'],
+                                                  data['in_time'].strftime('%c'), data['out_time'].strftime('%c'))
+    pre = '<pre align="center">{}</pre>'.format(customer_info)
     head_tuple = '<tr><th width="10%">{}</th><th width="40%">{}</th><th width="20%">{}</th>' \
                  '<th width="10%">{}</th><th width="20%">{}</th></tr>'.format('No.', 'Name', 'Price',
                                                                               'Quantity', 'Total')
@@ -19,7 +26,7 @@ def convert_to_bill(doc, data):
     table = '<table width="75%" border="1" align="center">{}{}</table>'.format(head_tuple, data_tuple)
     head_title = '<h1 align="center">{}</h1>'.format('Cyber Restaurant')
     head = '<head>{}</head>'.format('')
-    body = '<body>{}{}</body>'.format(head_title, table)
+    body = '<body>{}{}{}</body>'.format(head_title, pre, table)
     html = '<!DOCTYPE html><html>{}{}</html>'.format(head, body)
     return html
 

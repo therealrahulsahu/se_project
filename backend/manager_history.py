@@ -12,7 +12,7 @@ def run_main_history(curr_wid, MW):
             self.move(10, 10)
             self.setWindowTitle('Customer Bill')
             from PyQt5 import QtWidgets
-            self.resize(300, 400)
+            self.resize(400, 500)
             verticalLayout = QtWidgets.QVBoxLayout(self)
             horizontalLayout = QtWidgets.QHBoxLayout()
             spacerItem = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)

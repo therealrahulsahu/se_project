@@ -163,3 +163,7 @@ if __name__ == '__main__':
             pass
 
         sys.exit(end)
+
+# todo : prevent closing at customer section
+# todo : confirmation before closing
+# todo : auto refresh to be done in tab widgets
