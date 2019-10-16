@@ -168,3 +168,4 @@ if __name__ == '__main__':
 # todo : confirmation before closing
 # todo : auto refresh to be done in tab widgets
 # todo : Frame less window
+# todo : Images to be added
