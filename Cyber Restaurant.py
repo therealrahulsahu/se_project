@@ -1,8 +1,7 @@
-from PyQt5 import QtWidgets
-import sys
+from PyQt5.QtWidgets import QMainWindow
 
 
-class MyWindow(QtWidgets.QMainWindow):
+class MyWindow(QMainWindow):
     def __init__(self):
         super().__init__()
         self.resize(640, 360)
@@ -36,7 +35,8 @@ class MyWindow(QtWidgets.QMainWindow):
 
     def menu_bar(self):
 
-        quit_action = QtWidgets.QAction('&Quit Session', self)
+        from PyQt5.QtWidgets import QAction
+        quit_action = QAction('&Quit Session', self)
         quit_action.setShortcut('Ctrl+Q')
         quit_action.setStatusTip('Quit Session')
         quit_action.triggered.connect(self.select_func)
@@ -52,7 +52,8 @@ class MyWindow(QtWidgets.QMainWindow):
         self.bar_menu.setVisible(False)
         self.logged_user = ''
 
-        select_wid = QtWidgets.QWidget()
+        from PyQt5.QtWidgets import QWidget
+        select_wid = QWidget()
         from frontend import SelectWid
         select_ui = SelectWid()
         select_ui.setupUi(select_wid)
@@ -64,7 +65,8 @@ class MyWindow(QtWidgets.QMainWindow):
     def customer_login_func(self):
         self.bar_menu.setVisible(False)
 
-        customer_login_wid = QtWidgets.QWidget()
+        from PyQt5.QtWidgets import QWidget
+        customer_login_wid = QWidget()
         from frontend import CustomerLoginWid
         customer_login_ui = CustomerLoginWid()
         customer_login_ui.setupUi(customer_login_wid)
@@ -76,7 +78,8 @@ class MyWindow(QtWidgets.QMainWindow):
     def manager_login_func(self):
         self.bar_menu.setVisible(False)
 
-        manager_login_wid = QtWidgets.QWidget()
+        from PyQt5.QtWidgets import QWidget
+        manager_login_wid = QWidget()
         from frontend import ManagerLoginWid
         manager_login_ui = ManagerLoginWid()
         manager_login_ui.setupUi(manager_login_wid)
@@ -88,7 +91,8 @@ class MyWindow(QtWidgets.QMainWindow):
     def chef_login_func(self):
         self.bar_menu.setVisible(False)
 
-        chef_login_wid = QtWidgets.QWidget()
+        from PyQt5.QtWidgets import QWidget
+        chef_login_wid = QWidget()
         from frontend import ChefLoginWid
         chef_login_ui = ChefLoginWid()
         chef_login_ui.setupUi(chef_login_wid)
@@ -100,7 +104,8 @@ class MyWindow(QtWidgets.QMainWindow):
     def connect_func(self):
         self.bar_menu.setVisible(False)
 
-        conn_wid = QtWidgets.QWidget()
+        from PyQt5.QtWidgets import QWidget
+        conn_wid = QWidget()
         from frontend import ConnectWid
         conn_ui = ConnectWid()
         conn_ui.setupUi(conn_wid)
@@ -112,7 +117,8 @@ class MyWindow(QtWidgets.QMainWindow):
     def manager_func(self):
         self.bar_menu.setVisible(True)
 
-        manager_wid = QtWidgets.QWidget()
+        from PyQt5.QtWidgets import QWidget
+        manager_wid = QWidget()
         from frontend import ManagerWid
         manager_ui = ManagerWid()
         manager_ui.setupUi(manager_wid)
@@ -124,7 +130,8 @@ class MyWindow(QtWidgets.QMainWindow):
     def chef_func(self):
         self.bar_menu.setVisible(True)
 
-        chef_wid = QtWidgets.QWidget()
+        from PyQt5.QtWidgets import QWidget
+        chef_wid = QWidget()
         from frontend import ChefWid
         chef_ui = ChefWid()
         chef_ui.setupUi(chef_wid)
@@ -136,7 +143,8 @@ class MyWindow(QtWidgets.QMainWindow):
     def customer_func(self):
         self.bar_menu.setVisible(True)
 
-        customer_wid = QtWidgets.QWidget()
+        from PyQt5.QtWidgets import QWidget
+        customer_wid = QWidget()
         from frontend import CustomerWid
         customer_ui = CustomerWid()
         customer_ui.setupUi(customer_wid)
@@ -175,7 +183,10 @@ class MyWindow(QtWidgets.QMainWindow):
 
 
 if __name__ == '__main__':
-    AW = QtWidgets.QApplication(sys.argv)
+
+    from PyQt5.QtWidgets import QApplication
+    import sys
+    AW = QApplication(sys.argv)
     win = MyWindow()
     win.global_style(AW)
     win.show()
