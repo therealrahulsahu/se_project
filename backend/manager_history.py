@@ -9,6 +9,8 @@ def run_main_history(curr_wid, MW):
         def __init__(self):
             super().__init__()
 
+            from images import ic_milkshake
+            self.setWindowIcon(ic_milkshake)
             self.move(10, 10)
             self.setWindowTitle('Customer Bill')
             from PyQt5 import QtWidgets

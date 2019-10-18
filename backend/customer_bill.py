@@ -46,6 +46,7 @@ def run_main_bill(curr_wid, MW):
         from .common_functions import convert_to_bill
         curr_wid.tb_bill.setText(convert_to_bill(th_refresh_bill.bill_doc, th_refresh_bill.fetch_dict))
         MW.mess('Refreshed')
+        curr_wid.bt_checkout.setEnabled(True)
 
     curr_wid.bt_refresh_bill.clicked.connect(refresh_bill_func)
     th_refresh_bill.signal.connect(finish_refresh_bill_func)
@@ -62,7 +63,9 @@ def run_main_bill(curr_wid, MW):
             from errors import SomeOrdersPreparingError, NoOrdersFoundError
             myc_o = MW.DB.orders
             try:
-                order = myc_o.find_one({'_id': customer_id}, {'quantity': 1, 'status_not_taken': 1, 'done': 1})
+                order = myc_o.find_one({'_id': customer_id}, {'quantity': 1, 'status_not_taken': 1,
+                                                              'done': 1, 'total': 1})
+                self.total_bill = order['total']
                 if any(order['status_not_taken']):
                     raise SomeOrdersPreparingError
                 elif not len(order['quantity']):
@@ -87,7 +90,7 @@ def run_main_bill(curr_wid, MW):
         th_checkout.start()
 
     def finish_checkout():
-        MW.mess('Thank You {}(  Your Bill {}  )'.format(' '*15, th_refresh_bill.total_bill))
+        MW.mess('Thank You {}(  Your Bill {}  )'.format(' '*15, th_checkout.total_bill))
         MW.select_func()
 
     curr_wid.bt_checkout.clicked.connect(checkout_func)

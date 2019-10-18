@@ -2,11 +2,13 @@
 
 # Form implementation generated from reading ui file 'connect_wid.ui'
 #
-# Created by: PyQt5 UI code generator 5.9.2
+# Created by: PyQt5 UI code generator 5.13.1
 #
 # WARNING! All changes made in this file will be lost!
 
+
 from PyQt5 import QtCore, QtGui, QtWidgets
+
 
 class Ui_Form(object):
     def setupUi(self, Form):
@@ -46,6 +48,9 @@ class Ui_Form(object):
         self.horizontalLayout_2.addWidget(self.bt_connect)
         spacerItem5 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout_2.addItem(spacerItem5)
+        self.horizontalLayout_2.setStretch(0, 7)
+        self.horizontalLayout_2.setStretch(1, 5)
+        self.horizontalLayout_2.setStretch(2, 7)
         self.verticalLayout.addLayout(self.horizontalLayout_2)
         spacerItem6 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
         self.verticalLayout.addItem(spacerItem6)
@@ -73,4 +78,3 @@ if __name__ == "__main__":
     ui.setupUi(Form)
     Form.show()
     sys.exit(app.exec_())
-

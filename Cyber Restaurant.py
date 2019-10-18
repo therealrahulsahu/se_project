@@ -1,4 +1,4 @@
-from PyQt5 import QtWidgets
+from PyQt5 import QtWidgets, QtGui
 import sys
 
 
@@ -7,7 +7,8 @@ class MyWindow(QtWidgets.QMainWindow):
         super().__init__()
         self.resize(640, 360)
         self.setWindowTitle('Cyber Restaurant')
-        # self.setWindowIcon(ic_insert_table)
+        from images import ic_milkshake
+        self.setWindowIcon(ic_milkshake)
         self.logged_user = ''
         self.current_db = 'retaurant_database'
 
@@ -147,10 +148,34 @@ class MyWindow(QtWidgets.QMainWindow):
     def start_here(self):
         self.connect_func()
 
+    def closeEvent(self, event):
+        from PyQt5.QtWidgets import QMessageBox
+        from images import ic_milkshake
+        box = QMessageBox()
+        box.setWindowIcon(ic_milkshake)
+        box.resize(200, 100)
+        if self.logged_user:
+            box.setWindowTitle('!!! Action Denied !!!')
+            box.setInformativeText('Please Complete Order.')
+            box.setIcon(QMessageBox.Warning)
+            box.setStandardButtons(QMessageBox.Ok)
+            response = box.exec_()
+            if response == QMessageBox.Ok:
+                event.ignore()
+        else:
+            box.setWindowTitle('Confirm...')
+            box.setInformativeText('Are You Sure ?')
+            box.setIcon(QMessageBox.Question)
+            box.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
+            response = box.exec_()
+            if response == QMessageBox.Ok:
+                event.accept()
+            elif response == QMessageBox.Cancel:
+                event.ignore()
+
 
 if __name__ == '__main__':
     AW = QtWidgets.QApplication(sys.argv)
-
     win = MyWindow()
     win.global_style(AW)
     win.show()
@@ -161,12 +186,8 @@ if __name__ == '__main__':
             win.myc.close()
         except AttributeError:
             pass
-
         sys.exit(end)
 
-# todo : prevent closing at customer section
-# todo : confirmation before closing
 # todo : auto refresh to be done in tab widgets
 # todo : Frame less window
 # todo : Food Images to be added
-# todo : icons images to be added
