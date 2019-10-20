@@ -8,6 +8,8 @@ def run_main_bill(curr_wid, MW):
         def __init__(self):
             super().__init__()
             self.bill_doc = []
+            self.fetch_dict = dict()
+            self.order_total = 0
 
         def run(self):
             self.bill_doc = []
@@ -21,6 +23,7 @@ def run_main_bill(curr_wid, MW):
                                             {'name': 1, 'order_no': 1, 'phone': 1, 'mail': 1,
                                              'table_no': 1, 'foods': 1, 'quantity': 1, 'total': 1,
                                              'in_time': 1, 'out_time': 1})
+                self.order_total = order_data['total']
                 self.fetch_dict = order_data
                 order_data = list(zip(order_data['foods'], order_data['quantity']))
                 for x in order_data:
@@ -57,6 +60,7 @@ def run_main_bill(curr_wid, MW):
 
         def __init__(self):
             super().__init__()
+            self.total_bill = 0
 
         def run(self):
             from pymongo.errors import AutoReconnect
@@ -85,9 +89,14 @@ def run_main_bill(curr_wid, MW):
     th_checkout = ThreadCheckout()
 
     def checkout_func():
-        curr_wid.bt_checkout.setEnabled(False)
-        MW.mess('Finishing...')
-        th_checkout.start()
+        from .common_functions import DialogConfirmation
+        message_box = DialogConfirmation('Are You Sure ?')
+        if message_box.exec_() == message_box.Yes:
+            curr_wid.bt_checkout.setEnabled(False)
+            MW.mess('Finishing...')
+            th_checkout.start()
+        else:
+            MW.mess('Cancelled')
 
     def finish_checkout():
         MW.mess('Thank You {}(  Your Bill {}  )'.format(' '*15, th_checkout.total_bill))

@@ -6,14 +6,7 @@ def run_main_status(curr_wid, MW):
     myc_o = MW.DB.orders
     myc_f = MW.DB.food
 
-    def clear_layout(layout):
-        if layout is not None:
-            while layout.count():
-                child = layout.takeAt(0)
-                if child.widget() is not None:
-                    child.widget().deleteLater()
-                elif child.layout() is not None:
-                    clear_layout(child.layout())
+    from .common_functions import clear_layout
 
     class ThreadRemove(QThread):
         signal = pyqtSignal('PyQt_PyObject')
@@ -117,12 +110,16 @@ def run_main_status(curr_wid, MW):
 
         def remove_food(self):
             if self.rm_quantity:
-                remove_btn = self.sender()
-                th_remove.set_arg(self.f_id, self.rm_quantity, remove_btn)
-                remove_btn.setEnabled(False)
-                MW.mess('Removing...')
-                th_remove.start()
-
+                from .common_functions import DialogConfirmation
+                message_box = DialogConfirmation('Remove ' + str(self.rm_quantity) + ' Items ?')
+                if message_box.exec_() == message_box.Yes:
+                    remove_btn = self.sender()
+                    th_remove.set_arg(self.f_id, self.rm_quantity, remove_btn)
+                    remove_btn.setEnabled(False)
+                    MW.mess('Removing...')
+                    th_remove.start()
+                else:
+                    MW.mess('Cancelled')
             else:
                 MW.mess('Quantity is Zero')
 

@@ -34,7 +34,7 @@ def run_main_manage_chef(curr_wid, MW):
             self.output = []
 
         def run(self):
-            in_query = curr_wid.le_query_chef.text().strip()
+            in_query = '(?i)' + curr_wid.le_query_chef.text().strip()
             myc = MW.DB.chef
             from errors import ChefNotFoundError
             from pymongo.errors import AutoReconnect
@@ -96,7 +96,7 @@ def run_main_manage_chef(curr_wid, MW):
             self.output_list = []
 
         def run(self):
-            in_name = r'{}'.format(curr_wid.le_rm_chef.text().strip())
+            in_name = r'(?i){}'.format(curr_wid.le_rm_chef.text().strip())
             self.output_list = []
             from errors import ChefNotFoundError
             from pymongo.errors import AutoReconnect
@@ -168,10 +168,15 @@ def run_main_manage_chef(curr_wid, MW):
         th_remove_chef_query.start()
 
     def remove_chef_func():
-        curr_wid.bt_get_rm_chef.setEnabled(False)
-        curr_wid.bt_rm_confirm.setEnabled(False)
-        MW.mess('Removing...')
-        th_remove_chef.start()
+        from .common_functions import DialogConfirmation
+        message_box = DialogConfirmation('Do You Want to Remove ?')
+        if message_box.exec_() == message_box.Yes:
+            curr_wid.bt_get_rm_chef.setEnabled(False)
+            curr_wid.bt_rm_confirm.setEnabled(False)
+            MW.mess('Removing...')
+            th_remove_chef.start()
+        else:
+            MW.mess('Cancelled')
 
     curr_wid.bt_query_get_chef.clicked.connect(query_chef_func)
     curr_wid.bt_add_chef.clicked.connect(add_chef_func)

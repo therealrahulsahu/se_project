@@ -164,7 +164,7 @@ class MyWindow(QMainWindow):
         box.resize(200, 100)
         if self.logged_user:
             box.setWindowTitle('!!! Action Denied !!!')
-            box.setInformativeText('Please Complete Order.')
+            box.setInformativeText('Please\nComplete Order.\nOR\nLogout.')
             box.setIcon(QMessageBox.Warning)
             box.setStandardButtons(QMessageBox.Ok)
             response = box.exec_()
@@ -201,4 +201,3 @@ if __name__ == '__main__':
 
 # todo : auto refresh to be done in tab widgets
 # todo : Frame less window
-# todo : Food Images to be added

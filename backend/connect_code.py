@@ -44,3 +44,4 @@ def run_main(curr_wid, MW):
 
     curr_wid.bt_connect.clicked.connect(conn)
     connection_t.signal.connect(conn_finish)
+    conn()

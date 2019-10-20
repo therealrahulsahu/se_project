@@ -9,7 +9,7 @@ def run_main_change_food_ava(curr_wid, MW):
             self.output = []
 
         def run(self):
-            in_name = curr_wid.le_food_name.text().strip()
+            in_name = '(?i)' + curr_wid.le_food_name.text().strip()
             from errors import FoodNotFoundError
             from pymongo.errors import AutoReconnect
             try:

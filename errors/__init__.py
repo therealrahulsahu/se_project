@@ -214,3 +214,19 @@ class InvalidTimeEntryError(Exception):
 
     def __str__(self):
         return self.answer
+
+
+class ImageNotAvailableError(Exception):
+    def __init__(self):
+        self.answer = 'Image Not Available'
+
+    def __str__(self):
+        return self.answer
+
+
+class ImageAlreadyAvailableError(Exception):
+    def __init__(self):
+        self.answer = 'Image Already Available'
+
+    def __str__(self):
+        return self.answer

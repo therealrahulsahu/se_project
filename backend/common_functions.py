@@ -1,3 +1,6 @@
+from PyQt5.QtWidgets import QMessageBox
+
+
 def convert_to_bill(doc, data):
     data = dict(data)
     # {'name': 1, 'order_no': 1, 'phone': 1, 'mail': 1, 'table_no': 1,
@@ -61,3 +64,14 @@ def clear_layout(layout):
                 child.widget().deleteLater()
             elif child.layout() is not None:
                 clear_layout(child.layout())
+
+
+class DialogConfirmation(QMessageBox):
+    def __init__(self, message):
+        super().__init__()
+        self.setWindowTitle('Confirm')
+        self.setInformativeText(message)
+        self.setIcon(QMessageBox.Question)
+        from images import ic_milkshake
+        self.setWindowIcon(ic_milkshake)
+        self.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
