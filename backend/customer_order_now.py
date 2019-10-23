@@ -68,7 +68,7 @@ def run_main_order_now(curr_wid, MW):
 
             bt_add.clicked.connect(self.to_selected)
             bt_show_image.clicked.connect(self.open_image)
-            th_fetch_image.signal.connect(self.finish_open_image)
+            th_fetch_image.signal.connect(finish_open_image)
 
         def open_image(self):
             btn = self.sender()
@@ -79,58 +79,10 @@ def run_main_order_now(curr_wid, MW):
                 file_path = join(expanduser('~'), 'Documents', 'Cyber_Temp', str(self.DB_id) + '.jpg')
                 with open(file_path, 'rb') as save_file:
                     th_fetch_image.output = save_file.read()  # Adding Image
-                self.finish_open_image()
+                finish_open_image()
             except FileNotFoundError:
                 btn.setEnabled(False)
                 th_fetch_image.start()
-
-        def finish_open_image(self):
-            # todo : Image Quality to be Improved
-            MW.mess('Image Retrieved')
-            from os.path import expanduser, join
-            from os import mkdir
-            try:
-                mkdir(join(expanduser('~'), 'Documents', 'Cyber_Temp'))
-            except FileExistsError:
-                pass
-
-            file_path = join(expanduser('~'), 'Documents', 'Cyber_Temp', str(self.DB_id) + '.jpg')
-
-            with open(file_path, 'wb') as save_file:
-                save_file.write(th_fetch_image.output)  # Adding Image
-
-            from PyQt5.QtGui import QPixmap
-            pix = QPixmap(file_path)
-            # pix.loadFromData(th_fetch_image.output)
-
-            from PyQt5.QtWidgets import QDialog
-            dialog_img = QDialog()
-
-            from PyQt5.QtWidgets import QLabel
-            dialog_img.setWindowTitle(self.food_name)
-            from images import ic_milkshake
-            dialog_img.setWindowIcon(ic_milkshake)
-            lb_img = QLabel(dialog_img)
-
-            width_img = pix.width()
-            height_img = pix.height()
-            if width_img > 2000:
-                width_img /= 5
-                height_img /= 5
-            elif 1500 < width_img <= 2000:
-                width_img /= 4
-                height_img /= 4
-            elif 1000 < width_img <= 1500:
-                width_img /= 3
-                height_img /= 3
-            elif 500 < width_img <= 1000:
-                width_img /= 2
-                height_img /= 2
-
-            lb_img.setPixmap(pix.scaled(width_img, height_img))
-            dialog_img.resize(width_img, height_img)
-            dialog_img.show()
-            dialog_img.exec_()
 
         def to_selected(self):
             execute = True
@@ -341,3 +293,50 @@ def run_main_order_now(curr_wid, MW):
 
     curr_wid.bt_done.clicked.connect(done_func)
     th_done_thread.signal.connect(finish_done_func)
+
+    from PyQt5.QtWidgets import QDialog
+    dialog_img = QDialog()
+
+    def finish_open_image():
+        # todo : Image Quality to be Improved
+        MW.mess('Image Retrieved')
+        from os.path import expanduser, join
+        from os import mkdir
+        try:
+            mkdir(join(expanduser('~'), 'Documents', 'Cyber_Temp'))
+        except FileExistsError:
+            pass
+
+        file_path = join(expanduser('~'), 'Documents', 'Cyber_Temp', str(th_fetch_image.ob_id) + '.jpg')
+
+        with open(file_path, 'wb') as save_file:
+            save_file.write(th_fetch_image.output)  # Adding Image
+
+        from PyQt5.QtGui import QPixmap
+        pix = QPixmap(file_path)
+        # pix.loadFromData(th_fetch_image.output)
+
+        from PyQt5.QtWidgets import QLabel
+        dialog_img.setWindowTitle(th_fetch_image.food_name)
+        from images import ic_milkshake
+        dialog_img.setWindowIcon(ic_milkshake)
+        lb_img = QLabel(dialog_img)
+
+        width_img = pix.width()
+        height_img = pix.height()
+        if width_img > 2000:
+            width_img /= 5
+            height_img /= 5
+        elif 1500 < width_img <= 2000:
+            width_img /= 4
+            height_img /= 4
+        elif 1000 < width_img <= 1500:
+            width_img /= 3
+            height_img /= 3
+        elif 500 < width_img <= 1000:
+            width_img /= 2
+            height_img /= 2
+
+        lb_img.setPixmap(pix.scaled(width_img, height_img))
+        dialog_img.resize(width_img, height_img)
+        dialog_img.show()
