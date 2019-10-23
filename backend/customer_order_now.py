@@ -108,6 +108,8 @@ def run_main_order_now(curr_wid, MW):
 
             from PyQt5.QtWidgets import QLabel
             dialog_img.setWindowTitle(self.food_name)
+            from images import ic_milkshake
+            dialog_img.setWindowIcon(ic_milkshake)
             lb_img = QLabel(dialog_img)
 
             width_img = pix.width()
