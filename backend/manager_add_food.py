@@ -47,42 +47,22 @@ def run_main_add_food(curr_wid, MW):
         def __init__(self):
             super().__init__()
 
+        def set_arg(self, data):
+            self.data = data
+
         def run(self):
-            in_name = curr_wid.le_f_name.text().strip()
-            in_region = curr_wid.le_f_region.text().strip()
-            in_type = curr_wid.le_f_type.text().strip()
-            in_veg = curr_wid.le_f_veg.text().strip()
-            in_price = curr_wid.le_price.text().strip()
-            from .reg_ex_validation import validFoodName, validRegion, validType, validBool, validPrice
-            from errors import InvalidNameError, InvalidRegionError, InvalidTypeError, InvalidBoolError, \
-                InvalidPriceError, FoodAlreadyAvailableError
+
+            from errors import FoodAlreadyAvailableError
             from pymongo.errors import AutoReconnect
             try:
-                if not validFoodName(in_name):
-                    raise InvalidNameError
-                if not validRegion(in_region):
-                    raise InvalidRegionError
-                if not validType(in_type):
-                    raise InvalidTypeError
-                if not validBool(in_veg):
-                    raise InvalidBoolError
-                if not validPrice(in_price):
-                    raise InvalidPriceError
-
-                if in_veg == 'True':
-                    in_veg = True
-                else:
-                    in_veg = False
-
                 food_id = get_food_id() + 1
-                check_food_availability(in_name)
-                update_food(in_name, in_region, in_type, in_veg, int(in_price), food_id)
+                check_food_availability(self.data[0])
+                update_food(*self.data, food_id)
                 update_food_counter(int(food_id))
 
                 MW.mess('Food Entry Done')
 
-            except (InvalidNameError, InvalidRegionError, InvalidTypeError, InvalidBoolError, InvalidPriceError,
-                    FoodAlreadyAvailableError) as ob:
+            except FoodAlreadyAvailableError as ob:
                 MW.mess(str(ob))
             except AutoReconnect:
                 MW.mess('-->> Network Error <<--')
@@ -229,8 +209,48 @@ def run_main_add_food(curr_wid, MW):
 
     def add_food_func():
         MW.mess('Adding Food')
-        curr_wid.bt_add_food.setEnabled(False)
-        th_add_food.start()
+
+        in_name = curr_wid.le_f_name.text().strip()
+        in_region = curr_wid.le_f_region.text().strip()
+        in_type = curr_wid.le_f_type.text().strip()
+        in_veg = curr_wid.le_f_veg.text().strip()
+        in_price = curr_wid.le_price.text().strip()
+        from .reg_ex_validation import validFoodName, validRegion, validType, validBool, validPrice
+        from errors import InvalidNameError, InvalidRegionError, InvalidTypeError, InvalidBoolError, \
+            InvalidPriceError
+
+        try:
+            if not validFoodName(in_name):
+                raise InvalidNameError
+            if not validRegion(in_region):
+                raise InvalidRegionError
+            if not validType(in_type):
+                raise InvalidTypeError
+            if not validBool(in_veg):
+                raise InvalidBoolError
+            if not validPrice(in_price):
+                raise InvalidPriceError
+
+            if in_veg == 'True':
+                in_veg = True
+            else:
+                in_veg = False
+
+            message_script = ("{:<10}{:<20}\n"*5).format('Name : ', in_name,
+                                                         'Region : ', in_region,
+                                                         'Type : ', in_type,
+                                                         'Veg : ', str(in_veg),
+                                                         'Price : ', in_price)
+            from .common_functions import DialogConfirmation
+            message_box = DialogConfirmation(message_script)
+            if message_box.exec_() == DialogConfirmation.Yes:
+                th_add_food.set_arg([in_name, in_region, in_type, in_veg, int(in_price)])
+                curr_wid.bt_add_food.setEnabled(False)
+                th_add_food.start()
+            else:
+                MW.mess('Cancelled')
+        except (InvalidNameError, InvalidRegionError, InvalidTypeError, InvalidBoolError, InvalidPriceError) as ob:
+            MW.mess(str(ob))
 
     def get_food_list_func():
         MW.mess('Fetching Food List...')

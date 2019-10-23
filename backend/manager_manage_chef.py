@@ -56,33 +56,19 @@ def run_main_manage_chef(curr_wid, MW):
         def __init__(self):
             super().__init__()
 
-        def run(self):
-            in_name = curr_wid.le_name.text().strip()
-            in_phone = curr_wid.le_phone.text().strip()
-            in_userid = curr_wid.le_userid.text().strip()
-            in_password = curr_wid.le_password.text().strip()
-            in_re_password = curr_wid.le_re_password.text().strip()
-            from pymongo.errors import AutoReconnect
-            from errors import InvalidNameError, InvalidPhoneError, InvalidUserIdError, \
-                InvalidPasswordError, PasswordNotMatchError, ChefAlreadyExistsError
-            from .reg_ex_validation import validName, validPhone, validUserId, validPassword
-            try:
-                if not validName(in_name):
-                    raise InvalidNameError
-                if not validPhone(in_phone):
-                    raise InvalidPhoneError
-                if not validUserId(in_userid):
-                    raise InvalidUserIdError
-                if not validPassword(in_password):
-                    raise InvalidPasswordError
-                if in_password != in_re_password:
-                    raise PasswordNotMatchError
+        def set_arg(self, data):
+            self.data = data
 
-                search_for_chef(in_userid)
-                add_chef_in_database(in_name, in_phone, in_userid, in_password)
-                MW.mess(in_userid + ' Added')
-            except (InvalidNameError, InvalidPhoneError, InvalidUserIdError,
-                    InvalidPasswordError, PasswordNotMatchError, ChefAlreadyExistsError) as ob:
+        def run(self):
+
+            from errors import ChefAlreadyExistsError
+            from pymongo.errors import AutoReconnect
+            try:
+                search_for_chef(self.data[0])
+                add_chef_in_database(*self.data)
+                MW.mess(self.data[2] + ' Added')
+
+            except ChefAlreadyExistsError as ob:
                 MW.mess(str(ob))
             except AutoReconnect:
                 MW.mess('-->> Network Error <<--')
@@ -158,8 +144,42 @@ def run_main_manage_chef(curr_wid, MW):
 
     def add_chef_func():
         MW.mess('Adding...')
-        curr_wid.bt_add_chef.setEnabled(False)
-        th_add_chef.start()
+
+        in_name = curr_wid.le_name.text().strip()
+        in_phone = curr_wid.le_phone.text().strip()
+        in_userid = curr_wid.le_userid.text().strip()
+        in_password = curr_wid.le_password.text().strip()
+        in_re_password = curr_wid.le_re_password.text().strip()
+        from errors import InvalidNameError, InvalidPhoneError, InvalidUserIdError, \
+            InvalidPasswordError, PasswordNotMatchError
+        from .reg_ex_validation import validName, validPhone, validUserId, validPassword
+        try:
+            if not validName(in_name):
+                raise InvalidNameError
+            if not validPhone(in_phone):
+                raise InvalidPhoneError
+            if not validUserId(in_userid):
+                raise InvalidUserIdError
+            if not validPassword(in_password):
+                raise InvalidPasswordError
+            if in_password != in_re_password:
+                raise PasswordNotMatchError
+
+            message_script = ('{:<10}{:<20}\n'*4).format('Name : ', in_name,
+                                                         'Phone : ', in_phone,
+                                                         'User Id : ', in_userid,
+                                                         'Password : ', in_password)
+            from .common_functions import DialogConfirmation
+            message_box = DialogConfirmation(message_script)
+            if message_box.exec_() == message_box.Yes:
+                th_add_chef.set_arg([in_name, in_phone, in_userid, in_password])
+                curr_wid.bt_add_chef.setEnabled(False)
+                th_add_chef.start()
+            else:
+                MW.mess('Cancelled')
+        except (InvalidNameError, InvalidPhoneError, InvalidUserIdError,
+                InvalidPasswordError, PasswordNotMatchError) as ob:
+            MW.mess(str(ob))
 
     def remove_chef_query():
         MW.mess('Fetching...')

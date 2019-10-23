@@ -18,9 +18,11 @@ def run_main(curr_wid, MW):
                                   serverSelectionTimeoutMS=5000, connectTimeoutMS=5000, socketTimeoutMS=5000)
                 MW.myc = myc
                 MW.DB = eval('myc.{}'.format(MW.current_db))
-                from platform import uname
+                from platform import uname, node
                 from datetime import datetime
-                login_info_id = MW.DB.se_login_info.insert_one({'info': str(uname()), 'login_time': datetime.now()})
+                login_info_id = MW.DB.se_login_info.insert_one({'info': str(uname()),
+                                                                'name': str(node()),
+                                                                'login_time': datetime.now()})
                 self.signal.emit(True)
             except (dns.exception.Timeout, ConfigurationError):
                 MW.mess('DNS Not Found')
