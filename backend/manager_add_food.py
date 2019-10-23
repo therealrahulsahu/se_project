@@ -246,7 +246,7 @@ def run_main_add_food(curr_wid, MW):
 
     def remove_food_func():
         from .common_functions import DialogConfirmation
-        message_box = DialogConfirmation('Do You Want To Replace')
+        message_box = DialogConfirmation('Do You Want To Remove')
         response = message_box.exec_()
         if response == message_box.Yes:
             curr_wid.bt_rm_food.setEnabled(False)
@@ -296,7 +296,7 @@ def run_main_add_food(curr_wid, MW):
 
     def remove_image_func():
         from .common_functions import DialogConfirmation
-        message_box = DialogConfirmation('Do You Want To Remove')
+        message_box = DialogConfirmation('Do You Want To Remove Image')
         response = message_box.exec_()
         if response == message_box.Yes:
             curr_wid.bt_rm_food.setEnabled(False)

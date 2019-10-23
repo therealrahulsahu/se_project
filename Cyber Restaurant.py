@@ -14,8 +14,9 @@ class MyWindow(QMainWindow):
         self.bar_menu = self.menuBar()
         self.menu_bar()
 
-        self.bar_status = self.statusBar()
-        self.status_bar()
+        self.mess = self.statusBar().showMessage
+
+        self.showMaximized()
 
         self.start_here()
 
@@ -35,25 +36,54 @@ class MyWindow(QMainWindow):
 
     def menu_bar(self):
 
+        self.file_actions()
+        self.show_actions()
+
+    def file_actions(self):
+        self.file_menu = self.bar_menu.addMenu('&File')
+
         from PyQt5.QtWidgets import QAction
-        quit_action = QAction('&Quit Session', self)
-        quit_action.setShortcut('Ctrl+Q')
-        quit_action.setStatusTip('Quit Session')
-        quit_action.triggered.connect(self.select_func)
+        self.quit_action = QAction('&Quit Session', self)
+        self.quit_action.setShortcut('Ctrl+Q')
+        self.quit_action.setStatusTip('Quit Session')
+        self.quit_action.triggered.connect(self.select_func)
 
-        file_menu = self.bar_menu.addMenu('&File')
-        file_menu.addAction(quit_action)
+        self.file_menu.addAction(self.quit_action)
 
-    def status_bar(self):
-        self.mess = self.bar_status.showMessage
-        self.mess('Ready to Go....')
+    def show_actions(self):
+        show_menu = self.bar_menu.addMenu('&Show')
+
+        from PyQt5.QtWidgets import QAction
+        maximise_action = QAction('&Maximise Window', self)
+        maximise_action.setShortcut('Ctrl+M')
+        maximise_action.setStatusTip('Maximise Window')
+        maximise_action.triggered.connect(self.showMaximized)
+        show_menu.addAction(maximise_action)
+
+        fullscreen_action = QAction('&Full Screen', self)
+        fullscreen_action.setShortcut('Ctrl+F')
+        fullscreen_action.setStatusTip('Full Screen')
+        fullscreen_action.triggered.connect(self.showFullScreen)
+        show_menu.addAction(fullscreen_action)
+
+        normal_screen_action = QAction('&Normal Window', self)
+        normal_screen_action.setShortcut('Ctrl+N')
+        normal_screen_action.setStatusTip('Normal Screen')
+        normal_screen_action.triggered.connect(self.showNormal)
+        show_menu.addAction(normal_screen_action)
+
+        minimise_screen_action = QAction('&Minimise Window', self)
+        minimise_screen_action.setShortcut('Ctrl+B')
+        minimise_screen_action.setStatusTip('Minimise Window')
+        minimise_screen_action.triggered.connect(self.showMinimized)
+        show_menu.addAction(minimise_screen_action)
 
     def select_func(self):
-        self.bar_menu.setVisible(False)
+        self.quit_action.setEnabled(False)
         self.logged_user = ''
 
         from PyQt5.QtWidgets import QWidget
-        select_wid = QWidget()
+        select_wid = QWidget(self)
         from frontend import SelectWid
         select_ui = SelectWid()
         select_ui.setupUi(select_wid)
@@ -63,10 +93,10 @@ class MyWindow(QMainWindow):
         self.setCentralWidget(select_wid)
 
     def customer_login_func(self):
-        self.bar_menu.setVisible(False)
+        self.quit_action.setEnabled(False)
 
         from PyQt5.QtWidgets import QWidget
-        customer_login_wid = QWidget()
+        customer_login_wid = QWidget(self)
         from frontend import CustomerLoginWid
         customer_login_ui = CustomerLoginWid()
         customer_login_ui.setupUi(customer_login_wid)
@@ -76,10 +106,10 @@ class MyWindow(QMainWindow):
         self.setCentralWidget(customer_login_wid)
 
     def manager_login_func(self):
-        self.bar_menu.setVisible(False)
+        self.quit_action.setEnabled(False)
 
         from PyQt5.QtWidgets import QWidget
-        manager_login_wid = QWidget()
+        manager_login_wid = QWidget(self)
         from frontend import ManagerLoginWid
         manager_login_ui = ManagerLoginWid()
         manager_login_ui.setupUi(manager_login_wid)
@@ -89,10 +119,10 @@ class MyWindow(QMainWindow):
         self.setCentralWidget(manager_login_wid)
 
     def chef_login_func(self):
-        self.bar_menu.setVisible(False)
+        self.quit_action.setEnabled(False)
 
         from PyQt5.QtWidgets import QWidget
-        chef_login_wid = QWidget()
+        chef_login_wid = QWidget(self)
         from frontend import ChefLoginWid
         chef_login_ui = ChefLoginWid()
         chef_login_ui.setupUi(chef_login_wid)
@@ -102,10 +132,10 @@ class MyWindow(QMainWindow):
         self.setCentralWidget(chef_login_wid)
 
     def connect_func(self):
-        self.bar_menu.setVisible(False)
+        self.quit_action.setEnabled(False)
 
         from PyQt5.QtWidgets import QWidget
-        conn_wid = QWidget()
+        conn_wid = QWidget(self)
         from frontend import ConnectWid
         conn_ui = ConnectWid()
         conn_ui.setupUi(conn_wid)
@@ -115,10 +145,10 @@ class MyWindow(QMainWindow):
         self.setCentralWidget(conn_wid)
 
     def manager_func(self):
-        self.bar_menu.setVisible(True)
+        self.quit_action.setEnabled(True)
 
         from PyQt5.QtWidgets import QWidget
-        manager_wid = QWidget()
+        manager_wid = QWidget(self)
         from frontend import ManagerWid
         manager_ui = ManagerWid()
         manager_ui.setupUi(manager_wid)
@@ -128,10 +158,10 @@ class MyWindow(QMainWindow):
         self.setCentralWidget(manager_wid)
 
     def chef_func(self):
-        self.bar_menu.setVisible(True)
+        self.quit_action.setEnabled(True)
 
         from PyQt5.QtWidgets import QWidget
-        chef_wid = QWidget()
+        chef_wid = QWidget(self)
         from frontend import ChefWid
         chef_ui = ChefWid()
         chef_ui.setupUi(chef_wid)
@@ -141,10 +171,10 @@ class MyWindow(QMainWindow):
         self.setCentralWidget(chef_wid)
 
     def customer_func(self):
-        self.bar_menu.setVisible(True)
+        self.quit_action.setEnabled(True)
 
         from PyQt5.QtWidgets import QWidget
-        customer_wid = QWidget()
+        customer_wid = QWidget(self)
         from frontend import CustomerWid
         customer_ui = CustomerWid()
         customer_ui.setupUi(customer_wid)
@@ -200,4 +230,3 @@ if __name__ == '__main__':
         sys.exit(end)
 
 # todo : auto refresh to be done in tab widgets
-# todo : Frame less window
