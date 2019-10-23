@@ -172,7 +172,7 @@ class Ui_Form(object):
         self.scrollArea_2.setWidgetResizable(True)
         self.scrollArea_2.setObjectName("scrollArea_2")
         self.scroll_1 = QtWidgets.QWidget()
-        self.scroll_1.setGeometry(QtCore.QRect(0, 0, 608, 230))
+        self.scroll_1.setGeometry(QtCore.QRect(0, 0, 98, 28))
         self.scroll_1.setObjectName("scroll_1")
         self.scroll_history = QtWidgets.QVBoxLayout(self.scroll_1)
         self.scroll_history.setObjectName("scroll_history")
@@ -679,7 +679,7 @@ class Ui_Form(object):
         self.verticalLayout.addWidget(self.tabWidget)
 
         self.retranslateUi(Form)
-        self.tabWidget.setCurrentIndex(3)
+        self.tabWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(Form)
 
     def retranslateUi(self, Form):
