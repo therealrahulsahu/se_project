@@ -140,7 +140,7 @@ def run_main_add_food(curr_wid, MW):
                     open_file.close()
 
                     ret_id = myc.update_one({'_id': self.food_id}, {'$set': {'food_image': im_data}})
-                    MW.mess('Image Upload Success Full')
+                    MW.mess('Image Upload Successful')
                 else:
                     MW.mess('Image Selection Rejected')
             except AutoReconnect:

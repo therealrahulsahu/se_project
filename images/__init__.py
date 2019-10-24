@@ -8,4 +8,4 @@ im_wrong = QPixmap("images\\wrong.ico").scaled(30, 30)
 im_loading = QPixmap('images\\hourglass.ico').scaled(30, 30)
 im_net_error = QPixmap('images\\exclamation5.ico').scaled(30, 30)"""
 ic_milkshake = QIcon('images\\milkshake_chocolate.ico')
-ic_wrong = QIcon("images\\wrong.ico")
+# ic_wrong = QIcon("images\\wrong.ico")

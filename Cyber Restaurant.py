@@ -38,9 +38,10 @@ class MyWindow(QMainWindow):
 
         self.file_actions()
         self.show_actions()
+        self.cache_actions()
 
     def file_actions(self):
-        self.file_menu = self.bar_menu.addMenu('&File')
+        file_menu = self.bar_menu.addMenu('&File')
 
         from PyQt5.QtWidgets import QAction
         self.quit_action = QAction('&Quit Session', self)
@@ -48,7 +49,7 @@ class MyWindow(QMainWindow):
         self.quit_action.setStatusTip('Quit Session')
         self.quit_action.triggered.connect(self.select_func)
 
-        self.file_menu.addAction(self.quit_action)
+        file_menu.addAction(self.quit_action)
 
     def show_actions(self):
         show_menu = self.bar_menu.addMenu('&Show')
@@ -77,6 +78,26 @@ class MyWindow(QMainWindow):
         minimise_screen_action.setStatusTip('Minimise Window')
         minimise_screen_action.triggered.connect(self.showMinimized)
         show_menu.addAction(minimise_screen_action)
+
+    def cache_actions(self):
+        def action():
+            from os.path import expanduser, join
+            from shutil import rmtree
+            try:
+                rmtree(join(expanduser('~'), 'Documents', 'Cyber_Temp'))
+                self.mess('Cache Cleared')
+            except FileExistsError:
+                self.mess('Cache Not Found')
+
+        cache_menu = self.bar_menu.addMenu('&Cache')
+
+        from PyQt5.QtWidgets import QAction
+        self.clear_cache_action = QAction('&Clear Cache', self)
+        self.clear_cache_action.setShortcut('Ctrl+Alt+C')
+        self.clear_cache_action.setStatusTip('Clear Cache')
+        self.clear_cache_action.triggered.connect(action)
+
+        cache_menu.addAction(self.clear_cache_action)
 
     def select_func(self):
         self.quit_action.setEnabled(False)

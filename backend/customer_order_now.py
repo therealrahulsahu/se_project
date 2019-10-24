@@ -295,10 +295,19 @@ def run_main_order_now(curr_wid, MW):
     th_done_thread.signal.connect(finish_done_func)
 
     from PyQt5.QtWidgets import QDialog
-    dialog_img = QDialog()
+    dialog_img = QDialog(MW)
+
+    from PyQt5.QtWidgets import QVBoxLayout
+    vertical_box = QVBoxLayout()
+    dialog_img.setLayout(vertical_box)
+
+    from images import ic_milkshake
+    dialog_img.setWindowIcon(ic_milkshake)
 
     def finish_open_image():
-        # todo : Image Quality to be Improved
+        from .common_functions import clear_layout
+        clear_layout(vertical_box)
+
         MW.mess('Image Retrieved')
         from os.path import expanduser, join
         from os import mkdir
@@ -314,17 +323,18 @@ def run_main_order_now(curr_wid, MW):
 
         from PyQt5.QtGui import QPixmap
         pix = QPixmap(file_path)
-        # pix.loadFromData(th_fetch_image.output)
 
         from PyQt5.QtWidgets import QLabel
         dialog_img.setWindowTitle(th_fetch_image.food_name)
-        from images import ic_milkshake
-        dialog_img.setWindowIcon(ic_milkshake)
-        lb_img = QLabel(dialog_img)
+
+        lb_img = QLabel()
+        vertical_box.addWidget(lb_img)
+
+        lb_img.setPixmap(pix)
 
         width_img = pix.width()
         height_img = pix.height()
-        if width_img > 2000:
+        """if width_img > 2000:
             width_img /= 5
             height_img /= 5
         elif 1500 < width_img <= 2000:
@@ -335,7 +345,7 @@ def run_main_order_now(curr_wid, MW):
             height_img /= 3
         elif 500 < width_img <= 1000:
             width_img /= 2
-            height_img /= 2
+            height_img /= 2"""
 
         lb_img.setPixmap(pix.scaled(width_img, height_img))
         dialog_img.resize(width_img, height_img)
