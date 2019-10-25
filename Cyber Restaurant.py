@@ -86,7 +86,7 @@ class MyWindow(QMainWindow):
             try:
                 rmtree(join(expanduser('~'), 'Documents', 'Cyber_Temp'))
                 self.mess('Cache Cleared')
-            except FileExistsError:
+            except FileNotFoundError:
                 self.mess('Cache Not Found')
 
         cache_menu = self.bar_menu.addMenu('&Cache')
