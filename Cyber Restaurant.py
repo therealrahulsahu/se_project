@@ -249,5 +249,3 @@ if __name__ == '__main__':
         except AttributeError:
             pass
         sys.exit(end)
-
-# todo : auto refresh to be done in tab widgets
