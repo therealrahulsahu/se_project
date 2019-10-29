@@ -10,3 +10,6 @@ def run_main(curr_wid, MW):
 
     from .manager_history import run_main_history
     run_main_history(curr_wid, MW)
+
+    from .manager_restau import run_main_restaurant
+    run_main_restaurant(curr_wid, MW)
