@@ -7,7 +7,8 @@ def run_main_history(curr_wid, MW):
 
     class BillDialog(QDialog):
         def __init__(self):
-            super().__init__()
+            from PyQt5.QtCore import Qt
+            super().__init__(None, Qt.WindowCloseButtonHint)
 
             from images import ic_milkshake
             self.setWindowIcon(ic_milkshake)

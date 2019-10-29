@@ -295,7 +295,8 @@ def run_main_order_now(curr_wid, MW):
     th_done_thread.signal.connect(finish_done_func)
 
     from PyQt5.QtWidgets import QDialog
-    dialog_img = QDialog(MW)
+    from PyQt5.QtCore import Qt
+    dialog_img = QDialog(MW, Qt.WindowCloseButtonHint)
 
     from PyQt5.QtWidgets import QVBoxLayout
     vertical_box = QVBoxLayout()
