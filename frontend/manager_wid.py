@@ -2,13 +2,11 @@
 
 # Form implementation generated from reading ui file 'manager_wid.ui'
 #
-# Created by: PyQt5 UI code generator 5.13.1
+# Created by: PyQt5 UI code generator 5.9.2
 #
 # WARNING! All changes made in this file will be lost!
 
-
 from PyQt5 import QtCore, QtGui, QtWidgets
-
 
 class Ui_Form(object):
     def setupUi(self, Form):
@@ -30,7 +28,7 @@ class Ui_Form(object):
         self.bt_refresh_on_order = QtWidgets.QPushButton(self.tab_2)
         self.bt_refresh_on_order.setObjectName("bt_refresh_on_order")
         self.horizontalLayout.addWidget(self.bt_refresh_on_order)
-        self.horizontalLayout.setStretch(0, 25)
+        self.horizontalLayout.setStretch(0, 10)
         self.horizontalLayout.setStretch(1, 5)
         self.verticalLayout_2.addLayout(self.horizontalLayout)
         self.horizontalLayout_24 = QtWidgets.QHBoxLayout()
@@ -73,7 +71,7 @@ class Ui_Form(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollArea.setObjectName("scrollArea")
         self.scroll12 = QtWidgets.QWidget()
-        self.scroll12.setGeometry(QtCore.QRect(0, 0, 608, 252))
+        self.scroll12.setGeometry(QtCore.QRect(0, 0, 608, 254))
         self.scroll12.setObjectName("scroll12")
         self.scroll_on_order = QtWidgets.QVBoxLayout(self.scroll12)
         self.scroll_on_order.setObjectName("scroll_on_order")
@@ -172,7 +170,7 @@ class Ui_Form(object):
         self.scrollArea_2.setWidgetResizable(True)
         self.scrollArea_2.setObjectName("scrollArea_2")
         self.scroll_1 = QtWidgets.QWidget()
-        self.scroll_1.setGeometry(QtCore.QRect(0, 0, 98, 28))
+        self.scroll_1.setGeometry(QtCore.QRect(0, 0, 608, 231))
         self.scroll_1.setObjectName("scroll_1")
         self.scroll_history = QtWidgets.QVBoxLayout(self.scroll_1)
         self.scroll_history.setObjectName("scroll_history")
@@ -722,7 +720,7 @@ class Ui_Form(object):
         self.textBrowser.setHtml(_translate("Form", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:8pt; font-weight:400; font-style:normal;\">\n"
+"</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:6.5pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; background-color:#2b2b2b;\"><span style=\" font-family:\'Consolas\'; font-size:10.5pt; color:#a9b7c6; background-color:#2b2b2b;\">Region : [North Indian - nid, South Indian - sid, Italian - ita, Thai - thi, Chinese - chi, Rajasthani - raj, Continental - conti, None - none]</span><span style=\" font-family:\'Consolas\'; font-size:10.5pt; color:#a9b7c6;\"><br /></span></p>\n"
 "<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; background-color:#2b2b2b;\"><span style=\" font-family:\'Consolas\'; font-size:10.5pt; color:#a9b7c6;\">Type : [Starter - sta, Dessert - des, Main Course - mcs, Refreshments - ref, Bread - bre]</span></p>\n"
 "<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; background-color:#2b2b2b;\"><span style=\" font-family:\'Consolas\'; font-size:10.5pt; color:#a9b7c6;\">Veg : [If Veg - True, Else - False]</span></p></body></html>"))
@@ -749,3 +747,4 @@ if __name__ == "__main__":
     ui.setupUi(Form)
     Form.show()
     sys.exit(app.exec_())
+

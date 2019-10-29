@@ -28,7 +28,7 @@
       </attribute>
       <layout class="QVBoxLayout" name="verticalLayout_2" stretch="3,3,30">
        <item>
-        <layout class="QHBoxLayout" name="horizontalLayout" stretch="25,5">
+        <layout class="QHBoxLayout" name="horizontalLayout" stretch="10,5">
          <item>
           <spacer name="horizontalSpacer">
            <property name="orientation">
@@ -147,7 +147,7 @@
             <x>0</x>
             <y>0</y>
             <width>608</width>
-            <height>252</height>
+            <height>254</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="scroll_on_order"/>
@@ -391,8 +391,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>98</width>
-            <height>28</height>
+            <width>608</width>
+            <height>231</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="scroll_history"/>
@@ -1135,7 +1135,7 @@
              <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:6.5pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; background-color:#2b2b2b;&quot;&gt;&lt;span style=&quot; font-family:'Consolas'; font-size:10.5pt; color:#a9b7c6; background-color:#2b2b2b;&quot;&gt;Region : [North Indian - nid, South Indian - sid, Italian - ita, Thai - thi, Chinese - chi, Rajasthani - raj, Continental - conti, None - none]&lt;/span&gt;&lt;span style=&quot; font-family:'Consolas'; font-size:10.5pt; color:#a9b7c6;&quot;&gt;&lt;br /&gt;&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; background-color:#2b2b2b;&quot;&gt;&lt;span style=&quot; font-family:'Consolas'; font-size:10.5pt; color:#a9b7c6;&quot;&gt;Type : [Starter - sta, Dessert - des, Main Course - mcs, Refreshments - ref, Bread - bre]&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; background-color:#2b2b2b;&quot;&gt;&lt;span style=&quot; font-family:'Consolas'; font-size:10.5pt; color:#a9b7c6;&quot;&gt;Veg : [If Veg - True, Else - False]&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>

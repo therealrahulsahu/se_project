@@ -13,8 +13,9 @@ def run_main(curr_wid, MW):
         def run(self):
 
             try:
-                myc = MongoClient('mongodb+srv://therealrahulsahu:rahulsahu1_@'
-                                  'democluster-2u6fb.gcp.mongodb.net/test?retryWrites=true',
+                # importing connection details
+                from .connection_details import connection_string
+                myc = MongoClient(connection_string,
                                   serverSelectionTimeoutMS=5000, connectTimeoutMS=5000, socketTimeoutMS=5000)
                 MW.myc = myc
                 MW.DB = eval('myc.{}'.format(MW.current_db))

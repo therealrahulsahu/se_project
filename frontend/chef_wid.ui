@@ -25,7 +25,7 @@
       </attribute>
       <layout class="QVBoxLayout" name="verticalLayout_4" stretch="2,2,0,20">
        <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="20,2,2">
+        <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="10,5">
          <item>
           <spacer name="horizontalSpacer">
            <property name="orientation">
@@ -45,19 +45,6 @@
             <string>Refresh</string>
            </property>
           </widget>
-         </item>
-         <item>
-          <spacer name="horizontalSpacer_2">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>40</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
          </item>
         </layout>
        </item>
@@ -198,7 +185,7 @@
               <x>0</x>
               <y>0</y>
               <width>300</width>
-              <height>228</height>
+              <height>230</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="scroll_req"/>
@@ -216,7 +203,7 @@
               <x>0</x>
               <y>0</y>
               <width>300</width>
-              <height>228</height>
+              <height>230</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="scroll_pre"/>

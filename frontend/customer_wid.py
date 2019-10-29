@@ -2,13 +2,11 @@
 
 # Form implementation generated from reading ui file 'customer_wid.ui'
 #
-# Created by: PyQt5 UI code generator 5.13.1
+# Created by: PyQt5 UI code generator 5.9.2
 #
 # WARNING! All changes made in this file will be lost!
 
-
 from PyQt5 import QtCore, QtGui, QtWidgets
-
 
 class Ui_Form(object):
     def setupUi(self, Form):
@@ -117,7 +115,7 @@ class Ui_Form(object):
         self.scrollarea1.setWidgetResizable(True)
         self.scrollarea1.setObjectName("scrollarea1")
         self.ScrollLay = QtWidgets.QWidget()
-        self.ScrollLay.setGeometry(QtCore.QRect(0, 0, 299, 104))
+        self.ScrollLay.setGeometry(QtCore.QRect(0, 0, 299, 113))
         self.ScrollLay.setObjectName("ScrollLay")
         self.scroll_choose = QtWidgets.QVBoxLayout(self.ScrollLay)
         self.scroll_choose.setObjectName("scroll_choose")
@@ -142,7 +140,7 @@ class Ui_Form(object):
         self.scrollarea2.setWidgetResizable(True)
         self.scrollarea2.setObjectName("scrollarea2")
         self.scroll_lay2 = QtWidgets.QWidget()
-        self.scroll_lay2.setGeometry(QtCore.QRect(0, 0, 299, 247))
+        self.scroll_lay2.setGeometry(QtCore.QRect(0, 0, 299, 249))
         self.scroll_lay2.setObjectName("scroll_lay2")
         self.scroll_select = QtWidgets.QVBoxLayout(self.scroll_lay2)
         self.scroll_select.setObjectName("scroll_select")
@@ -193,6 +191,8 @@ class Ui_Form(object):
         self.bt_refresh_status = QtWidgets.QPushButton(self.tab_2)
         self.bt_refresh_status.setObjectName("bt_refresh_status")
         self.horizontalLayout_7.addWidget(self.bt_refresh_status)
+        self.horizontalLayout_7.setStretch(0, 10)
+        self.horizontalLayout_7.setStretch(1, 5)
         self.verticalLayout_2.addLayout(self.horizontalLayout_7)
         self.horizontalLayout_10 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_10.setObjectName("horizontalLayout_10")
@@ -246,6 +246,8 @@ class Ui_Form(object):
         self.bt_refresh_bill = QtWidgets.QPushButton(self.tab_3)
         self.bt_refresh_bill.setObjectName("bt_refresh_bill")
         self.horizontalLayout_9.addWidget(self.bt_refresh_bill)
+        self.horizontalLayout_9.setStretch(0, 10)
+        self.horizontalLayout_9.setStretch(1, 5)
         self.verticalLayout_4.addLayout(self.horizontalLayout_9)
         self.tb_bill = QtWidgets.QTextBrowser(self.tab_3)
         self.tb_bill.setObjectName("tb_bill")
@@ -303,8 +305,8 @@ class Ui_Form(object):
         self.tb_bill.setHtml(_translate("Form", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:8pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
+"</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:6.5pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt;\"><br /></p></body></html>"))
         self.bt_checkout.setText(_translate("Form", "Checkout"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_3), _translate("Form", "Bill"))
 
@@ -317,3 +319,4 @@ if __name__ == "__main__":
     ui.setupUi(Form)
     Form.show()
     sys.exit(app.exec_())
+
