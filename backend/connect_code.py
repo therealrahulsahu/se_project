@@ -13,7 +13,7 @@ def run_main(curr_wid, MW):
         def run(self):
 
             try:
-                # importing connection details
+                # importing connection details changed
                 from .connection_details import connection_string
                 myc = MongoClient(connection_string,
                                   serverSelectionTimeoutMS=5000, connectTimeoutMS=5000, socketTimeoutMS=5000)
