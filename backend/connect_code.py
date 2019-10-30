@@ -1,8 +1,4 @@
 def run_main(curr_wid, MW):
-    import dns
-    from pymongo.errors import ConfigurationError, ConnectionFailure, \
-        ServerSelectionTimeoutError, OperationFailure
-    from pymongo import MongoClient
     from PyQt5.QtCore import QThread, pyqtSignal
     class ThreadConnection(QThread):
 
@@ -18,7 +14,10 @@ def run_main(curr_wid, MW):
             self.db_password = db_password
 
         def run(self):
-
+            import dns
+            from pymongo.errors import ConfigurationError, ConnectionFailure, \
+                ServerSelectionTimeoutError, OperationFailure
+            from pymongo import MongoClient
             try:
                 myc = MongoClient('mongodb+srv://{}:{}democluster-2u6fb.gcp.'
                                   'mongodb.net/test?retryWrites=true'.format(self.db_user_id, self.db_password),
