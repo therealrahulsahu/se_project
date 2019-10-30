@@ -1,6 +1,7 @@
 def run_main(curr_wid, MW):
     import dns
-    from pymongo.errors import ConfigurationError, ConnectionFailure, ServerSelectionTimeoutError
+    from pymongo.errors import ConfigurationError, ConnectionFailure, \
+        ServerSelectionTimeoutError, OperationFailure
     from pymongo import MongoClient
     from PyQt5.QtCore import QThread, pyqtSignal
     class ThreadConnection(QThread):
@@ -9,13 +10,18 @@ def run_main(curr_wid, MW):
 
         def __init__(self):
             super().__init__()
+            self.db_user_id = ''
+            self.db_password = ''
+
+        def set_arg(self, db_user_id, db_password):
+            self.db_user_id = db_user_id
+            self.db_password = db_password
 
         def run(self):
 
             try:
-                # importing connection details changed
-                from .connection_details import connection_string
-                myc = MongoClient(connection_string,
+                myc = MongoClient('mongodb+srv://{}:{}democluster-2u6fb.gcp.'
+                                  'mongodb.net/test?retryWrites=true'.format(self.db_user_id, self.db_password),
                                   serverSelectionTimeoutMS=5000, connectTimeoutMS=5000, socketTimeoutMS=5000)
                 MW.myc = myc
                 MW.DB = eval('myc.{}'.format(MW.current_db))
@@ -28,23 +34,27 @@ def run_main(curr_wid, MW):
             except (dns.exception.Timeout, ConfigurationError):
                 MW.mess('DNS Not Found')
             except ConnectionFailure:
-                MW.mess('Connection Failed')
+                MW.mess('-->>Network Error<<--')
             except ServerSelectionTimeoutError:
                 MW.mess('Server Down')
+            except OperationFailure:
+                MW.mess('Wrong Database Id/Password')
             finally:
                 curr_wid.bt_connect.setEnabled(True)
 
-    connection_t = ThreadConnection()
+    th_connection = ThreadConnection()
 
-    def conn():
+    def connection_func():
         MW.mess('Connecting...')
+        from .connection_details import mongodb_user_id, mongodb_password
+        th_connection.set_arg(mongodb_user_id, mongodb_password)
         curr_wid.bt_connect.setEnabled(False)
-        connection_t.start()
+        th_connection.start()
 
-    def conn_finish():
+    def finish_connection_func():
         MW.mess('Connected')
         MW.select_func()
 
-    curr_wid.bt_connect.clicked.connect(conn)
-    connection_t.signal.connect(conn_finish)
-    conn()
+    curr_wid.bt_connect.clicked.connect(connection_func)
+    th_connection.signal.connect(finish_connection_func)
+    connection_func()
