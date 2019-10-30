@@ -76,7 +76,7 @@ def run_main_order_now(curr_wid, MW):
             th_fetch_image.set_arg(btn, self.DB_id, self.food_name)
             from os.path import expanduser, join
             try:
-                file_path = join(expanduser('~'), 'Documents', 'Cyber_Temp', str(self.DB_id) + '.jpg')
+                file_path = join(expanduser('~'), 'Documents', 'Cyber_Temp', 'Photos', str(self.DB_id) + '.jpg')
                 with open(file_path, 'rb') as save_file:
                     th_fetch_image.output = save_file.read()  # Adding Image
                 finish_open_image()
@@ -316,8 +316,13 @@ def run_main_order_now(curr_wid, MW):
             mkdir(join(expanduser('~'), 'Documents', 'Cyber_Temp'))
         except FileExistsError:
             pass
+        try:
+            mkdir(join(expanduser('~'), 'Documents', 'Cyber_Temp', 'Photos'))
+        except FileExistsError:
+            pass
 
-        file_path = join(expanduser('~'), 'Documents', 'Cyber_Temp', str(th_fetch_image.ob_id) + '.jpg')
+        file_path = join(expanduser('~'), 'Documents', 'Cyber_Temp', 'Photos',
+                         str(th_fetch_image.ob_id) + '.jpg')
 
         with open(file_path, 'wb') as save_file:
             save_file.write(th_fetch_image.output)  # Adding Image
@@ -335,18 +340,6 @@ def run_main_order_now(curr_wid, MW):
 
         width_img = pix.width()
         height_img = pix.height()
-        """if width_img > 2000:
-            width_img /= 5
-            height_img /= 5
-        elif 1500 < width_img <= 2000:
-            width_img /= 4
-            height_img /= 4
-        elif 1000 < width_img <= 1500:
-            width_img /= 3
-            height_img /= 3
-        elif 500 < width_img <= 1000:
-            width_img /= 2
-            height_img /= 2"""
 
         lb_img.setPixmap(pix.scaled(width_img, height_img))
         dialog_img.resize(width_img, height_img)

@@ -84,7 +84,7 @@ class MyWindow(QMainWindow):
             from os.path import expanduser, join
             from shutil import rmtree
             try:
-                rmtree(join(expanduser('~'), 'Documents', 'Cyber_Temp'))
+                rmtree(join(expanduser('~'), 'Documents', 'Cyber_Temp', 'Photos'))
                 self.mess('Cache Cleared')
             except FileNotFoundError:
                 self.mess('Cache Not Found')
