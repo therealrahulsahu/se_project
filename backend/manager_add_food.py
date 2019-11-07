@@ -298,11 +298,13 @@ def run_main_add_food(curr_wid, MW):
         from os.path import expanduser
         folder = expanduser('~')
         file_dia = QFileDialog.getOpenFileName(MW, 'Select Image', folder, 'Image files (*.jpg)')
-
         file_location = file_dia[0]
 
-        th_upload_image_thread.set_arg(th_add_img.food_id, file_location)
-        th_upload_image_thread.start()
+        if file_location:
+            th_upload_image_thread.set_arg(th_add_img.food_id, file_location)
+            th_upload_image_thread.start()
+        else:
+            MW.mess('Selection Cancelled')
 
     def message_prompt_func():
         from .common_functions import DialogConfirmation

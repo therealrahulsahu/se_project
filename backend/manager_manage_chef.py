@@ -77,6 +77,7 @@ def run_main_manage_chef(curr_wid, MW):
 
     class ThreadRemoveChefQuery(QThread):
 
+        signal = pyqtSignal('PyQt_PyObject')
         def __init__(self):
             super().__init__()
             self.output_list = []
@@ -84,6 +85,7 @@ def run_main_manage_chef(curr_wid, MW):
         def run(self):
             in_name = r'(?i){}'.format(curr_wid.le_rm_chef.text().strip())
             self.output_list = []
+            self.output_itmes = []
             from errors import ChefNotFoundError
             from pymongo.errors import AutoReconnect
             try:
@@ -91,11 +93,10 @@ def run_main_manage_chef(curr_wid, MW):
                 data_list = list(myc.find({'name': {'$regex': in_name}},
                                           {'password': 0, 'phone': 0}).limit(10))
                 if data_list:
-                    curr_wid.cb_rm_chef.addItems(
-                        ['{0:<20} {1:<5}'.format(x['name'], x['userid']) for x in data_list])
+                    self.output_itmes = data_list
                     self.output_list = [x['_id'] for x in data_list]
-                    curr_wid.bt_rm_confirm.setEnabled(True)
                     MW.mess('List Fetched')
+                    self.signal.emit(True)
                 else:
                     curr_wid.bt_rm_confirm.setEnabled(False)
                     raise ChefNotFoundError
@@ -198,9 +199,15 @@ def run_main_manage_chef(curr_wid, MW):
         else:
             MW.mess('Cancelled')
 
+    def finish_remove_chef_query():
+        curr_wid.cb_rm_chef.addItems(
+            ['{0:<20} {1:<5}'.format(x['name'], x['userid']) for x in th_remove_chef_query.output_itmes])
+        curr_wid.bt_rm_confirm.setEnabled(True)
+
     curr_wid.bt_query_get_chef.clicked.connect(query_chef_func)
     curr_wid.bt_add_chef.clicked.connect(add_chef_func)
     curr_wid.bt_get_rm_chef.clicked.connect(remove_chef_query)
     curr_wid.bt_rm_confirm.clicked.connect(remove_chef_func)
 
     th_query_chef.signal.connect(finish_query_chef_func)
+    th_remove_chef_query.signal.connect(finish_remove_chef_query)
