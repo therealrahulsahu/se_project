@@ -192,7 +192,7 @@ class MyWindow(QMainWindow):
         self.setCentralWidget(chef_wid)
 
     def customer_func(self):
-        self.quit_action.setEnabled(False)
+        self.quit_action.setEnabled(True)
 
         from PyQt5.QtWidgets import QWidget
         customer_wid = QWidget(self)
