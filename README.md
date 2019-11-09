@@ -2,10 +2,10 @@ se_project
 ----------------
 Project \
 Rahul Sahu    1705157   (Project Manager) https://github.com/therealrahulsahu/ \
-Ankit Aditya  1705144   \
-Justin Joy    1705141   \
-Arnav Aditya  1705124   \
-Anurag Kumar  1705118   \
+Ankit Aditya  1705144   https://github.com/Ankit-adi \
+Justin Joy    1705141   https://github.com/J-svg \
+Arnav Aditya  1705124   https://github.com/arnav1604 \
+Anurag Kumar  1705118   https://github.com/lanurag/ \
 {See contributions for more information}
 
 Executable downlod link
