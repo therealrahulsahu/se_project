@@ -14,9 +14,9 @@ https://1drv.ms/u/s!Am373MZ-hj_4omq177WxAZJGCe7Q?e=WELeL7
 
 Instructions
 ------
-Add your user id and password of user of Mongo Atlas (in backend\connection_details.py)
-Enter your database name in self.current_db variable in "Cyber Restaurant.py"
-Create table 
+Add your user id and password of user of Mongo Atlas (in backend\connection_details.py)\
+Enter your database name in self.current_db variable in "Cyber Restaurant.py"\
+Create table \
   manager {'name', 'userid', 'password'}\
   counter {'type', 'num'}  data[{'orders': 0}, {'food': 0}, {'tables': 10}]\
   
