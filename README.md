@@ -12,6 +12,10 @@ Executable downlod link
 ---------
 https://1drv.ms/u/s!Am373MZ-hj_4omq177WxAZJGCe7Q?e=WELeL7
 
+Instructions
+------
+Add your user id and password of user of Mongo Atlas (in backend\connection_details.py)
+
 Requirements
 -------
 Windows\
@@ -23,14 +27,15 @@ Configuration\
 2.4 GHz Processor more.\
 60 MB secondary storage required for app.\
 Stable internet connection.\
-Resolution : 640*360\
+Resolution : Minimum 640*360 (Works better in full screen)\
 
 Package Used
 --------------------------
-Python 3\
+Python 3 (3.7.4)\
 PyQt5 (pip install PyQt5)\
 pymongo (pip install pymongo)\
 qdarakstyle (pip install qdarkstyle)\
+dns (pip install dnspython)\
 
 Intro
 -------------
