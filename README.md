@@ -1,11 +1,12 @@
 se_project
 ----------------
 Project \
-Rahul Sahu    1705157   (Project Manager)\
+Rahul Sahu    1705157   (Project Manager) github.com/therealrahulsahu\
 Ankit Aditya  1705144   \
 Justin Joy    1705141   \
 Arnav Aditya  1705124   \
-Anurag Kumar  1705118   
+Anurag Kumar  1705118   \
+{See contributions for more information}
 
 Executable downlod link
 ---------
