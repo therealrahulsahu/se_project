@@ -1,7 +1,7 @@
 se_project
 ----------------
 Project \
-Rahul Sahu    1705157   (Project Manager) github.com/therealrahulsahu\
+Rahul Sahu    1705157   (Project Manager) https://github.com/therealrahulsahu/ \
 Ankit Aditya  1705144   \
 Justin Joy    1705141   \
 Arnav Aditya  1705124   \
