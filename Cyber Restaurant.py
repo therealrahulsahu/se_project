@@ -109,7 +109,7 @@ class MyWindow(QMainWindow):
         select_ui = SelectWid()
         select_ui.setupUi(select_wid)
         from backend import SelectCode
-        SelectCode(select_ui, self)
+        code = SelectCode(select_ui, self)
 
         self.setCentralWidget(select_wid)
 
@@ -122,7 +122,7 @@ class MyWindow(QMainWindow):
         customer_login_ui = CustomerLoginWid()
         customer_login_ui.setupUi(customer_login_wid)
         from backend import CustomerLoginCode
-        CustomerLoginCode(customer_login_ui, self)
+        code = CustomerLoginCode(customer_login_ui, self)
 
         self.setCentralWidget(customer_login_wid)
 
@@ -135,7 +135,7 @@ class MyWindow(QMainWindow):
         manager_login_ui = ManagerLoginWid()
         manager_login_ui.setupUi(manager_login_wid)
         from backend import ManagerLoginCode
-        ManagerLoginCode(manager_login_ui, self)
+        code = ManagerLoginCode(manager_login_ui, self)
 
         self.setCentralWidget(manager_login_wid)
 
@@ -148,7 +148,7 @@ class MyWindow(QMainWindow):
         chef_login_ui = ChefLoginWid()
         chef_login_ui.setupUi(chef_login_wid)
         from backend import ChefLoginCode
-        ChefLoginCode(chef_login_ui, self)
+        code = ChefLoginCode(chef_login_ui, self)
 
         self.setCentralWidget(chef_login_wid)
 
@@ -161,7 +161,7 @@ class MyWindow(QMainWindow):
         conn_ui = ConnectWid()
         conn_ui.setupUi(conn_wid)
         from backend import ConnectCode
-        ConnectCode(conn_ui, self)
+        code = ConnectCode(conn_ui, self)
 
         self.setCentralWidget(conn_wid)
 
@@ -174,7 +174,7 @@ class MyWindow(QMainWindow):
         manager_ui = ManagerWid()
         manager_ui.setupUi(manager_wid)
         from backend import ManagerCode
-        ManagerCode(manager_ui, self)
+        code = ManagerCode(manager_ui, self)
 
         self.setCentralWidget(manager_wid)
 
@@ -187,7 +187,7 @@ class MyWindow(QMainWindow):
         chef_ui = ChefWid()
         chef_ui.setupUi(chef_wid)
         from backend import ChefCode
-        ChefCode(chef_ui, self)
+        code = ChefCode(chef_ui, self)
 
         self.setCentralWidget(chef_wid)
 
@@ -200,7 +200,7 @@ class MyWindow(QMainWindow):
         customer_ui = CustomerWid()
         customer_ui.setupUi(customer_wid)
         from backend import CustomerCode
-        CustomerCode(customer_ui, self)
+        code = CustomerCode(customer_ui, self)
 
         self.setCentralWidget(customer_wid)
 
