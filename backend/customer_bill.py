@@ -1,109 +1,44 @@
 class RunMainBill:
     def __init__(self, curr_wid, MW):
-        customer_id = MW.logged_user
-        from PyQt5.QtCore import QThread, pyqtSignal
+        self.customer_id = MW.logged_user
+        self.curr_wid = curr_wid
+        self.MW = MW
 
-        class ThreadRefreshBill(QThread):
-            signal = pyqtSignal('PyQt_PyObject')
+        from backend.threads import ThreadRefreshCustomerBill, ThreadCheckout
+        self.th_refresh_bill = ThreadRefreshCustomerBill(self)
+        self.th_checkout = ThreadCheckout(self)
 
-            def __init__(self):
-                super().__init__()
-                self.bill_doc = []
-                self.fetch_dict = dict()
-                self.order_total = 0
-
-            def run(self):
-                self.bill_doc = []
-                self.fetch_dict = dict()
-                from pymongo.errors import AutoReconnect
-                from errors import NoOrdersFoundError
-                try:
-                    myc_o = MW.DB.orders
-                    myc_f = MW.DB.food
-                    order_data = myc_o.find_one({'_id': customer_id},
-                                                {'name': 1, 'order_no': 1, 'phone': 1, 'mail': 1,
-                                                 'table_no': 1, 'foods': 1, 'quantity': 1, 'total': 1,
-                                                 'in_time': 1, 'out_time': 1})
-                    self.order_total = order_data['total']
-                    self.fetch_dict = order_data
-                    order_data = list(zip(order_data['foods'], order_data['quantity']))
-                    for x in order_data:
-                        food_detail = myc_f.find_one({'_id': x[0]}, {'name': 1, 'price': 1})
-                        self.bill_doc.append(
-                            [food_detail['name'], food_detail['price'], x[1], food_detail['price'] * x[1]])
-                    self.signal.emit(True)
-                except AutoReconnect:
-                    MW.mess('-->> Network Error <<--')
-                except NoOrdersFoundError as ob:
-                    MW.mess(str(ob))
-                finally:
-                    curr_wid.bt_refresh_bill.setEnabled(True)
-
-        th_refresh_bill = ThreadRefreshBill()
-
-        def refresh_bill_func():
-            curr_wid.bt_refresh_bill.setEnabled(False)
-            curr_wid.tb_bill.setText('')
-            MW.mess('Refreshing...')
-            th_refresh_bill.start()
-
-        def finish_refresh_bill_func():
-            from .common_functions import convert_to_bill
-            curr_wid.tb_bill.setText(convert_to_bill(th_refresh_bill.bill_doc, th_refresh_bill.fetch_dict))
-            MW.mess('Refreshed')
-            curr_wid.bt_checkout.setEnabled(True)
-
-        curr_wid.bt_refresh_bill.clicked.connect(refresh_bill_func)
-        th_refresh_bill.signal.connect(finish_refresh_bill_func)
+        self.curr_wid.bt_refresh_bill.clicked.connect(self.refresh_bill_func)
+        self.th_refresh_bill.signal.connect(self.finish_refresh_bill_func)
 
         # refresh_bill_func()
 
-        class ThreadCheckout(QThread):
-            signal = pyqtSignal('PyQt_PyObject')
+        self.curr_wid.bt_checkout.clicked.connect(self.checkout_func)
+        self.th_checkout.signal.connect(self.finish_checkout)
 
-            def __init__(self):
-                super().__init__()
-                self.total_bill = 0
+    def refresh_bill_func(self):
+        self.curr_wid.bt_refresh_bill.setEnabled(False)
+        self.curr_wid.tb_bill.setText('')
+        self.MW.mess('Refreshing...')
+        self.th_refresh_bill.start()
 
-            def run(self):
-                from pymongo.errors import AutoReconnect
-                from errors import SomeOrdersPreparingError, NoOrdersFoundError
-                myc_o = MW.DB.orders
-                try:
-                    order = myc_o.find_one({'_id': customer_id}, {'quantity': 1, 'status_not_taken': 1,
-                                                                  'done': 1, 'total': 1})
-                    self.total_bill = order['total']
-                    if any(order['status_not_taken']):
-                        raise SomeOrdersPreparingError
-                    elif not len(order['quantity']):
-                        raise NoOrdersFoundError
-                    else:
-                        order['done'] = True
-                        ret_id = myc_o.update_one({'_id': customer_id}, {'$set': order})
-                        self.signal.emit(True)
+    def finish_refresh_bill_func(self):
+        from backend import CommonFunctions
+        self.curr_wid.tb_bill.setText(
+            CommonFunctions().convert_to_bill(self.th_refresh_bill.bill_doc, self.th_refresh_bill.fetch_dict))
+        self.MW.mess('Refreshed')
+        self.curr_wid.bt_checkout.setEnabled(True)
 
-                except AutoReconnect:
-                    MW.mess('-->> Network Error <<--')
-                except (SomeOrdersPreparingError, NoOrdersFoundError) as ob:
-                    MW.mess(str(ob))
-                finally:
-                    curr_wid.bt_checkout.setEnabled(True)
+    def checkout_func(self):
+        from backend.dialogs import DialogConfirmation
+        message_box = DialogConfirmation('Are You Sure ?')
+        if message_box.exec_() == message_box.Yes:
+            self.curr_wid.bt_checkout.setEnabled(False)
+            self.MW.mess('Finishing...')
+            self.th_checkout.start()
+        else:
+            self.MW.mess('Cancelled')
 
-        th_checkout = ThreadCheckout()
-
-        def checkout_func():
-            from .common_functions import DialogConfirmation
-            message_box = DialogConfirmation('Are You Sure ?')
-            if message_box.exec_() == message_box.Yes:
-                curr_wid.bt_checkout.setEnabled(False)
-                MW.mess('Finishing...')
-                th_checkout.start()
-            else:
-                MW.mess('Cancelled')
-
-        def finish_checkout():
-            MW.mess('Thank You {}(  Your Bill {}  )'.format(' ' * 15, th_checkout.total_bill))
-            MW.select_func()
-
-        curr_wid.bt_checkout.clicked.connect(checkout_func)
-        th_checkout.signal.connect(finish_checkout)
+    def finish_checkout(self):
+        self.MW.mess('Thank You {}(  Your Bill {}  )'.format(' ' * 15, self.th_checkout.total_bill))
+        self.MW.select_func()
