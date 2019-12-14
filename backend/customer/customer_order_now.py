@@ -5,7 +5,7 @@ class RunMainOrderNow:
         self.curr_wid = curr_wid
         self.MW = MW
 
-        from backend.threads import ThreadFetchImage, ThreadGetMenu, ThreadDoneDining
+        from backend.customer.threads.order_now import ThreadFetchImage, ThreadGetMenu, ThreadDoneDining
         self.th_fetch_image = ThreadFetchImage(self)
         self.th_get_menu = ThreadGetMenu(self)
         self.th_done_thread = ThreadDoneDining(self)
@@ -40,7 +40,7 @@ class RunMainOrderNow:
     def finish_menu_func(self):
         self.MW.mess('Food Fetched')
 
-        from backend.Layouts import AddMenuWidget
+        from backend.customer.layouts import AddMenuWidget
         for x in self.searched_food_list:
             self.curr_wid.scroll_choose.addLayout(AddMenuWidget(x['name'], str(x['price']),
                                                                 x['_id'], self))

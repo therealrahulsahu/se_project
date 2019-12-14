@@ -1,5 +1,6 @@
 class RunMain:
     def __init__(self, curr_wid, MW):
+
         def to_customer():
             MW.customer_login_func()
 

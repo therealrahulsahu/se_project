@@ -1,4 +1,4 @@
-class RunMain:
+class RunMainLogin:
     def __init__(self, curr_wid, MW):
         self.curr_wid = curr_wid
         self.MW = MW
@@ -7,7 +7,7 @@ class RunMain:
 
         self.curr_wid.bt_back.clicked.connect(self.to_back)
 
-        from backend.threads import ThreadCreateCustomer
+        from backend.customer.threads.login_code import ThreadCreateCustomer
         self.th_create_customer = ThreadCreateCustomer(self)
 
         self.curr_wid.bt_get_started.clicked.connect(self.to_submit)

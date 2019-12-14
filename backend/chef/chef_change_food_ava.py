@@ -4,7 +4,7 @@ class RunMainChangeFoodAva:
         self.curr_wid = curr_wid
         self.MW = MW
 
-        from backend.threads import ThreadGetFoodList, ThreadMarkAva, ThreadMarkUnAva
+        from backend.chef.threads.change_food_ava import ThreadGetFoodList, ThreadMarkAva, ThreadMarkUnAva
         self.th_get_food_list = ThreadGetFoodList(self)
         self.th_mark_ava = ThreadMarkAva(self)
         self.th_mark_un_ava = ThreadMarkUnAva(self)

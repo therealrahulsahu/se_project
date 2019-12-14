@@ -1,4 +1,4 @@
-class RunMain:
+class RunMainLogin:
     def __init__(self, curr_wid, MW):
         self.curr_wid = curr_wid
         self.MW = MW
@@ -7,7 +7,7 @@ class RunMain:
 
         self.curr_wid.bt_back.clicked.connect(self.to_back)
 
-        from backend.threads import ThreadManagerLogin
+        from backend.manager.threads.login_code import ThreadManagerLogin
         self.fetch_t = ThreadManagerLogin(self)
 
         self.curr_wid.bt_login.clicked.connect(self.to_login)

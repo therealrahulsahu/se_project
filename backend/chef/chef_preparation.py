@@ -8,7 +8,8 @@ class RunMainChefPreparation:
         self.request_widget_list = []
         self.preparation_widget_list = []
 
-        from backend.threads import ThreadTakeOrder, ThreadMarkPrepared, ThreadPreparationRefresh
+        from backend.chef.threads.preparation import ThreadTakeOrder, \
+            ThreadMarkPrepared, ThreadPreparationRefresh
         self.th_take_order = ThreadTakeOrder(self)
         self.th_mark_prepared = ThreadMarkPrepared(self)
         self.th_preparing_refresh = ThreadPreparationRefresh(self)
@@ -30,7 +31,7 @@ class RunMainChefPreparation:
         self.th_preparing_refresh.start()
 
     def finish_refresh_func(self):
-        from backend.Layouts import RequestWidget, PreparationWidget
+        from backend.chef.layouts import RequestWidget, PreparationWidget
         for x in self.request_widget_list:
             self.curr_wid.scroll_req.addLayout(RequestWidget(*x, self))
         for x in self.preparation_widget_list:

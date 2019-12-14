@@ -7,7 +7,7 @@ class RunMainHistory:
         self.curr_wid.time_start.setDateTime(datetime.now())
         self.curr_wid.time_end.setDateTime(datetime.now())
 
-        from backend.threads import ThreadBillHistoryFetch, ThreadGetOrdersHistory
+        from backend.manager.threads.history import ThreadBillHistoryFetch, ThreadGetOrdersHistory
         from backend.dialogs import BillDialog
         self.di_bill = BillDialog(self)
         self.th_bill_fetch = ThreadBillHistoryFetch(self)
@@ -30,7 +30,7 @@ class RunMainHistory:
 
     def finish_get_orders_func(self):
         self.MW.mess('Orders Fetched')
-        from backend.Layouts import OrdersHistoryWidget
+        from backend.manager.layouts import OrdersHistoryWidget
         for x in self.th_get_orders.output:
             self.curr_wid.scroll_history.addLayout(OrdersHistoryWidget(*x, self))
 

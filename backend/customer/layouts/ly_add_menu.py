@@ -47,7 +47,7 @@ class AddMenuWidget(QHBoxLayout):
             if x.DB_id == self.DB_id:
                 execute = False
         if execute:
-            from backend.Layouts import SelectedMenuWidget
+            from backend.customer.layouts import SelectedMenuWidget
             ob = SelectedMenuWidget(self.food_name, self.food_price, self.DB_id, self.parent_class)
             self.parent_class.selected_food_list.append(ob)
             self.parent_class.curr_wid.scroll_select.addLayout(ob)

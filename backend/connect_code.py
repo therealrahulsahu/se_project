@@ -11,7 +11,7 @@ class RunMain:
 
     def connection_func(self):
         self.MW.mess('Connecting..')
-        from .connection_details import mongodb_link
+        from backend.customer.connection_details import mongodb_link
         self.th_connection.set_arg(mongodb_link)
         self.curr_wid.bt_connect.setEnabled(False)
         self.th_connection.start()

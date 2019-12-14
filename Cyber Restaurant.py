@@ -121,7 +121,7 @@ class MyWindow(QMainWindow):
         from frontend import CustomerLoginWid
         customer_login_ui = CustomerLoginWid()
         customer_login_ui.setupUi(customer_login_wid)
-        from backend import CustomerLoginCode
+        from backend.customer import CustomerLoginCode
         code = CustomerLoginCode(customer_login_ui, self)
 
         self.setCentralWidget(customer_login_wid)
@@ -134,7 +134,7 @@ class MyWindow(QMainWindow):
         from frontend import ManagerLoginWid
         manager_login_ui = ManagerLoginWid()
         manager_login_ui.setupUi(manager_login_wid)
-        from backend import ManagerLoginCode
+        from backend.manager import ManagerLoginCode
         code = ManagerLoginCode(manager_login_ui, self)
 
         self.setCentralWidget(manager_login_wid)
@@ -147,7 +147,7 @@ class MyWindow(QMainWindow):
         from frontend import ChefLoginWid
         chef_login_ui = ChefLoginWid()
         chef_login_ui.setupUi(chef_login_wid)
-        from backend import ChefLoginCode
+        from backend.chef import ChefLoginCode
         code = ChefLoginCode(chef_login_ui, self)
 
         self.setCentralWidget(chef_login_wid)

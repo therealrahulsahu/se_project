@@ -6,13 +6,11 @@ class RunMainStatus:
         self.curr_wid = curr_wid
         self.MW = MW
 
-        from backend.threads import ThreadOnStatusRemoveFood
+        from backend.customer.threads.status import ThreadOnStatusRemoveFood, ThreadRefreshCustomerStatus
         self.th_remove = ThreadOnStatusRemoveFood(self)
+        self.th_refresh = ThreadRefreshCustomerStatus(self)
 
         self.new_list = []
-
-        from backend.threads import ThreadRefreshCustomerStatus
-        self.th_refresh = ThreadRefreshCustomerStatus(self)
 
         self.curr_wid.bt_refresh_status.clicked.connect(self.refresh_func)
         self.th_refresh.signal.connect(self.finish_refresh_func)
@@ -29,7 +27,7 @@ class RunMainStatus:
         from backend import CommonFunctions
         CommonFunctions().clear_layout(self.curr_wid.scroll_status)
 
-        from backend.Layouts import StatusMenuWidget
+        from backend.customer.layouts import StatusMenuWidget
         if self.new_list:
             for x in self.new_list:
                 self.curr_wid.scroll_status.addLayout(StatusMenuWidget(x[0], x[1], x[2], x[3], x[4], self))

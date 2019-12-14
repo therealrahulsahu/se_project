@@ -6,7 +6,8 @@ class RunMainManageChef:
 
         self.curr_wid.bt_rm_confirm.setEnabled(False)
 
-        from backend.threads import ThreadQueryChef, ThreadRemoveChefQuery, ThreadAddChef, ThreadRemoveChef
+        from backend.manager.threads.manage_chef import ThreadQueryChef, ThreadRemoveChefQuery, \
+            ThreadAddChef, ThreadRemoveChef
         self.th_query_chef = ThreadQueryChef(self)
         self.th_add_chef = ThreadAddChef(self)
         self.th_remove_chef_query = ThreadRemoveChefQuery(self)

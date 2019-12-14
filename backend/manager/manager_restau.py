@@ -4,7 +4,7 @@ class RunMainRestaurant:
         self.curr_wid = curr_wid
         self.MW = MW
 
-        from backend.threads import ThreadGetTableNo, ThreadChangeTableNo
+        from backend.manager.threads.restau import ThreadGetTableNo, ThreadChangeTableNo
         self.th_get_table_no = ThreadGetTableNo(self)
         self.th_change_table_no = ThreadChangeTableNo(self)
 

@@ -4,7 +4,7 @@ class RunMainAddFood:
         self.curr_wid = curr_wid
         self.MW = MW
 
-        from backend.threads import ThreadUploadImage, ThreadAddFood, ThreadFetchFoodList, \
+        from backend.manager.threads.add_food import ThreadUploadImage, ThreadAddFood, ThreadFetchFoodList, \
             ThreadRemoveFood, ThreadAddImage, ThreadRemoveImage
         self.th_upload_image_thread = ThreadUploadImage(self)
         self.th_add_food = ThreadAddFood(self)

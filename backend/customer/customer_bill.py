@@ -4,7 +4,7 @@ class RunMainBill:
         self.curr_wid = curr_wid
         self.MW = MW
 
-        from backend.threads import ThreadRefreshCustomerBill, ThreadCheckout
+        from backend.customer.threads.bill import ThreadRefreshCustomerBill, ThreadCheckout
         self.th_refresh_bill = ThreadRefreshCustomerBill(self)
         self.th_checkout = ThreadCheckout(self)
 

@@ -3,11 +3,10 @@ class RunMainOnOrder:
         self.curr_wid = curr_wid
         self.MW = MW
 
-        from backend.threads import ThreadPaymentDone, ThreadFetchBill, ThreadRefreshOnOrderStatus
+        from backend.manager.threads.on_order import ThreadPaymentDone, \
+            ThreadFetchBill, ThreadRefreshOnOrderStatus
         self.th_payment_done = ThreadPaymentDone(self)
-
         self.th_fetch_bill = ThreadFetchBill(self)
-
         self.th_refresh_status = ThreadRefreshOnOrderStatus(self)
 
         curr_wid.bt_refresh_on_order.clicked.connect(self.refresh_status_func)
@@ -24,7 +23,7 @@ class RunMainOnOrder:
         self.th_refresh_status.start()
 
     def finish_refresh_status_func(self):
-        from backend.Layouts import OnOrderStatusWidget
+        from backend.manager.layouts import OnOrderStatusWidget
         for x in self.th_refresh_status.output_list:
             self.curr_wid.scroll_on_order.addLayout(OnOrderStatusWidget(*x, self))
         self.MW.mess('Refreshed')
