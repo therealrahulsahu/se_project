@@ -1,28 +1,30 @@
-class RunMainLogin:
-    def __init__(self, curr_wid, MW):
-        self.curr_wid = curr_wid
-        self.MW = MW
+def run_main(curr_wid, MW):
+    class Variable:
+        def __init__(self):
+            pass
+    var = Variable()
+    var.curr_wid = curr_wid
+    var.MW = MW
 
-        MW.mess('Enter Manager Details ')
+    from backend.manager.threads.login_code import ThreadManagerLogin
+    var.fetch_t = ThreadManagerLogin(var)
 
-        self.curr_wid.bt_back.clicked.connect(self.to_back)
+    MW.mess('Enter Manager Details ')
 
-        from backend.manager.threads.login_code import ThreadManagerLogin
-        self.fetch_t = ThreadManagerLogin(self)
+    def to_back():
+        MW.mess('!!! Select User !!!')
+        MW.select_func()
 
-        self.curr_wid.bt_login.clicked.connect(self.to_login)
-        self.fetch_t.signal.connect(self.to_login_finish)
+    def to_login():
+        MW.mess('Verifying...')
+        curr_wid.bt_login.setEnabled(False)
+        curr_wid.bt_back.setEnabled(False)
+        var.fetch_t.start()
 
-    def to_back(self):
-        self.MW.mess('!!! Select User !!!')
-        self.MW.select_func()
+    def to_login_finish():
+        MW.logged_user = var.fetch_t.in_userid
+        MW.manager_func()
 
-    def to_login(self):
-        self.MW.mess('Verifying...')
-        self.curr_wid.bt_login.setEnabled(False)
-        self.curr_wid.bt_back.setEnabled(False)
-        self.fetch_t.start()
-
-    def to_login_finish(self):
-        self.MW.logged_user = self.fetch_t.in_userid
-        self.MW.manager_func()
+    curr_wid.bt_back.clicked.connect(to_back)
+    curr_wid.bt_login.clicked.connect(to_login)
+    var.fetch_t.signal.connect(to_login_finish)

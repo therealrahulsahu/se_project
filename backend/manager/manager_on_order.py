@@ -1,36 +1,34 @@
-class RunMainOnOrder:
-    def __init__(self, curr_wid, MW):
-        self.curr_wid = curr_wid
-        self.MW = MW
+def run_main(curr_wid, MW):
+    class Variables:
+        def __init__(self):
+            pass
 
-        from backend.manager.threads.on_order import ThreadPaymentDone, \
-            ThreadFetchBill, ThreadRefreshOnOrderStatus
-        self.th_payment_done = ThreadPaymentDone(self)
-        self.th_fetch_bill = ThreadFetchBill(self)
-        self.th_refresh_status = ThreadRefreshOnOrderStatus(self)
+    var = Variables()
+    var.curr_wid = curr_wid
+    var.MW = MW
 
-        curr_wid.bt_refresh_on_order.clicked.connect(self.refresh_status_func)
-        self.th_refresh_status.signal.connect(self.finish_refresh_status_func)
-        self.refresh_status_func()
-        self.th_payment_done.signal.connect(self.refresh_status_func)
-        self.th_fetch_bill.signal.connect(self.printing_bill)
+    from backend.manager.threads.on_order import ThreadPaymentDone, \
+        ThreadFetchBill, ThreadRefreshOnOrderStatus
+    var.th_payment_done = ThreadPaymentDone(var)
+    var.th_fetch_bill = ThreadFetchBill(var)
+    var.th_refresh_status = ThreadRefreshOnOrderStatus(var)
 
-    def refresh_status_func(self):
-        self.curr_wid.bt_refresh_on_order.setEnabled(False)
+    def refresh_status_func():
+        curr_wid.bt_refresh_on_order.setEnabled(False)
         from backend import CommonFunctions
-        CommonFunctions().clear_layout(self.curr_wid.scroll_on_order)
-        self.MW.mess('Refreshing...')
-        self.th_refresh_status.start()
+        CommonFunctions().clear_layout(curr_wid.scroll_on_order)
+        MW.mess('Refreshing...')
+        var.th_refresh_status.start()
 
-    def finish_refresh_status_func(self):
+    def finish_refresh_status_func():
         from backend.manager.layouts import OnOrderStatusWidget
-        for x in self.th_refresh_status.output_list:
-            self.curr_wid.scroll_on_order.addLayout(OnOrderStatusWidget(*x, self))
-        self.MW.mess('Refreshed')
+        for x in var.th_refresh_status.output_list:
+            curr_wid.scroll_on_order.addLayout(OnOrderStatusWidget(*x, var))
+        MW.mess('Refreshed')
 
-    def printing_bill(self):
+    def printing_bill():
         from backend import CommonFunctions
-        data_to_print = CommonFunctions().convert_to_bill(self.th_fetch_bill.bill_doc, self.th_fetch_bill.fetch_dict)
+        data_to_print = CommonFunctions().convert_to_bill(var.th_fetch_bill.bill_doc, var.th_fetch_bill.fetch_dict)
 
         from PyQt5.QtPrintSupport import QPrintDialog
         dialog = QPrintDialog()
@@ -42,6 +40,12 @@ class RunMainOnOrder:
 
         if dialog.exec_() == QPrintDialog.Accepted:
             doc.print_(dialog.printer())
-            self.MW.mess('Printing Done')
+            MW.mess('Printing Done')
         else:
-            self.MW.mess('Printing Rejected')
+            MW.mess('Printing Rejected')
+
+    curr_wid.bt_refresh_on_order.clicked.connect(refresh_status_func)
+    var.th_refresh_status.signal.connect(finish_refresh_status_func)
+    refresh_status_func()
+    var.th_payment_done.signal.connect(refresh_status_func)
+    var.th_fetch_bill.signal.connect(printing_bill)

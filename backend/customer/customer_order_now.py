@@ -1,86 +1,83 @@
-class RunMainOrderNow:
-    def __init__(self, curr_wid, MW):
-        self.searched_food_list = []
-        self.selected_food_list = []
-        self.curr_wid = curr_wid
-        self.MW = MW
+def run_main(curr_wid, MW):
+    class Variables:
+        def __init__(self):
+            pass
 
-        from backend.customer.threads.order_now import ThreadFetchImage, ThreadGetMenu, ThreadDoneDining
-        self.th_fetch_image = ThreadFetchImage(self)
-        self.th_get_menu = ThreadGetMenu(self)
-        self.th_done_thread = ThreadDoneDining(self)
+    var = Variables()
+    var.searched_food_list = []
+    var.selected_food_list = []
+    var.curr_wid = curr_wid
+    var.MW = MW
 
-        self.curr_wid.bt_get.clicked.connect(self.get_menu_func)
-        self.th_get_menu.signal.connect(self.finish_menu_func)
+    from PyQt5.QtWidgets import QDialog
+    from PyQt5.QtCore import Qt
+    dialog_img = QDialog(MW, Qt.WindowCloseButtonHint)
 
-        self.curr_wid.bt_done.clicked.connect(self.done_func)
-        self.th_done_thread.signal.connect(self.finish_done_func)
-        self.th_done_thread.fail_signal.connect(self.fail_finish_done_func)
+    from PyQt5.QtWidgets import QVBoxLayout
+    vertical_box = QVBoxLayout()
+    dialog_img.setLayout(vertical_box)
 
-        from PyQt5.QtWidgets import QDialog
-        from PyQt5.QtCore import Qt
-        self.dialog_img = QDialog(MW, Qt.WindowCloseButtonHint)
+    from images import ic_milkshake
+    dialog_img.setWindowIcon(ic_milkshake)
 
-        from PyQt5.QtWidgets import QVBoxLayout
-        self.vertical_box = QVBoxLayout()
-        self.dialog_img.setLayout(self.vertical_box)
+    from backend.customer.threads.order_now import ThreadFetchImage, ThreadGetMenu, ThreadDoneDining
+    var.th_fetch_image = ThreadFetchImage(var)
+    var.th_get_menu = ThreadGetMenu(var)
+    var.th_done_thread = ThreadDoneDining(var)
 
-        from images import ic_milkshake
-        self.dialog_img.setWindowIcon(ic_milkshake)
-
-    def get_menu_func(self):
-        self.searched_food_list.clear()
-        self.curr_wid.bt_get.setEnabled(False)
+    def get_menu_func():
+        var.searched_food_list.clear()
+        curr_wid.bt_get.setEnabled(False)
         from backend import CommonFunctions
         cl = CommonFunctions()
-        cl.clear_layout(self.curr_wid.scroll_choose)
-        self.MW.mess('Fetching Menu...')
-        self.th_get_menu.start()
+        cl.clear_layout(curr_wid.scroll_choose)
+        MW.mess('Fetching Menu...')
+        var.th_get_menu.start()
 
-    def finish_menu_func(self):
-        self.MW.mess('Food Fetched')
+    def finish_menu_func():
+        MW.mess('Food Fetched')
 
         from backend.customer.layouts import AddMenuWidget
-        for x in self.searched_food_list:
-            self.curr_wid.scroll_choose.addLayout(AddMenuWidget(x['name'], str(x['price']),
-                                                                x['_id'], self))
+        for x in var.searched_food_list:
+            curr_wid.scroll_choose.addLayout(AddMenuWidget(x['name'], str(x['price']),
+                                                                x['_id'], var))
 
-    def done_func(self):
-        if not self.selected_food_list:
-            self.MW.mess('No Food Selected')
+    def done_func():
+        if not var.selected_food_list:
+            MW.mess('No Food Selected')
         else:
             from backend.dialogs import DialogConfirmation
             message_box = DialogConfirmation('Proceed ?')
             if message_box.exec_() == message_box.Yes:
-                self.curr_wid.bt_done.setEnabled(False)
-                self.th_done_thread.start()
+                curr_wid.bt_done.setEnabled(False)
+                var.th_done_thread.start()
             else:
-                self.MW.mess('Cancelled')
+                MW.mess('Cancelled')
 
-    def finish_done_func(self):
-        self.MW.mess('Order Placed')
+    def finish_done_func():
+        MW.mess('Order Placed')
         from backend import CommonFunctions
         cl = CommonFunctions()
-        cl.clear_layout(self.curr_wid.scroll_choose)
-        cl.clear_layout(self.curr_wid.scroll_select)
-        self.selected_food_list.clear()
-        self.searched_food_list.clear()
-        self.curr_wid.lb_amount.setText('0')
-        self.curr_wid.rbt_north_ind.setChecked(True)
-        self.curr_wid.rbt_starter.setChecked(True)
-        self.curr_wid.rbt_veg.setChecked(False)
+        cl.clear_layout(curr_wid.scroll_choose)
+        cl.clear_layout(curr_wid.scroll_select)
+        var.selected_food_list.clear()
+        var.searched_food_list.clear()
+        curr_wid.lb_amount.setText('0')
+        curr_wid.rbt_north_ind.setChecked(True)
+        curr_wid.rbt_starter.setChecked(True)
+        curr_wid.rbt_veg.setChecked(False)
 
-        self.curr_wid.bt_done.setEnabled(True)
+        curr_wid.bt_done.setEnabled(True)
 
-    def fail_finish_done_func(self):
-        self.curr_wid.bt_done.setEnabled(True)
+    def fail_finish_done_func():
+        curr_wid.bt_done.setEnabled(True)
 
-    def finish_open_image(self):
+    def finish_open_image():
         from backend import CommonFunctions
         cl = CommonFunctions()
-        cl.clear_layout(self.vertical_box)
+        cl.clear_layout(vertical_box)
 
-        self.MW.mess('Image Retrieved')
+        MW.mess('Image Retrieved')
         from os.path import expanduser, join
         from os import mkdir
         try:
@@ -93,19 +90,19 @@ class RunMainOrderNow:
             pass
 
         file_path = join(expanduser('~'), 'Documents', 'Cyber_Temp', 'Photos',
-                         str(self.th_fetch_image.ob_id) + '.jpg')
+                         str(var.th_fetch_image.ob_id) + '.jpg')
 
         with open(file_path, 'wb') as save_file:
-            save_file.write(self.th_fetch_image.output)  # Adding Image
+            save_file.write(var.th_fetch_image.output)  # Adding Image
 
         from PyQt5.QtGui import QPixmap
         pix = QPixmap(file_path)
 
         from PyQt5.QtWidgets import QLabel
-        self.dialog_img.setWindowTitle(self.th_fetch_image.food_name)
+        dialog_img.setWindowTitle(var.th_fetch_image.food_name)
 
         lb_img = QLabel()
-        self.vertical_box.addWidget(lb_img)
+        vertical_box.addWidget(lb_img)
 
         lb_img.setPixmap(pix)
 
@@ -113,5 +110,13 @@ class RunMainOrderNow:
         height_img = pix.height()
 
         lb_img.setPixmap(pix.scaled(width_img, height_img))
-        self.dialog_img.resize(width_img, height_img)
-        self.dialog_img.show()
+        dialog_img.resize(width_img, height_img)
+        dialog_img.show()
+
+    curr_wid.bt_get.clicked.connect(get_menu_func)
+    var.th_get_menu.signal.connect(finish_menu_func)
+
+    curr_wid.bt_done.clicked.connect(done_func)
+    var.th_done_thread.signal.connect(finish_done_func)
+    var.th_done_thread.fail_signal.connect(fail_finish_done_func)
+    var.finish_open_image = finish_open_image

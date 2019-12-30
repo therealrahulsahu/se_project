@@ -1,28 +1,31 @@
-class RunMainLogin:
-    def __init__(self, curr_wid, MW):
-        self.curr_wid = curr_wid
-        self.MW = MW
+def run_main(curr_wid, MW):
+    class Variables:
+        def __init__(self):
+            pass
 
-        self.MW.mess('Enter chef Details ')
+    var = Variables()
+    var.curr_wid = curr_wid
+    var.MW = MW
 
-        self.curr_wid.bt_back.clicked.connect(self.to_back)
+    from backend.chef.threads.login_code import ThreadLoginChef
+    var.fetch_t = ThreadLoginChef(var)
 
-        from backend.chef.threads.login_code import ThreadLoginChef
-        self.fetch_t = ThreadLoginChef(self)
+    MW.mess('Enter chef Details ')
 
-        self.curr_wid.bt_login.clicked.connect(self.to_login)
-        self.fetch_t.signal.connect(self.to_login_finish)
+    def to_back():
+        MW.mess('!!! Select User !!!')
+        MW.select_func()
 
-    def to_back(self):
-        self.MW.mess('!!! Select User !!!')
-        self.MW.select_func()
+    def to_login():
+        MW.mess('Verifying...')
+        curr_wid.bt_login.setEnabled(False)
+        curr_wid.bt_back.setEnabled(False)
+        var.fetch_t.start()
 
-    def to_login(self):
-        self.MW.mess('Verifying...')
-        self.curr_wid.bt_login.setEnabled(False)
-        self.curr_wid.bt_back.setEnabled(False)
-        self.fetch_t.start()
+    def to_login_finish():
+        MW.logged_user = var.fetch_t.in_userid
+        MW.chef_func()
 
-    def to_login_finish(self):
-        self.MW.logged_user = self.fetch_t.in_userid
-        self.MW.chef_func()
+    curr_wid.bt_back.clicked.connect(to_back)
+    curr_wid.bt_login.clicked.connect(to_login)
+    var.fetch_t.signal.connect(to_login_finish)

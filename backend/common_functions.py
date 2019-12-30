@@ -64,4 +64,3 @@ class CommonFunctions:
                     child.widget().deleteLater()
                 elif child.layout() is not None:
                     self.clear_layout(child.layout())
-

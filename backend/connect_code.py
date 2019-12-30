@@ -1,21 +1,25 @@
-class RunMain:
-    def __init__(self, curr_wid, MW):
-        self.curr_wid = curr_wid
-        self.MW = MW
-
-        from backend.threads import ThreadConnection
-        self.th_connection = ThreadConnection(self)
-        self.curr_wid.bt_connect.clicked.connect(self.connection_func)
-        self.th_connection.signal.connect(self.finish_connection_func)
-        self.connection_func()
-
-    def connection_func(self):
-        self.MW.mess('Connecting..')
+def run_main(curr_wid, MW):
+    def connection_func():
+        MW.mess('Connecting..')
         from backend.customer.connection_details import mongodb_link
-        self.th_connection.set_arg(mongodb_link)
-        self.curr_wid.bt_connect.setEnabled(False)
-        self.th_connection.start()
+        th_connection.set_arg(mongodb_link)
+        curr_wid.bt_connect.setEnabled(False)
+        th_connection.start()
 
-    def finish_connection_func(self):
-        self.MW.mess('Connected')
-        self.MW.select_func()
+    def finish_connection_func():
+        MW.mess('Connected')
+        MW.select_func()
+
+    class Variables:
+        def __init__(self):
+            pass
+
+    var = Variables()
+    var.curr_wid = curr_wid
+    var.MW = MW
+
+    from backend.threads import ThreadConnection
+    th_connection = ThreadConnection(var)
+    curr_wid.bt_connect.clicked.connect(connection_func)
+    th_connection.signal.connect(finish_connection_func)
+    connection_func()
