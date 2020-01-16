@@ -80,7 +80,7 @@ class MyWindow(QMainWindow):
         show_menu.addAction(minimise_screen_action)
 
     def cache_actions(self):
-        def action():
+        def del_photos_action():
             from os.path import expanduser, join
             from shutil import rmtree
             try:
@@ -89,15 +89,29 @@ class MyWindow(QMainWindow):
             except FileNotFoundError:
                 self.mess('Cache Not Found')
 
+        def del_conn_details():
+            from os.path import expanduser, join
+            from os import remove
+            try:
+                remove(join(expanduser('~'), 'Documents', 'Cyber_Temp', 'connection.txt'))
+                self.mess('Cache Cleared')
+            except FileNotFoundError:
+                self.mess('Cache Not Found')
+
         cache_menu = self.bar_menu.addMenu('&Cache')
 
         from PyQt5.QtWidgets import QAction
-        self.clear_cache_action = QAction('&Clear Cache', self)
-        self.clear_cache_action.setShortcut('Ctrl+Alt+C')
-        self.clear_cache_action.setStatusTip('Clear Cache')
-        self.clear_cache_action.triggered.connect(action)
+        self.clear_cache_action = QAction('&Clear Photos Cache', self)
+        self.clear_cache_action.setShortcut('Ctrl+Alt+P')
+        self.clear_cache_action.triggered.connect(del_photos_action)
 
         cache_menu.addAction(self.clear_cache_action)
+
+        self.clear_conn_details = QAction('&Clear Connection Cache', self)
+        self.clear_conn_details.setShortcut('Ctrl+Alt+C')
+        self.clear_conn_details.triggered.connect(del_conn_details)
+
+        cache_menu.addAction(self.clear_conn_details)
 
     def select_func(self):
         self.quit_action.setEnabled(False)

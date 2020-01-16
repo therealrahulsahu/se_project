@@ -202,7 +202,11 @@
       </spacer>
      </item>
      <item>
-      <widget class="QLineEdit" name="le_password"/>
+      <widget class="QLineEdit" name="le_password">
+       <property name="echoMode">
+        <enum>QLineEdit::Password</enum>
+       </property>
+      </widget>
      </item>
      <item>
       <spacer name="horizontalSpacer_7">

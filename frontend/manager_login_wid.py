@@ -76,6 +76,7 @@ class Ui_Form(object):
         spacerItem9 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout_3.addItem(spacerItem9)
         self.le_password = QtWidgets.QLineEdit(Form)
+        self.le_password.setEchoMode(QtWidgets.QLineEdit.Password)
         self.le_password.setObjectName("le_password")
         self.horizontalLayout_3.addWidget(self.le_password)
         spacerItem10 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)

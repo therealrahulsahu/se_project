@@ -1,14 +1,5 @@
 def run_main(curr_wid, MW):
-    def connection_func():
-        MW.mess('Connecting..')
-        from backend.customer.connection_details import mongodb_link
-        th_connection.set_arg(mongodb_link)
-        curr_wid.bt_connect.setEnabled(False)
-        th_connection.start()
-
-    def finish_connection_func():
-        MW.mess('Connected')
-        MW.select_func()
+    curr_wid.le_link.setEnabled(False)
 
     class Variables:
         def __init__(self):
@@ -19,7 +10,34 @@ def run_main(curr_wid, MW):
     var.MW = MW
 
     from backend.threads import ThreadConnection
-    th_connection = ThreadConnection(var)
-    curr_wid.bt_connect.clicked.connect(connection_func)
-    th_connection.signal.connect(finish_connection_func)
-    connection_func()
+    var.th_connection = ThreadConnection(var)
+
+    def connection_line():
+        MW.mess('Connecting...')
+        link = curr_wid.le_link.text().strip()
+        var.th_connection.set_arg(link)
+        curr_wid.bt_connect.setEnabled(False)
+        var.th_connection.start()
+
+    def connection_file():
+        MW.mess('Connecting...')
+        try:
+            with open('C:\\Users\\KIIT\\Documents\\Cyber_Temp\\connection.txt', 'r') as conn_file:
+                link = conn_file.readline().strip()
+                curr_wid.le_link.setText(link)
+                var.th_connection.set_arg(link)
+            curr_wid.bt_connect.setEnabled(False)
+            var.th_connection.start()
+        except FileNotFoundError:
+            MW.mess('Cache Not Found')
+            curr_wid.le_link.setEnabled(True)
+
+    def finish_connection_func():
+        MW.mess('Connected')
+        with open('C:\\Users\\KIIT\\Documents\\Cyber_Temp\\connection.txt', 'w') as conn_file:
+            conn_file.write(var.th_connection.db_link)
+        MW.select_func()
+
+    curr_wid.bt_connect.clicked.connect(connection_line)
+    var.th_connection.signal.connect(finish_connection_func)
+    connection_file()

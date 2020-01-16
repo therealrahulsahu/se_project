@@ -6,12 +6,11 @@ class ThreadConnection(QThread):
 
     def __init__(self, parent_class):
         super().__init__()
-        self.db_user_id = ''
-        self.db_password = ''
+        self.db_link = ''
         self.parent_class = parent_class
 
-    def set_arg(self, db_link):
-        self.db_link = db_link
+    def set_arg(self, link):
+        self.db_link = link
 
     def run(self):
         import dns
@@ -19,10 +18,25 @@ class ThreadConnection(QThread):
             ServerSelectionTimeoutError, OperationFailure
         from pymongo import MongoClient
         try:
-            myc = MongoClient('{}'.format(self.db_link),
-                              serverSelectionTimeoutMS=5000, connectTimeoutMS=5000, socketTimeoutMS=5000)
+            myc = MongoClient(self.db_link, serverSelectionTimeoutMS=5000,
+                              connectTimeoutMS=5000, socketTimeoutMS=5000)
             self.parent_class.MW.myc = myc
             self.parent_class.MW.DB = eval('myc.{}'.format(self.parent_class.MW.current_db))
+
+            manager_found = self.parent_class.MW.DB.manager.find_one({})
+            if not bool(manager_found):
+                from re import compile
+                reg = compile(r'(?i)(?<=\/\/)(\w+)(:)(\w+)(?=@)')
+                data = reg.search(self.db_link)
+                user_name = data.group(1)
+                user_password = data.group(3)
+                in_id1 = self.parent_class.MW.DB.manager.insert_one({'name': user_name,
+                                                                     'userid': user_name,
+                                                                     'password': user_password})
+                in_id2 = self.parent_class.MW.DB.counter.insert_many([{'type': 'food', 'num': 0},
+                                                                      {'type': 'orders', 'num': 0},
+                                                                      {'type': 'tables', 'num': 10}])
+
             from platform import uname, node
             from datetime import datetime
             login_info_id = self.parent_class.MW.DB.se_login_info.insert_one({'info': str(uname()),
