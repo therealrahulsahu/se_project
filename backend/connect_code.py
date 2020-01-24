@@ -1,6 +1,4 @@
 def run_main(curr_wid, MW):
-    curr_wid.le_link.setEnabled(False)
-
     class Variables:
         def __init__(self):
             pass
@@ -30,7 +28,6 @@ def run_main(curr_wid, MW):
             var.th_connection.start()
         except FileNotFoundError:
             MW.mess('Cache Not Found')
-            curr_wid.le_link.setEnabled(True)
 
     def finish_connection_func():
         MW.mess('Connected')

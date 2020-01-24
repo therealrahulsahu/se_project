@@ -25,11 +25,15 @@ class ThreadConnection(QThread):
 
             manager_found = self.parent_class.MW.DB.manager.find_one({})
             if not bool(manager_found):
-                from re import compile
-                reg = compile(r'(?i)(?<=\/\/)(\w+)(:)(\w+)(?=@)')
-                data = reg.search(self.db_link)
-                user_name = data.group(1)
-                user_password = data.group(3)
+                if self.db_link == 'mongodb://localhost:27017/':
+                    user_name = 'localhost'
+                    user_password = 'localhost'
+                else:
+                    from re import compile
+                    reg = compile(r'(?i)(?<=\/\/)(\w+)(:)(\w+)(?=@)')
+                    data = reg.search(self.db_link)
+                    user_name = data.group(1)
+                    user_password = data.group(3)
                 in_id1 = self.parent_class.MW.DB.manager.insert_one({'name': user_name,
                                                                      'userid': user_name,
                                                                      'password': user_password})
