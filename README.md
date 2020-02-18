@@ -7,14 +7,7 @@ Justin Joy    1705141   https://github.com/J-svg \
 Arnav Aditya  1705124   https://github.com/arnav1604 \
 Anurag Kumar  1705118   https://github.com/lanurag/ \
 {See contributions for more information}
-
-Executable download link
----------
-https://1drv.ms/u/s!Am373MZ-hj_4omq177WxAZJGCe7Q?e=WELeL7
-
-Instructions
-------
-Add your database connection link 
+ 
 Requirements
 -------
 Windows\
